@@ -11,7 +11,7 @@ body {
 }
 body {
   /* 画像ファイルの指定 */
-  background-image: url(../images/Salar_de_Uyuni.jpg);
+  /* background-image: url(../images/Salar_de_Uyuni.jpg);
   /* 画像を常に天地左右の中央に配置 */
   background-position: center center;  
   /* 画像をタイル状に繰り返し表示しない */
@@ -55,6 +55,13 @@ h2 {
 	display: table-cell;
 	vertical-align: middle;
 }
+h4 {
+	color: #b77895;
+	font-size: 1.2rem;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
 .plans {
 	font-size: 18px;
 	color: #111180;
@@ -64,12 +71,12 @@ h2 {
 }
 /* 追加実装予定 */
 .next-plan {
-	color: #777777;
-	opacity: 0.2;
+	color: #c0a022;
+	opacity: 0.3;
 }
 .implemented {
 	color: green;
-	opacity: 0.4;
+	opacity: 0.5;
 }
 footer {
 	height: 93px;
