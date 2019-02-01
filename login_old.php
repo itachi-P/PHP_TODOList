@@ -18,11 +18,11 @@
 		簡単なチェックのクリア後に最低限の入力データを渡し"list.php"に遷移
 	</ol>
 	<hr>
-	<h1 id="title">ログイン画面</h1>
+	<h2>ログイン画面</h2>
 	<!-- もはや<table>タグ(<font>や<br>連打なども)の使用自体が「悪」らしいので以後使用禁止-->
 	<div class="login-form">
 		<form name="Login" method="post" action="login-check.php">
-			<h2>ログイン</h2>
+			<p class="login-title">ログイン</p>
 			<hr>
 			<div class="inputs">
 				<div class="userID">

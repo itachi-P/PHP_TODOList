@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html lang="ja">
 <head>
-<meta charset=utf-8" />
+<meta charset=utf-8 " />
 <title>WebApp開発実習-ログイン</title>
-<link href="./css/login-form.css" rel="stylesheet" type="text/css"-->
+<!--link href="./css/stylesheet.css"rel="stylesheet" type="text/css"-->
 </head>
 <body>
 	<p>2019/01/31～</p>
@@ -18,27 +18,34 @@
 		簡単なチェックのクリア後に最低限の入力データを渡し"list.php"に遷移
 	</ol>
 	<hr>
-	<h1 id="title">ログイン画面</h1>
-	<!-- もはや<table>タグ(<font>や<br>連打なども)の使用自体が「悪」らしいので以後使用禁止-->
-	<div class="login-form">
-		<form name="Login" method="post" action="login-check.php">
-			<h2>ログイン</h2>
-			<hr>
-			<div class="inputs">
-				<div class="userID">
-					ユーザーID
-					<input type="text" name="userID" value="">
-				</div>
-				<div class="password">
-					パスワード
-					<input type="password" name="password">
-				</div>
-			</div>
-			<p class="btn-wrapper">
+
+	<div class="login">
+	<h2>ログイン画面</h2>
+	<table width="50%" rules="all" align="center">
+	<form name="Login" method="post" action="login-check.php">
+		<tr>
+			<caption>
+				<B>ログイン</B>
+				<hr>
+			<details>
+				<summary>このテーブルの説明</summary>
+					<p>説明不要ながらdetails, summaryタグを使ってみた</p>
+			</details>
+			</caption>
+			<td>ユーザーID</td>
+			<td><input type="text" name="userID" value=""></td>
+		</tr>
+		<tr>
+			<td>パスワード</td>
+			<td><input type="password" name="password"></td>
+		</tr>
+		<tr align="center">
+			<td>
 				<input class="btn" type="submit" value="ログイン">
-			</p>
-		</form>
-	</div>
+			</td>
+		</tr>
+	</form>
+	</table>
 
 <?php
 
