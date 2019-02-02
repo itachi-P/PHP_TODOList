@@ -1,1 +1,0 @@
-php -S localhost:8888 -t c:\pleiades\workspace
