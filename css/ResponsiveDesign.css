@@ -44,6 +44,10 @@
   float: left;
   width: 25%;
 }
+.itachi-icon img {
+  widows: 200px;
+  height: 200px;
+}
 .itachi-icon p {
   position: absolute;
   top: 90px;

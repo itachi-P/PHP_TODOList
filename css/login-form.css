@@ -1,5 +1,5 @@
 #title {
-	background-color: #222;
+	background-color: #444;
 	color: white;
 	padding-top: 10px;
 	padding-left: 20px;
@@ -11,6 +11,14 @@ h2 {
 	padding-bottom: 0px;
 	margin-bottom: 0px;
 }
+.next-plan {
+	background-color: orange;
+}
+.implemented {
+	opacity: 0.3;
+	color: #7cc;
+}
+
 hr {
 	margin: 0px;
 }
