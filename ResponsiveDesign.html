@@ -3,10 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>メディアクエリーサンプル</title>
-    <link rel="stylesheet" href="css/MediaQuery.css">
+     <!-- レスポンシブ対応デザイン実装の上でスマホ等でCSSのmediaQueryを有効にする為に必要 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- レスポンシブ対応デザイン用のCSSを読み込む場所は必ずviewportよりも下の行に記述すること -->
+    <link rel="stylesheet" href="css/ResponsiveDesign.css">
+    <!-- 色んなアイコンを利用する為のFont Awesomeを読み込み -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   </head>
   <body>
     <header>
+      <!-- スマホからのアクセスの場合のみメニューアイコンを表示 -->
+      <a href="#" class="menu-icon">
+        <span class="fa fa-bars"></span>
+      </a>
     </header>
     <div class="itachi-wrapper">
       <div class="container">
@@ -42,6 +51,7 @@
             </div>
             <p class="txt-contents">3代目　Birth:2009/2/8 ♀　ニュージーランド　セーブル　日本橋の悪い意味で有名な劣悪ペットショップ（閉店？移転？ヤミ営業中？）</p>
           </div>
+          <div class="clear"></div>
         </div>
       </div>
     </div>
