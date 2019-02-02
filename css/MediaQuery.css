@@ -1,0 +1,68 @@
+.itachi-wrapper {
+  height: 500px;
+  padding-bottom: 80px;
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+.heading {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  color: #5f5d60;
+}
+
+.heading h2 {
+  font-weight: bold;
+}
+
+.itachi {
+  float: left;
+  width: 25%;
+}
+.itachi-icon p {
+  position: absolute;
+  top: 90px;
+  width: 100%;
+  color: white;
+}
+
+/* 画面幅に合わせて各アイコンの並べ表示幅を変える */
+/* 標準はPC画面としてwidth:25%で4個横並べのアイコンをタブレットでは2個2段、スマホでは1個縦並べに */
+/* CSSは上から順に実行される為、同じセレクタが複数あると最後の設定で上書きされるので記述順に注意 */
+@media (max-width: 1000px) {
+  .itachi {
+    width:  50%;
+  }
+  .heading h2 {
+    color: #77c;
+  }
+  .itachi-icon p {
+    color: #359;
+  }
+}
+@media (max-width: 670px) {
+  .itachi {
+    width: 100%;
+  }
+  .heading h2 {
+    color: red;
+    font-weight: normal;
+    font-size: 20px;
+  }
+  .itachi p {
+    font-size: 15px;
+    color: #2c3;
+  }
+}
+
+.itachi-icon {
+  position: relative;
+}
+
+.txt-contents {
+  width: 80%;
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #b3aeb5;
+}
