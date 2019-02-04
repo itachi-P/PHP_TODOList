@@ -16,37 +16,61 @@ h1 {
 	display: table-cell;
 	vertical-align: middle;
 }
+<<<<<<< HEAD
 h2 {
 	margin: 0 auto;
 	width: 95%;
 	font-size: 20px;
 	border-bottom: 2px solid #555;
+=======
+h3 {
+	margin: 0 auto;
+	width: 95%;
+>>>>>>> origin/master
 	padding-bottom: 0px;
 }
 h4 {
 	width: 95%;
 	padding: 0px 0px;
+<<<<<<< HEAD
 	margin: 15px 0px;
+=======
+	margin: 0px 0px;
+>>>>>>> origin/master
 	text-align: right;
 }
 hr {
 	margin: 0 auto;
 	width: 95%;
 }
+<<<<<<< HEAD
 a {
 	text-decoration: none;
 }
 
 .middle-wrapper {
 	height: 70px;
+=======
+
+.middle-wrapper {
+	height: 70px;
+	background-color: #8c9;
+>>>>>>> origin/master
 	margin: 30px;
 }
 .middle-left {
 	float: left;
+<<<<<<< HEAD
 	height: 50px;
 	width: 20%;
 	text-align: center;
 	margin: 10px;
+=======
+	width: 15%;
+	text-align: center;
+	margin: 15px;
+	background-color: #888;
+>>>>>>> origin/master
 }
 .middle-right {
 	float: right;
@@ -74,6 +98,7 @@ a {
 	border-radius: 6px;
 }
 .btn-l {
+<<<<<<< HEAD
 	display: block;
 	background-color: #999;
 	color: white;
@@ -81,6 +106,13 @@ a {
 	height: 40px;
 	line-height: 40px;
 	margin: 5px auto;
+=======
+	background-color: #999;
+	color: white;
+	width: 150px;
+	padding: 5px;
+	margin: 5px;
+>>>>>>> origin/master
 	border-radius: 6px;
 }
 .btn-s {

@@ -6,7 +6,13 @@
 <link href="../css/list.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<<<<<<< HEAD
 	<h2>作業一覧</h2>
+=======
+	<!-- h1 id="title">TODO管理<br>一覧画面</h1 -->
+	<h3>作業一覧</h3>
+	<hr>
+>>>>>>> origin/master
 
 <?php
 
@@ -18,14 +24,22 @@ echo "<h4>ようこそ　".$userID."　さん</h4>";
 ?>
 	<div class="middle-wrapper">
 		<div class="middle-left">
+<<<<<<< HEAD
 			<!-- input type="submit" をaタグに変更 -->
 			<a class="btn-l" href="regist.php">作業登録</a>
+=======
+			<input class="btn-l" type="submit" value="作業登録">
+>>>>>>> origin/master
 		</div>
 		<div class="middle-right">
 			<p>検索キーワード</p>
 			<input class="tbox" type="text" name="search">
+<<<<<<< HEAD
 			<!-- input type="submit"をtype="button"に変更 -->
 			<input class="btn" type="button" value="検索">
+=======
+			<input class="btn" type="submit" value="検索">
+>>>>>>> origin/master
 		</div>
 	</div>
 
