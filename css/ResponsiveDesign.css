@@ -1,0 +1,104 @@
+/* HTML全体に対し、widthの幅指定にpadding及びborderの分を含める指定でデザイン崩れを防ぐ
+ただしこの指定でもmarginは含まないのでmarginの幅を取るとやはり崩れる
+レスポンシブ対応を意識する場合、widthやheightを"〇〇px"と固定してしまわずに"100%"と指定 */
+* {
+  box-sizing: border-box;
+}
+
+/* レスポンシブ対応デザインの為に子要素が全てfloat指定ブロックでも親要素が高さを持つようにfloat解除 */
+.clear {
+  clear: left;
+}
+/* スマホ画面用のメニューアイコン(標準では非表示に設定) */
+.menu-icon {
+  display: none;
+}
+
+.container {
+  /* 逆に画面サイズがとても大きい場合に、4つのアイコンを並べるコンテナーの最大サイズを指定する */
+  max-width: 1170px;
+  width: 100%;
+}
+
+.itachi-wrapper {
+  /* これも固定値にしてしまうとタブレットやスマホで多段表示になった時に各コンテンツが背景色を突き抜ける
+  対応策は "100%"指定ではなく、指定を削除することで親要素の高さを全子要素を含んだ大きさに自動調整可能
+  ただし、子要素が全てfloatの場合「浮いている」為に親要素の高さが0になるのでfloat指定の解除が必要 */
+/*  height: 500px; */
+  padding-bottom: 80px;
+  background-color: #f7f7f7;
+  text-align: center;
+}
+
+.heading {
+  padding-top: 60px;
+  padding-bottom: 30px;
+  color: #5f5d60;
+}
+
+.heading h2 {
+  font-weight: bold;
+}
+
+.itachi {
+  float: left;
+  width: 25%;
+}
+.itachi-icon img {
+  widows: 200px;
+  height: 200px;
+}
+.itachi-icon p {
+  position: absolute;
+  top: 90px;
+  width: 100%;
+  color: white;
+}
+
+/* 画面幅に合わせて各アイコンの並べ表示幅を変える */
+/* 標準はPC画面としてwidth:25%で4個横並べのアイコンをタブレットでは2個2段、スマホでは1個縦並べに */
+/* CSSは上から順に実行される為、同じセレクタが複数あると最後の設定で上書きされるので記述順に注意 */
+/* 併せてHTML側の<HEAD>内<meta>でviewportを設定しないとスマホやタブレットでメディアクエリが機能しない */
+@media (max-width: 1000px) {
+  .itachi {
+    width:  50%;
+  }
+  .heading h2 {
+    color: #77c;
+  }
+  .itachi-icon p {
+    color: #359;
+  }
+}
+@media (max-width: 670px) {
+  .itachi {
+    width: 100%;
+  }
+  .heading h2 {
+    color: red;
+    font-weight: normal;
+    font-size: 20px;
+  }
+  .itachi p {
+    font-size: 15px;
+    color: #2c3;
+  }
+  /* スマホ画面の場合のみメニューアイコンを表示 */
+  .menu-icon {
+    display: block;
+    text-align: right;
+    font-size: 25px;
+  }
+}
+
+.itachi-icon {
+  position: relative;
+}
+
+.txt-contents {
+  width: 80%;
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 12px;
+  color: #b3aeb5;
+}
