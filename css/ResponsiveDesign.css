@@ -5,10 +5,6 @@
   box-sizing: border-box;
 }
 
-/* レスポンシブ対応デザインの為に子要素が全てfloat指定ブロックでも親要素が高さを持つようにfloat解除 */
-.clear {
-  clear: left;
-}
 /* スマホ画面用のメニューアイコン(標準では非表示に設定) */
 .menu-icon {
   display: none;
@@ -25,15 +21,14 @@
   対応策は "100%"指定ではなく、指定を削除することで親要素の高さを全子要素を含んだ大きさに自動調整可能
   ただし、子要素が全てfloatの場合「浮いている」為に親要素の高さが0になるのでfloat指定の解除が必要 */
 /*  height: 500px; */
-  padding-bottom: 80px;
   background-color: #f7f7f7;
   text-align: center;
 }
 
 .heading {
-  padding-top: 60px;
-  padding-bottom: 30px;
+  padding: 20px;
   color: #5f5d60;
+  margin: 10px;
 }
 
 .heading h2 {
@@ -43,6 +38,9 @@
 .itachi {
   float: left;
   width: 25%;
+}
+.itachi p {
+  color: pink;
 }
 .itachi-icon img {
   widows: 200px;
@@ -67,7 +65,7 @@
     color: #77c;
   }
   .itachi-icon p {
-    color: #359;
+    color: cyan;
   }
 }
 @media (max-width: 670px) {
@@ -75,13 +73,13 @@
     width: 100%;
   }
   .heading h2 {
-    color: red;
+    color: #d88;
     font-weight: normal;
-    font-size: 20px;
+    font-size: 18px;
   }
   .itachi p {
     font-size: 15px;
-    color: #2c3;
+    color: #22c;
   }
   /* スマホ画面の場合のみメニューアイコンを表示 */
   .menu-icon {
@@ -100,5 +98,4 @@
   display: inline-block;
   margin-top: 20px;
   font-size: 12px;
-  color: #b3aeb5;
 }

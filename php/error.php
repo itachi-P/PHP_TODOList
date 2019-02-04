@@ -9,13 +9,11 @@
 
 <?php
 $err = $_GET["err"];
-
 if ($err == "none") {
 	$msg = "ユーザーが存在しません";
 } else if ($err == "unmached") {
 	$msg = "パスワードが間違っています";
 }
-
 echo $msg;
 ?>
 	<hr>

@@ -35,7 +35,7 @@ class ToDoList {
     //「完了状態」他の現在状況に合わせて処理を分岐させる戻り値を返す
     //表示色や「操作」欄に表示・非表示するボタンも変更
     public function isFinished($completion) {
-        if ($ompletion == "unfinished") {
+        if ($completion == "unfinished") {
             //（仮）
             return true;
         }

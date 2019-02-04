@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-div,span,h1,h2,h3,h4,p,a,img,footer,header,main,nav,section {
-=======
 div,span,h1,h2,h3,h4,p,img,footer,header,main,nav,section {
->>>>>>> origin/master
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -10,68 +6,22 @@ div,span,h1,h2,h3,h4,p,img,footer,header,main,nav,section {
 	list-style: none;
 	text-decoration: none;
 }
-body {
-	font-family: "メイリオ", Meiryo, Osaka, "MS PGothic", sans-serif;
-}
-body {
-  /* 画像ファイルの指定 */
-  /* background-image: url(../images/Salar_de_Uyuni.jpg);
-  /* 画像を常に天地左右の中央に配置 */
-  background-position: center center;
-  /* 画像をタイル状に繰り返し表示しない */
-  background-repeat: no-repeat;
-  /* コンテンツの高さが画像の高さより大きい時、動かないように固定 */
-  background-attachment: fixed;
-  /* 表示するコンテナの大きさに基づいて、背景画像サイズを調整 */
-  background-size: cover;
-  /* 背景画像が読み込まれる前に表示される背景のカラー */
-  background-color: #77777;
-}
-a:hover {
-	color: cyan;
-}
-/* 画像の上にマウスホバー時1秒かけて透過(:hoverとセットで機能) */
-img {
-	transition: 1.0s ;
-}
-img:hover {
-	opacity: 0.5;
-}
+
 h1 {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	width: 500px;
-	height: 85px;
-	margin: auto;
 	color: #ccc;
-	font-size: 4.3rem;
-	text-align: center;
-	display: table-cell;
-	vertical-align: middle;
+	font-size: 2.2rem;
 }
 h2 {
-<<<<<<< HEAD
-	color: #333;
-=======
-	color: #34f115;
->>>>>>> origin/master
+	color: #347178;
 	font-size: 1.5rem;
-	text-align: center;
-	display: table-cell;
-	vertical-align: middle;
 }
-<<<<<<< HEAD
 h3 {
-	
+	color: #347178;
+	font-size: 1.3rem;	
 }
-=======
->>>>>>> origin/master
 h4 {
 	color: #b77895;
-	font-size: 1.2rem;
+	font-size: 1.0rem;
 	text-align: center;
 	display: table-cell;
 	vertical-align: middle;

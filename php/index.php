@@ -3,7 +3,7 @@
 <head>
 <meta charset=utf-8" />
 <title>Webアプリ開発実習(PHP)</title>
-<link href="../css/stylesheet.css"rel="stylesheet" type="text/css">
+<link href="../css/stylesheet.css" rel="stylesheet" type="text/css">
 <meta name="keywords" content="Webアプリ開発練習">
 <meta name="description" content="15年ぶりエンジニア復帰中年が一から学習し直し最初のWebアプリケーション(PHP)開発実習(2019/1/30開始)">
 </head>
@@ -42,9 +42,7 @@
 	<hr>
 	<a href="login.php">ログイン画面へ</a>
 	<br>
-	<br>
 	<h4>御神籤</h4>
-	<br>
 <?php
 
 $fortune = rand(1,7);

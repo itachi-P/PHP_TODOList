@@ -7,7 +7,6 @@ require_once ("todolist.php");
 // ToDoListクラスのインスタンスを複数生成し配列に格納
 $datas = array(10);
 
-<<<<<<< HEAD
 $term = date("Y/m/t");
 $finished;
 
@@ -18,14 +17,7 @@ for ($i = 0; $i < 10; $i ++) {
     	$finished = "未";
     }
     $datas[$i] = new ToDoList("項目".$i, "担当者".$i, $term, $finished);
-=======
-for ($i = 0; $i < 10; $i ++) {
-    $datas[$i] = new ToDoList("項目".$i, "担当者".$i, "期限".$i, "完了状態".$i);
->>>>>>> origin/master
 }
-
-//$list_datas = array('' => , );
-
 
 
 ?>
