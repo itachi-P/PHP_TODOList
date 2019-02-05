@@ -1,0 +1,25 @@
+div,span,h1,h2,h3,h4,p,img,header,footer {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-weight: normal;
+	list-style: none;
+	text-decoration: none;
+}
+
+h1 {
+	color: #ccc;
+	font-size: 2.2rem;
+}
+h2 {
+	color: #347178;
+	font-size: 1.6rem;
+}
+h3 {
+	color: #347178;
+	font-size: 1.3rem;	
+}
+h4 {
+	color: #b77895;
+	font-size: 1.0rem;
+}

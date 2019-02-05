@@ -32,15 +32,16 @@ h1 {
 a{
 
 }
+/* 画像の上にマウスが乗った時の動作 */
 a:hover {
   text-decoration: none;
 	color: cyan;
 }
-/* 画像の上にマウスホバー時1秒かけて透過(:hoverとセットで機能) */
+
+/* 画像の上にマウスが乗った時、1秒かけて透過(:hoverとセットで機能) */
 img {
 	transition: 1.0s ;
 }
-/* 画像の上にマウスが乗った時の動作 */
 img:hover {
 	opacity: 0.3;
 }

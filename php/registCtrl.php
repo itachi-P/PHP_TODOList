@@ -1,7 +1,5 @@
 <?php
 
-echo "registCtrl.php"."<hr>";
-
 $subject = $_GET['subject'];
 $staff = $_GET['staff'];
 $date = $_GET['year'].$_GET['month'].$_GET['day'];
