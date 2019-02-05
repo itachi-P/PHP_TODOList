@@ -106,3 +106,7 @@ a {
 	font-weight: bold;
 	text-align: center;
 }
+
+.my-task p {
+	background-color: pink;
+}

@@ -7,7 +7,9 @@ echo "password=".$pass."<br>";
 
 // （仮）
 // 下記は後にDB実装し、MySQLのテーブルに登録のあるユーザーかどうかでログイン成否が分かれる
-$regist_users = array("user01" => "pass01", "user02" => "pass02");
+$regist_users = array("staff0" => "pass0", "staff7" => "pass7");
+//DBにユーザー名は存在したかのフラグ
+$usrExist = false;
 
 foreach ($regist_users as $regID => $regPass) {
 	echo $regID."<br>";
@@ -15,18 +17,18 @@ foreach ($regist_users as $regID => $regPass) {
 	if ($userID == $regID) {
 		if ($pass == $regPass) {
 			//echo "OK!";
-			//$url = "list.php?userID=".$userID."&password=".$pass;
 			$url = "list.php?userID=".$userID;
 			break;
 		} else {
-			//echo "パスワードが間違っています";
+			// ユーザー名は存在するがパスワードが間違っている場合";
 			$url = "error.php?err=unmached";
-			break;
+			$usrExist = true;
 		}
 	} else {
-		//echo 'ユーザーが存在しません';
-		$url = "error.php?err=none";
-		break;
+		if ($usrExist == false) {
+			//ユーザー名自体がDBに存在しない場合';
+			$url = "error.php?err=none";
+		}
 	}
 }
 header("location: ".$url);

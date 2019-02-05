@@ -44,9 +44,9 @@ class ToDoList {
     //一覧表の「操作」に表示するボタンのHTMLを返す
     public function getControls() {
         //（仮）
-        $submits = "<input class=\"btn-s\" type=\"submit\" value=\"完了\">"
-                ."<input class=\"btn-s\" type=\"submit\" value=\"更新\">"
-                ."<input class=\"btn-s\" type=\"submit\" value=\"削除\">";
+        $submits = "<input id='finish' class='btn-s' type='submit' value='完了'>"
+                ."<input id='update' class='btn-s' type='submit' value='更新'>"
+                ."<input id='delete' class='btn-s' type='submit' value='削除'>";
         return $submits;
     }
 }

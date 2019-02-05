@@ -11,9 +11,9 @@ echo "期限：".$date."<br>";
 echo "処理：".$process."<hr>";
 
 if ($process == "登録") {
-	echo "登録処理をします";
+	echo "登録処理(MySQLに新規項目を担当者・期限と紐づけしINSERT)";
 } else if ($process == "キャンセル") {
-	echo "キャンセル処理をします";
+	echo "キャンセル処理(DBを更新せずに全件検索し直し一覧画面に戻る)";
 }
 
 
