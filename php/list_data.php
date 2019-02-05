@@ -16,7 +16,7 @@ for ($i = 0; $i < 10; $i ++) {
     } else {
     	$finished = "未";
     }
-    $datas[$i] = new ToDoList("項目".$i, "担当者".$i, $term, $finished);
+    $datas[$i] = new ToDoList("項目".$i, "staff".$i, $term, $finished);
 }
 
 
