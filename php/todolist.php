@@ -43,10 +43,10 @@ class ToDoList {
 
     //一覧表の「操作」に表示するボタンのHTMLを返す
     public function getControls() {
-        //（仮）
-        $submits = "<input id='finish' class='btn-s' type='submit' value='完了'>"
-                ."<input id='update' class='btn-s' type='submit' value='更新'>"
-                ."<input id='delete' class='btn-s' type='submit' value='削除'>";
+        //（仮）nameに設定したキーは自動で渡って$_GET['finish']等で取り出せるが、id属性はダメなのか
+        $submits = "<input name='finish' class='btn-s' type='submit' value='完了'>"
+                ."<input name='update' class='btn-s' type='submit' value='更新'>"
+                ."<input name='delete' class='btn-s' type='submit' value='削除'>";
         return $submits;
     }
 }
