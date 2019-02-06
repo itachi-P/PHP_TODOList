@@ -21,7 +21,10 @@ if (!isset($_SESSION['url'])) {
 		//（仮）
 		//完了ボタンが押されたら「完了」欄を「未」から現在日付に書き換え「未完了」ボタンにラベルを変える
 		//※「未完了」ボタンを押した時の処理はまた別に記述
-		echo "<b>".$_GET['finish']."</b>";
+		if ($_POST['finish'] == "完了") {
+
+		}
+		echo "<b>".$_POST['finish']."</b>";
 	} else if(isset($_POST['update'])) {
 		$_SESSION['url'] = "update.php";
 	} else if (isset($_POST['delete'])) {
@@ -84,7 +87,7 @@ foreach ($datas as $data) {
     } else {
     	echo "<div class=\"others-task\">";
     }
-    echo "<p>".$data->getSubject()."</p>";
+ 	echo "<p>".$data->getSubject()."</p>";
     echo "<p>".$staff."</p>";
     echo "<p>".$data->getTerm()."</p>";
     echo "<p>".$data->getCompletion()."</p>";
