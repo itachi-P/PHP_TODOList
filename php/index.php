@@ -1,3 +1,20 @@
+<?php 
+/* セッションを利用して訪問回数を保持してみる */
+//セッションの開始 (有効期限のデフォルトは'0'でブラウザを閉じるまで保持される)
+session_start();
+
+// セッションにキー'count'の登録が無ければ登録と同時に初期値として1を設定
+// issetでキーの存在確認、unsetで登録キーの削除(セッションを終える際には明示的全削除処理が望ましい)
+if (!isset($_SESSION['count'])) {	//isset() 変数がセットされているかどうかを返す関数
+	$_SESSION['count'] = 1;
+} else {
+	// キー'count'が既に登録されていれば、その値をインクリメント
+	$_SESSION['count']++;
+}
+echo "<div style='color:#7b8; max-width:800px; border:1px solid #ccf;'>"
+	.$_SESSION['count']."回目の訪問です</dir>";
+?>
+
 <!DOCTYPE HTML>
 <html lang="ja">
 <head>
@@ -40,18 +57,17 @@
 		</ul>
 	</div>
 	<hr>
-	<a href="login.php">ログイン画面へ</a>
-	<br>
-	<h4>御神籤</h4>
+	<a style="display:block;margin-bottom:20px" href="login.php">ログイン画面へ</a>
+	<h4 style="background-color:#f99;padding:20px;border:3px dashed #777">御神籤</h4>
 <?php
 
 $fortune = rand(1,7);
 if ($fortune == 7) {
 	$result = "<font color=\"magenta\">大吉♡</font>";
 } else if ($fortune % 3 == 0) {
-	$result = "中吉！";
+	$result = "中吉どす！";
 } else if ($fortune == 1) {
-	$result = "<font color=\"red\">凶</font>と出ました…";
+	$result = "<font color=\"red\">凶</font>と出ました oh…";
 } else {
 	$result = "小吉ですね";
 }

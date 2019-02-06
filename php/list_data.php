@@ -19,5 +19,4 @@ for ($i = 0; $i < 10; $i ++) {
     $datas[$i] = new ToDoList("項目".$i, "staff".$i, $term, $finished);
 }
 
-
 ?>
