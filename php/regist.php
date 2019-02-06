@@ -8,7 +8,7 @@
 <body>
 	<h2>作業登録</h2>
 	<div class="container">
-		<form action="registCtrl.php" method="get">
+		<form action="regist_ctrl.php" method="get">
 			<div class="inputs-wrapper">
 				<div class="titles">
 					<ul>

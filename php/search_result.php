@@ -1,18 +1,19 @@
 <?php
-//(廃止)GETもPOSTもセキュリティ上大差ないのでSESSIONに変更(更にはできればSSLを使うべき)
-//$userID = $_GET['userID'];
+//一覧画面と同じ構成で検索結果一覧と、「戻る」ボタンをリスト左側上端と下端に配置する
 
 session_start();
 
-//自分自身にリダイレクトし、押されたボタンによってform actionの中身を動的に変えて遷移先を変更
-//初期値(最初の1回は自分自身のページにリダイレクト)
+
+
+
+
+
 if (!isset($_SESSION['url'])) {
 	//この条件分岐は不要で else以下の処理だけでいいのでは？
 	$_SESSION['url'] = "list.php";
 } else {
 	//以下で押されたボタンに合わせて遷移先を切り替える(最初の画面表示時は処理されない)
 	//一応以下のやり方で画面遷移は切り分けられるものの、ホントにこんな冗長な書き方しか無いのか？
-	unset($_SESSION['url']);
 
 	//検索条件を元に検索をかけた結果画面に遷移
 	if (isset($_POST['search'])) {
@@ -39,27 +40,14 @@ if (!isset($_SESSION['url'])) {
 <html lang="ja">
 <head>
 <meta charset=utf-8" />
-<title>TODO一覧</title>
+<title>検索結果画面</title>
 <link href="../css/list.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<h2>作業一覧</h2>
-	<h4>ようこそ<?php echo $_SESSION['userID'] ?>さん</h4>
-<!-- form actionの値を動的に変えるのではボタンを押して即画面遷移とならず変な挙動になるのでは？ -->
-<!--form action="<?php echo $_SESSION['url'] ?>" method="POST" -->
-<!-- form actionでは自分自身に固定して、POSTされた値を受け取ったPHP部分で直接ページ遷移方式に変更-->
-	<form action="list.php" method="POST">
+<h2>検索結果</h2>
+<form action="list.php" method="POST">
 	<div class="middle-wrapper">
-		<div class="middle-left">
-			<!-- input type="submit" をaタグに変更 -->
-			<a class="btn-l" href="regist.php">作業登録</a>
-		</div>
-		<div class="middle-right">
-			<p>検索キーワード</p>
-			<input class="tbox" type="text" name="search_keyword">
-			<!-- 後にinput type="submit"をtype="button"に変更しJavaScriptを組み込む -->
-			<input name="search" class="btn" type="submit" value="検索">
-		</div>
+		<input name="back" class="btn" type="submit" value="戻る">
 	</div>
 
 	<div class="list-wrapper">
@@ -67,7 +55,7 @@ if (!isset($_SESSION['url'])) {
 			<p>項目名</p>
 			<p>担当者</p>
 			<p>期限</p>
-			<p>完了</p>
+			<p>完了状態</p>
 			<p>操作</p>
 		</div>
 
@@ -95,6 +83,10 @@ foreach ($datas as $data) {
 ?>
 		</div> <!-- list-main-->
 	</div>	<!-- list-wrapper -->
+
+	<div class="bottom-wrapper">
+		<input name="back" class="btn" type="submit" value="戻る">
+	</div>
 </form>
 
 </body>
