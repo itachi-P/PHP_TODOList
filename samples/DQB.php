@@ -150,9 +150,9 @@ if(!empty($_POST)){
         color: white;
     	}
     	h1{ color: white; font-size: 20px; text-align: center;}
-      	h2{ color: white; font-size: 16px; text-align: center;}
+      h2{ color: white; font-size: 16px; text-align: center;}
     	
-    	/* formにスタイルシートでoverflow: hidden; */ 
+    	/* formにスタイルシートでoverflow: hidden; */
     	form{
 	    	overflow: hidden;
     	}
