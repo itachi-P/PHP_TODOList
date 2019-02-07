@@ -26,11 +26,11 @@ echo "<div style='color:#7b8; max-width:800px; border:1px solid #ccf;'>"
 </head>
 
 <body>
-	<h1>Web開発実習PHPホーム</h1>
-	<h2>サンプルWebアプリケーション仕様</h2>
+	<h2>Web開発実習PHPホーム</h2>
+	<h4>サンプルWebアプリケーション仕様</h4>
 	<hr>
 	<div class="planList">
-		<p>実装予定機能リスト（随時追記）</p>
+		<!--  p>実装予定機能リスト（随時追記）</p -->
 		<ul class="plans">
 			<li class="implemented">ログイン機能</li>
 				<ul class="next-plan" style="list-style-type: square;">
@@ -57,7 +57,7 @@ echo "<div style='color:#7b8; max-width:800px; border:1px solid #ccf;'>"
 		</ul>
 	</div>
 	<hr>
-	<a style="display:block;margin-bottom:20px" href="login.php">ログイン画面へ</a>
+	<a style="display:block;margin-bottom:10px" href="login.php">ログイン画面へ</a>
 	<h4 style="background-color:#f99;padding:20px;border:3px dashed #777">御神籤</h4>
 <?php
 

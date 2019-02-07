@@ -42,6 +42,7 @@ class ToDoList {
     }
 
     //一覧表の「操作」に表示するボタンのHTMLを返す
+    //（予定）引数を受け取って「完了」ボタンを「未完了」ボタンに変える処理を追記
     public function getControls() {
         //（仮）nameに設定したキーは自動で渡って$_GET['finish']等で取り出せるが、id属性はダメなのか
         $submits = "<input name='finish' class='btn-s' type='submit' value='完了'>"
