@@ -81,8 +81,10 @@ if (is_readable($filename) === TRUE) {
     <meta charset="UTF-8">
     <title>ひとこと掲示板</title>
 </head>
-<body>
+<body style="background-color:#cab">
     <h1>ひとこと掲示板</h1>
+
+    <a style="margin-bottom:20px;position:absolute;left:250px;top:30px;" href="samples-index.html">戻る</a>
 
     <form action="bbs.php" method="post">
         <?php if (count($errors) > 0) { ?>
