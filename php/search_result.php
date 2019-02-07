@@ -15,10 +15,7 @@ if (!isset($_SESSION['url'])) {
 	//以下で押されたボタンに合わせて遷移先を切り替える(最初の画面表示時は処理されない)
 	//一応以下のやり方で画面遷移は切り分けられるものの、ホントにこんな冗長な書き方しか無いのか？
 
-	//検索条件を元に検索をかけた結果画面に遷移
-	if (isset($_POST['search'])) {
-		$_SESSION['url'] = "search_result.php";
-	} else if (isset($_POST['finish'])) {
+	if (isset($_POST['finish'])) {
 		//（仮）
 		//完了ボタンが押されたら「完了」欄を「未」から現在日付に書き換え「未完了」ボタンにラベルを変える
 		//※「未完了」ボタンを押した時の処理はまた別に記述
@@ -31,6 +28,7 @@ if (!isset($_SESSION['url'])) {
 
 	if (isset($_SESSION['url'])) {
 		header("location: ".$_SESSION['url']);
+		unset($_SESSION['url']);
 	}
 }
 
@@ -72,7 +70,7 @@ foreach ($datas as $data) {
     } else {
     	echo "<div class=\"others-task\">";
     }
-    echo "<p>".$data->getSubject()."</p>";
+ 	echo "<p>".$data->getSubject()."</p>";    		
     echo "<p>".$staff."</p>";
     echo "<p>".$data->getTerm()."</p>";
     echo "<p>".$data->getCompletion()."</p>";

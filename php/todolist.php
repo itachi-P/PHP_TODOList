@@ -1,5 +1,4 @@
 <?php
-
 class ToDoList {
 
     private static $count = 0;
@@ -45,9 +44,20 @@ class ToDoList {
     //（予定）引数を受け取って「完了」ボタンを「未完了」ボタンに変える処理を追記
     public function getControls() {
         //（仮）nameに設定したキーは自動で渡って$_GET['finish']等で取り出せるが、id属性はダメなのか
-        $submits = "<input name='finish' class='btn-s' type='submit' value='完了'>"
-                ."<input name='update' class='btn-s' type='submit' value='更新'>"
-                ."<input name='delete' class='btn-s' type='submit' value='削除'>";
+        //「完了」「未完了」ボタン押下時の処理はデータ操作分の追記が必要
+        if (isset($_POST['finish'])) {
+            if ($_POST['finish'] == "完了") {
+                $finish = "未完了";
+            } else if ($_POST['finish'] == "未完了") {
+                $finish = "完了";
+            }
+        } else {
+            $finish = "完了";
+        }
+        $submits = 
+            "<input name='finish' class='btn-s' type='submit' value='".$finish."'>"
+            ."<input name='update' class='btn-s' type='submit' value='更新'>"
+            ."<input name='delete' class='btn-s' type='submit' value='削除'>";
         return $submits;
     }
 }
