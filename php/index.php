@@ -11,8 +11,6 @@ if (!isset($_SESSION['count'])) {	//isset() 変数がセットされているか
 	// キー'count'が既に登録されていれば、その値をインクリメント
 	$_SESSION['count']++;
 }
-echo "<div style='color:#7b8; max-width:800px; border:1px solid #ccf;'>"
-	.$_SESSION['count']."回目の訪問です</dir>";
 ?>
 
 <!DOCTYPE HTML>
@@ -21,11 +19,15 @@ echo "<div style='color:#7b8; max-width:800px; border:1px solid #ccf;'>"
 <meta charset=utf-8" />
 <title>Webアプリ開発実習(PHP)</title>
 <link href="../css/stylesheet.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="../images/fuca_tehepero_icon_32x32.ico" type="image/vnd.microsoft.icon" />
 <meta name="keywords" content="Webアプリ開発練習">
 <meta name="description" content="15年ぶりエンジニア復帰中年が一から学習し直し最初のWebアプリケーション(PHP)開発実習(2019/1/30開始)">
 </head>
 
 <body>
+	<div style='position:absolute;left:80%;color:#7bc;'>
+		<?= $_SESSION['count']."回目の訪問です" ?>
+	</div>
 	<h2>Web開発実習PHPホーム</h2>
 	<h4>サンプルWebアプリケーション仕様</h4>
 	<hr>

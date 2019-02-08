@@ -14,3 +14,14 @@
 [07-Feb-2019 10:51:33 Asia/Tokyo] POSTされた！
 [07-Feb-2019 10:51:33 Asia/Tokyo] POSTされた！
 [07-Feb-2019 10:51:34 Asia/Tokyo] POSTされた！
+[08-Feb-2019 11:52:06 Asia/Tokyo] PHP Notice:  Undefined index: name in C:\lesson\php\develop\samples\DQB.php on line 214
+[08-Feb-2019 11:52:06 Asia/Tokyo] PHP Notice:  Undefined index: img in C:\lesson\php\develop\samples\DQB.php on line 216
+[08-Feb-2019 11:52:06 Asia/Tokyo] PHP Notice:  Undefined index: hp in C:\lesson\php\develop\samples\DQB.php on line 218
+[08-Feb-2019 11:52:06 Asia/Tokyo] PHP Notice:  Undefined index: knockDownCount in C:\lesson\php\develop\samples\DQB.php on line 219
+[08-Feb-2019 11:52:06 Asia/Tokyo] PHP Notice:  Undefined index: myhp in C:\lesson\php\develop\samples\DQB.php on line 220
+[08-Feb-2019 11:52:08 Asia/Tokyo] PHP Notice:  Undefined index: name in C:\lesson\php\develop\samples\DQB.php on line 214
+[08-Feb-2019 11:52:08 Asia/Tokyo] PHP Notice:  Undefined index: img in C:\lesson\php\develop\samples\DQB.php on line 216
+[08-Feb-2019 11:52:08 Asia/Tokyo] PHP Notice:  Undefined index: hp in C:\lesson\php\develop\samples\DQB.php on line 218
+[08-Feb-2019 11:52:08 Asia/Tokyo] PHP Notice:  Undefined index: knockDownCount in C:\lesson\php\develop\samples\DQB.php on line 219
+[08-Feb-2019 11:52:08 Asia/Tokyo] PHP Notice:  Undefined index: myhp in C:\lesson\php\develop\samples\DQB.php on line 220
+[08-Feb-2019 11:52:10 Asia/Tokyo] POSTされた！

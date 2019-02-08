@@ -13,6 +13,7 @@ $_SESSION = array();	//セッション変数の全破棄(セッション自体�
 <meta charset=utf-8" />
 <title>WebApp開発実習-ログイン</title>
 <link href="../css/login-form.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="../images/fuca_tehepero_icon_32x32.ico">
 </head>
 <body>
 	<p>2019/01/31～</p>
