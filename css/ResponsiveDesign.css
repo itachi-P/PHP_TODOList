@@ -81,7 +81,7 @@
     font-size: 15px;
     color: #22c;
   }
-  /* スマホ画面の場合のみメニューアイコンを表示 */
+  /* スマホ(画面幅670px以下)の場合のみメニューアイコンを表示 */
   .menu-icon {
     display: block;
     text-align: right;

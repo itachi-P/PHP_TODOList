@@ -20,11 +20,11 @@ h2 {
 	font-size: 2.0rem;
 }
 h3 {
-	color: #347178;
+	color: #97b;
 	font-size: 1.5rem;	
 }
 h4 {
-	color: #b77895;
+	color: #b7a095;
 	font-size: 1.0rem;
 }
 /* formにスタイルシートでoverflow: hidden; */
@@ -65,7 +65,7 @@ input[type="submit"]:hover{
 	cursor: pointer;
 }
 a{
-	color: #ccc;
+	color: #ace;
 	display: block;
 }
 a:hover{
