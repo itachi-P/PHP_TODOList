@@ -2,15 +2,16 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>メディアクエリーサンプル</title>
-     <!-- レスポンシブ対応デザイン実装の上でスマホ等でCSSのmediaQueryを有効にする為に必要 -->
+    <title>メディアクエリー&Scssサンプル</title>
+     <!-- レスポンシブ対応デザイン(CSSのmediaQuery設定を有効にする為)に必要 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- レスポンシブ対応デザイン用のCSSを読み込む場所は必ずviewportよりも下の行に記述すること -->
-    <link rel="stylesheet" href="css/ResponsiveDesign.css">
+    <!-- 2019/2/9 既存のcssを同じ処理のScss記法で置き換え -->
+    <link href="css/ResponsiveDesign.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet">
     <!-- 色んなアイコンを利用する為のFont Awesomeを読み込み -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href="css/home.css" rel="stylesheet">
-    <!-- タイトルの左側に指定のアイコンを表示-->
+    <!-- タブのページタイトル左側にアイコン表示-->
     <link rel="shortcut icon" href="../images/fuca_tehepero_icon_32x32.ico">
   </head>
   <body>
@@ -60,7 +61,7 @@
       </div>  <!-- container --> 
     </div>  <!-- itachi-wrapper -->
     <footer>
-
+		<a href="index.html">戻る</a>
     </footer>
   </body>
 </html>
