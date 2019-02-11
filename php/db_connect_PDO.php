@@ -8,7 +8,7 @@ try {
 } catch ( PDOException $e ) {
     echo "接続エラー:".mb_convert_encoding($e->getMessage(), 'utf-8', 'Shift-JIS');
 }
-$stmt = $pdo->query('select * from todolists');
+$stmt = $pdo->query('select * from todolist');
 ?>
 <html>
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ $stmt = $pdo->query('select * from todolists');
             border: solid black 1px;
         }
         table {
-            width: 600px;
+            width: 80%;
         }
     </style>
 </head>
@@ -46,27 +46,28 @@ while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
 <?php
 }
 
-//INSERT
-$stmt = $pdo -> prepare("INSERT INTO todolists(subject, staff, term, done) VALUES (:subject, :staff, :term, :done)");
+//INSERT (doneにはテーブル定義のデフォルト値'未'が入る)
+$stmt = $pdo -> prepare("INSERT INTO todolist (subject, staff, term) 
+										VALUES (:subject, :staff, :term)");
 $stmt->bindParam(':subject', $subject, PDO::PARAM_STR);
-$stmt->bindValue(':staff', 'Sumanasara', PDO::PARAM_INT);
-$stmt->bindValue(':term', '2020/04/15', PDO::PARAM_INT);
-$stmt->bindValue(':done', '未', PDO::PARAM_INT);
+$stmt->bindValue(':staff', 'Alubomulle Sumanasara', PDO::PARAM_STR);
+$stmt->bindValue(':term', date('Y/m/d', strtotime('+1 month')), PDO::PARAM_STR);
 $subject = '書類整理'.rand(01, 10);
 $stmt->execute();
 
 // UPDATE
-$sql = 'UPDATE todolists SET subject =:subject WHERE id = :id';
+$sql = 'UPDATE todolist SET done = :done WHERE id = :id';
 $stmt = $pdo -> prepare($sql);
-$stmt->bindParam(':subject', $subject, PDO::PARAM_STR);
-$stmt->bindValue(':id', 5, PDO::PARAM_INT);
+$stmt->bindParam(':done', $done, PDO::PARAM_STR);
+$stmt->bindValue(':id', 6, PDO::PARAM_INT);
+$done = date('Y/m/d');
 $stmt->execute();
 
 //DELETE
-$sql = 'DELETE FROM todolists WHERE subject = :delete_subject';
+$sql = 'DELETE FROM todolist WHERE subject LIKE :delete_subject';
 $stmt = $pdo -> prepare($sql);
-$stmt -> bindParam(':delete_subject', $subject, PDO::PARAM_INT);
-$subject = '項目6';
+$stmt -> bindParam(':delete_subject', $subject, PDO::PARAM_STR);
+$subject = '項目1%';
 $stmt -> execute();
 
 ?>

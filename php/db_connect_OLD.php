@@ -14,7 +14,7 @@ $link = mysqli_connect($host, $username, $passwd, $dbname);
 if ($link) {
 	// 文字化け防止
 	mysqli_set_charset($link, 'utf8');
-	$query = 'SELECT id, subject, staff, term, done FROM todolists ORDER BY term ' . $order;
+	$query = 'SELECT id, subject, staff, term, done FROM todolist ORDER BY term ' . $order;
 	// クエリを実行します
 	$result = mysqli_query($link, $query);
 	// 1行ずつ結果を配列で取得します
@@ -37,7 +37,7 @@ if ($link) {
             border: solid black 1px;
         }
         table {
-            width: 600px;
+            width: 60%;
         }
     </style>
 </head>

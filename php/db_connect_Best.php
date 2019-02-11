@@ -3,7 +3,7 @@ try {
     $pdo = new PDO('mysql: host=localhost; dbname=shino; charset=utf8','user1','pass1', [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     ]);
-    $rows = $pdo->query('SELECT * FROM todolists')->fetchAll(PDO::FETCH_ASSOC);
+    $rows = $pdo->query('SELECT * FROM todolist')->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
     header('Content-Type: text/plain; charset=UTF-8', true, 500);
@@ -26,7 +26,7 @@ function hsc($str)
                 border: solid black 1px;
             }
             table {
-                width: 600px;
+                width: 70%;
             }
         </style>
     </head>
