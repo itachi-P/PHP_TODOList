@@ -6,7 +6,7 @@ if (isset($_POST['init'])) {
 	// ※非推奨 SQL文やCSVファイル等のデータ読み込みは重大なセキュリティホールになりうるので基本的に避けるべき
 	// サーバー上には置かずにローカルのファイルを読み込む場合もネット上に公開する以上は危険
 	// 変数に代入する形でSQL文を記述した.phpファイルをrequireする方が安全？
-	$sql = file_get_contents('../../SQL/table_reset.sql');
+	$sql = file_get_contents('../../SQL/OLD_table_reset.sql');
 	try {
 		$dns = 'mysql:host=localhost; dbname=shino; charset=utf8mb4';
 		$pdo = new PDO($dns, 'admin', 'admin');
