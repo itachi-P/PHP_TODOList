@@ -1,8 +1,6 @@
 <?php
 try {
-    $pdo = new PDO('mysql: host=localhost; dbname=shino; charset=utf8','user1','pass1', [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    ]);
+    $pdo = new PDO('mysql: host=localhost; dbname=shino; charset=utf8','user1','pass1', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     $rows = $pdo->query('SELECT * FROM todolist')->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
@@ -20,7 +18,7 @@ function hsc($str)
 <html>
     <head>
         <meta charset="utf-8">
-        <title>DB接続サンプル</title>
+        <title>DB接続サンプル3(base)</title>
         <style type="text/css">
             table, td, th {
                 border: solid black 1px;

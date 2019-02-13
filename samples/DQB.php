@@ -139,7 +139,7 @@ if(!empty($_POST)){
 <html>
   <head>
     <meta charset="utf-8">
-    <title>ホームページのタイトル</title>
+    <title>ドラ〇エバトル</title>
     <!-- 外部スタイルシートふ(.css)を別途用意せずに<head>内で定義 -->
     <style>
     	body{
