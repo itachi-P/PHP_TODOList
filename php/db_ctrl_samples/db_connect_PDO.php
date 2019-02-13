@@ -5,13 +5,15 @@
 //DBの種類による差異をPDOが吸収してくれる為、DB種類毎にソースコードを書き換える必要がない
 try {
 	//データベースハンドルの取得
-	$pdo = new PDO('mysql:host=localhost; dbname=shino; charset=utf8', 'user1', 'pass1');
-	//属性の設定 (開発時向けにエラー発生時エラーメッセージを画面表示するモードに設定)
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch ( PDOException $e ) {
+	$pdo = new PDO('mysql:host=localhost; dbname=shino; charset=utf8mb4', 'user1', 'pass1');
+	// エラーが発生した場合、例外がスローされるようにする(開発時向け)
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+} catch (PDOException $e) {
+	// エラーメッセージの文字化け防止
     echo "接続エラー:".mb_convert_encoding($e->getMessage(), 'utf-8', 'Shift-JIS');
 }
-//クエリの実行(execute()より直接的なやり方)
+//クエリの実行(プリペアドステートメント→execute()を使う必要がない場合の直接的なやり方)
 $stmt = $pdo->query('select * from todolist');
 ?>
 
