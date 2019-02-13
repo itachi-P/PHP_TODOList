@@ -1,7 +1,7 @@
 <?php
 //echo phpinfo();
 //DB接続サンプル2 - 手続き型接続
-//mysql関数はPHP5.5以降は非推奨となり、将来的には削除される予定なのでサンプル1のようにPDOの使用を推奨
+//mysqli関数はmysql関数のように非推奨・削除対象ではないが、基本的に以後はPDOの使用を推奨
 $todolists = array();
 $order = 'ASC';
 if (isset($_GET['order']) === TRUE) { $order = $_GET['order']; }
@@ -43,7 +43,7 @@ if ($link) {
 </head>
 <body>
 	<h1>TODOリスト(期限日付順)</h1>
-	<a style="display:block;float:left;margin-right:20px;" href="index.php">戻る</a>
+	<a style="float:left;margin-right:20px;" href="db_test_index.html">戻る</a>
 	<form>
         <input type="radio" name="order" value="ASC" <?php if ($order === 'ASC') {print 'checked';} ?>>昇順
         <input type="radio" name="order" value="DESC" <?php if ($order === 'DESC') {print 'checked';} ?>>降順

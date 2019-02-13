@@ -25,7 +25,7 @@ if (!isset($_SESSION['count'])) {	//isset() 変数がセットされているか
 </head>
 
 <body>
-	<div style='position:absolute;left:80%;color:#7bc;'>
+	<div style='left: 30px;color:#7bc;'>
 		<?= $_SESSION['count']."回目の訪問です" ?>
 	</div>
 	<h2>Web開発実習PHPホーム</h2>
@@ -34,7 +34,7 @@ if (!isset($_SESSION['count'])) {	//isset() 変数がセットされているか
 	<div class="planList">
 		<!--  p>実装予定機能リスト（随時追記）</p -->
 		<ul class="plans">
-			<li class="implemented">ログイン機能</li>
+			<li class="implemented">ログイン機能(DB非連携仮実装)</li>
 				<ul class="next-plan" style="list-style-type: square;">
 					<li>ユーザー登録</li>
 					<li>登録削除</li>
@@ -50,15 +50,15 @@ if (!isset($_SESSION['count'])) {	//isset() 変数がセットされているか
 			</ul>
 			<li class="plan2">PHPのみで上記実装の後にデータ取得をDBに移行</li>
 			<ol class="plan2">
-				<li>SQLの復習から開始</li>
-				<li>MySQL利用（予定）・環境構築</li>
+				<li style="text-decoration: line-through;">MySQL環境構築</li>
 				<li>DB設計</li>
-				<li>DB実装</li>
+				<li>DB連携(PDO)実装</li>
 				<li>テスト</li>
 			</ol>
 		</ul>
 	</div>
 	<hr>
+	<a href="db_ctrl_samples/db_test_index.html">DB接続テスト</a>
 	<a style="display:block;margin-bottom:10px" href="login.php">ログイン画面へ</a>
 	<h4 style="background-color:#f99;padding:20px;border:3px dashed #777">御神籤</h4>
 <?php
