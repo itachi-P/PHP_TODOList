@@ -8,10 +8,10 @@ session_start();
 
 
 
-if (!isset($_SESSION['url'])) {
+/* if (!isset($_SESSION['url'])) {
 	//この条件分岐は不要で else以下の処理だけでいいのでは？
 	$_SESSION['url'] = "list.php";
-} else {
+} else { */
 	//以下で押されたボタンに合わせて遷移先を切り替える(最初の画面表示時は処理されない)
 	//一応以下のやり方で画面遷移は切り分けられるものの、ホントにこんな冗長な書き方しか無いのか？
 
@@ -19,7 +19,7 @@ if (!isset($_SESSION['url'])) {
 		//（仮）
 		//完了ボタンが押されたら「完了」欄を「未」から現在日付に書き換え「未完了」ボタンにラベルを変える
 		//※「未完了」ボタンを押した時の処理はまた別に記述
-		echo "<b>".$_GET['finish']."</b>";
+echo "<b>".$_POST['finish']."</b>";
 	} else if(isset($_POST['update'])) {
 		$_SESSION['url'] = "update.php";
 	} else if (isset($_POST['delete'])) {
@@ -30,7 +30,7 @@ if (!isset($_SESSION['url'])) {
 		header("location: ".$_SESSION['url']);
 		unset($_SESSION['url']);
 	}
-}
+//}
 
 ?>
 

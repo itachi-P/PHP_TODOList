@@ -1,0 +1,22 @@
+・下記のソースコードでCSVファイルやSQLファイルの読み込みが可能
+　[LOCAL]指定の場合はローカルの絶対パス、指定しなければサーバー上のファイル置き場のパス
+ただし、ローカルでもサーバー上でも.sqlや.csvファイルを読み込むプログラムは脆弱性が高く
+重大なセキュリティホール(悪意のあるユーザーによる攻撃対象)になり得るので基本的に避けるべき
+
+$sql = "
+	LOAD DATA LOCAL INFILE 'c:/lesson/WebAppTr/SQL&CSV/init.csv'
+	INTO TABLE todolist
+	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"'
+	LINES TERMINATED BY '\r\n'
+	IGNORE 1 LINES
+	(subject, staff, term, done);
+	";
+try {
+	$dns = 'mysql:host=localhost; dbname=shino; charset=utf8mb4';
+	$pdo = new PDO($dns, 'user1', 'pass1');
+	// 開発時向けにエラー発生時エラーログを表示
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$pdo->query($sql);
+} catch ( PDOException $e ) {
+	echo mb_convert_encoding($e->getMessage(), 'utf-8', 'Shift-JIS');
+}
