@@ -4,7 +4,6 @@ $_SESSION = array();	//セッション変数の全破棄(セッション自体�
 
 //(要調査)
 //session_destroy();
-
 ?>
 
 <!DOCTYPE HTML>
@@ -18,14 +17,14 @@ $_SESSION = array();	//セッション変数の全破棄(セッション自体�
 <body>
 	<p>2019/01/31～</p>
 	<ol style="list-style-type: cjk-ideographic">
-		<li class="next-plan">ユーザー登録作業(後で実装予定)</li>
-		まずはDB非連動固定ユーザーで全体の機能・画面完成を優先
-		<li class="implemented">ユーザー認証(最初はチェックを緩く)</li>
-		最初はバリデーション(またはサニタイズ)のチェックも緩めに
-		<li class="implemented">入力値チェック→問題があればエラー画面表示</li>
+		<li class="next-plan">ユーザー登録作業</li>
+		DB非連動固定ユーザーで全体の機能・画面完成を優先→DB連動に移行
+		<li class="implemented">ユーザー認証</li>
+		最初はバリデーション(またはサニタイズ)のチェック緩めに
+		<li class="next-plan">入力値チェック→問題があればエラー画面表示</li>
 		エラー画面は全エラー共通画面、表示メッセージと戻り先ページのみ動的に変える
 		<li class="implemented">TODOリスト一覧表示画面に遷移</li>
-		簡単なチェックのクリア後に最低限の入力データを渡し画面遷移→雛形完成後細部の作り込み
+		入力値チェッククリア後画面遷移→簡易な雛形完成後に細部の作り込み
 	</ol>
 	<hr>
 	<h1 id="title">ログイン画面</h1>

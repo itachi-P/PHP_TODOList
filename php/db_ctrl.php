@@ -5,7 +5,6 @@ session_start();
 
 
 //とりあえずダミーとして何もせず一覧ページにリダイレクトする処理だけ書いておく
-header("location: list.php");
-
-
+header("location: list.php", true, 301);
+exit;
 ?>

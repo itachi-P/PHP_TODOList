@@ -34,7 +34,7 @@ if (!isset($_SESSION['count'])) {	//isset() 変数がセットされているか
 	<div class="planList">
 		<!--  p>実装予定機能リスト（随時追記）</p -->
 		<ul class="plans">
-			<li class="implemented">ログイン機能(DB非連携仮実装)</li>
+			<li class="implemented">ログイン機能</li>
 				<ul class="next-plan" style="list-style-type: square;">
 					<li>ユーザー登録</li>
 					<li>登録削除</li>
@@ -48,12 +48,12 @@ if (!isset($_SESSION['count'])) {	//isset() 変数がセットされているか
 				<li>作業の削除</li>
 				<li>全てのエラー共通画面</li>
 			</ul>
-			<li class="plan2">PHPのみで上記実装の後にデータ取得をDBに移行</li>
+			<li class="plan2" style="text-decoration: line-through;">
+				DB非連動で上記実装の後にデータ取得法をDBに移行</li>
 			<ol class="plan2">
 				<li style="text-decoration: line-through;">MySQL環境構築</li>
 				<li style="text-decoration: line-through;">DB設計</li>
 				<li style="text-decoration: line-through;">DB連携(PDO)実装</li>
-				<li>テスト</li>
 			</ol>
 		</ul>
 	</div>

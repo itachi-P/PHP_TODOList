@@ -60,7 +60,7 @@ function hsc($str) {
         </style>
     </head>
     <body>
-        <form action="db_init.php" method="POST">
+        <form action="db_init_test.php" method="POST">
             <input type="submit" name="init" value="初期化">
         </form>
         <table>
