@@ -31,7 +31,7 @@ foreach ($regist_users as $regID => $regPass) {
 		}
 	}
 }
-//一瞬で自動遷移なのでユーザーが実際にこの画面を見ることは無いが、このページ自体が要らんワンクッションかな
-header("location: ".$url);
-
+//一瞬で自動遷移なのでユーザーが実際にこの画面を見ることは無いが、このページ自体が要らんワンクッションかな?
+header("location: ".$url, true, 301);
+exit;
 ?>
