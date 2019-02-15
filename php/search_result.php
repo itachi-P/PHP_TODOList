@@ -5,9 +5,6 @@ session_start();
 
 
 
-
-
-
 /* if (!isset($_SESSION['url'])) {
 	//この条件分岐は不要で else以下の処理だけでいいのでは？
 	$_SESSION['url'] = "list.php";

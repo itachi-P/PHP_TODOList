@@ -1,7 +1,4 @@
 <?php
-//(廃止)GETもPOSTもセキュリティ上大差ないのでSESSIONに変更(更にはできればSSLを使うべき)
-//$userID = $_GET['userID'];
-
 session_start();
 
 //自分自身にリダイレクトし、押されたボタンによってform actionの中身を動的に変えて遷移先を変更
@@ -36,6 +33,29 @@ if (!isset($_SESSION['url'])) {
 	}
 }
 
+// TODOリスト一覧(全件)を表示
+$dsn = 'mysql: host=localhost; dbname=shino; charset=utf8mb4';
+try {
+    $pdo = new PDO($dsn,'user1','pass1');
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $rows = $pdo->query("SELECT todo_item.name AS subject,
+    							todo_user.name AS username,
+    							todo_item.expire_date AS term,
+    							todo_item.finished_date AS done
+	    				 FROM todo_user JOIN todo_item
+	    				 ON todo_user.id = todo_item.user
+	    				 ORDER BY expire_date ASC")
+    				->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    header('Content-Type: text/plain; charset=UTF-8mb4', true, 500);
+    exit($e->getMessage());
+}
+
+function hsc($str) {
+    return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+}
+
 ?>
 
 <!DOCTYPE HTML>
@@ -47,10 +67,10 @@ if (!isset($_SESSION['url'])) {
 </head>
 <body>
 	<h2>作業一覧</h2>
-	<h4>ようこそ<?php echo $_SESSION['userID'] ?>さん</h4>
-<!-- form actionの値を動的に変えるのではボタンを押して即画面遷移とならず変な挙動になるのでは？ -->
-<!--form action="<?php echo $_SESSION['url'] ?>" method="POST" -->
-<!-- form actionでは自分自身に固定して、POSTされた値を受け取ったPHP部分で直接ページ遷移方式に変更-->
+	<h4>ようこそ<?= $_SESSION['userID'] ?>さん</h4>
+<!-- form actionの値を動的に変える方式だとボタン押下→即画面遷移とならず変な挙動になるのでは？ -->
+<!--form action="<?= $_SESSION['url'] ?>" method="POST" -->
+<!-- form actionは自分自身に固定、POSTされた値を受け取ったPHP部分で直接ページ遷移方式に変更-->
 	<form action="list.php" method="POST">
 	<div class="middle-wrapper">
 		<div class="middle-left">
@@ -75,27 +95,16 @@ if (!isset($_SESSION['url'])) {
 		</div>
 
 		<div class="list-main">
-<?php
+<?php foreach($rows as $row): ?>
 
-//リスト全データの読み込み
-require_once("list_data.php");
+	<?php foreach ($row as $column) {
+			if (isset($column['done'])) $column = '未';
+	?>
+    		<p><?= $column ?></p>
+  <?php } ?>
 
-foreach ($datas as $data) {
-   $staff = $data->getStaff();
-    if ($staff == $_SESSION['userID']) {
-    	echo "<div class=\"my-task\">";
-    } else {
-    	echo "<div class=\"others-task\">";
-    }
- 	echo "<p>".$data->getSubject()."</p>";
-    echo "<p>".$staff."</p>";
-    echo "<p>".$data->getTerm()."</p>";
-    echo "<p>".$data->getCompletion()."</p>";
-    echo "<p>".$data->getControls()."</p>";
-    echo "</div>";
-}
+<?php endforeach; ?>
 
-?>
 		</div> <!-- list-main-->
 	</div>	<!-- list-wrapper -->
 </form>
