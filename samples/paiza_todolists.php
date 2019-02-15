@@ -1,5 +1,5 @@
 <?php
-    $pdo = new PDO("mysql:host=localhost;dbname=mydb;charset=utf8","root","", [PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING]);
+    $pdo = new PDO("mysql:host=localhost;dbname=shino;charset=utf8","user1","pass1", [PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING]);
 
     if(isset($_POST['submit']) ){
         $name = $_POST['name'];

@@ -29,30 +29,8 @@ h4 {
 hr {
   margin: 0; }
 
-.plans {
-  font-size: 15px;
-  color: #111180; }
-
-.plan2 {
-  color: #a91111; }
-
-.next-plan {
-  color: rgba(192, 160, 34, 0.3); }
-
-.implemented {
-  color: green;
-  opacity: 0.5; }
-
-/* Font Awesomeの調整 */
-.fa {
-  margin-right: 5px; }
-
 footer {
-  height: 93px;
   background-color: #aaa; }
   footer p {
-    margin-left: 119px;
     font-size: 0.75rem;
-    line-height: 93px; }
-
-/*# sourceMappingURL=stylesheet.css.map */
+    line-height: 60px; }
