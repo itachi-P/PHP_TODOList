@@ -1,0 +1,86 @@
+h1 {
+	margin: 0 auto;
+	width: 95%;
+	font-size: 30px;
+	border-bottom: 2px solid #555;
+}
+h2{
+	font-size: 25px;
+	color: rgba(160, 80, 80, 1);
+}
+li {
+	font-size: 20px;
+	font-weight: bold;
+	margin: 20px;
+	color: #78b;
+}
+
+.container {
+	height: 400px;
+	width: 70%;
+	background-color: #bbb;
+	margin: 30px auto;
+}
+.inputs-wrapper {
+	height: 200px;
+	width: 80%;
+	padding: 20px;
+	background-color: #c78;
+	margin: 0px auto;
+}
+.titles {
+	background-color: #bed;
+	float: left;
+	margin: 0px;
+	text-align: left;
+	height: 170px;
+}
+.titles ul {
+	list-style: none;
+}
+.inputs {
+	background-color: #cb4;
+	padding: 0px;
+	height: 170px;
+}
+
+
+/* 何故同じ設定のtextとselectboxで横幅が違うのか？ */
+.tbox, .pulldown {
+	width: 400px;
+	padding: 7px;
+	margin-top: 17px;
+	margin-left: 10px;
+}
+
+.terms-wrapper {
+	background-color: #ecf;
+	padding: 0px;
+	margin-left: 10px;
+	margin-top: 18px;
+	width: 400px;
+	float: left;
+}
+.terms-wrapper input {
+	display: inline-block;
+	width: 115px;
+	border: solid 1px #eee;
+	box-sizing: border-box;
+	height: 30px;
+}
+.terms-wrapper p {
+	display: inline;
+}
+.buttons-wrapper {
+	width: 50%;
+	margin: 10px auto;
+	background-color: #77c;
+}
+.btn {
+	background-color: #ccc;
+	color: white;
+	width: 100px;
+	padding: 5px;
+	margin: 5px 40px;
+	border-radius: 6px;
+}

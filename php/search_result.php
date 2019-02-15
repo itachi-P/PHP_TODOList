@@ -57,8 +57,7 @@ echo "<b>".$_POST['finish']."</b>";
 		<div class="list-main">
 <?php
 
-//リスト全データの読み込み
-require_once("list_data.php");
+// 検索結果データの読み込み
 
 foreach ($datas as $data) {
    $staff = $data->getStaff();

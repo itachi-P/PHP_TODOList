@@ -4,7 +4,7 @@
 重大なセキュリティホール(悪意のあるユーザーによる攻撃対象)になり得るので基本的に避けるべき
 
 $sql = "
-	LOAD DATA LOCAL INFILE 'c:/lesson/WebAppTr/SQL&CSV/init.csv'
+	LOAD DATA LOCAL INFILE 'c:/lesson/WebAppTr/SQL/init table BULK INSERT.csv'
 	INTO TABLE todolist
 	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"'
 	LINES TERMINATED BY '\r\n'
@@ -12,8 +12,8 @@ $sql = "
 	(subject, staff, term, done);
 	";
 try {
-	$dns = 'mysql:host=localhost; dbname=shino; charset=utf8mb4';
-	$pdo = new PDO($dns, 'user1', 'pass1');
+	$dsn = 'mysql:host=localhost; dbname=shino; charset=utf8mb4';
+	$pdo = new PDO($dsn, 'user1', 'pass1');
 	// 開発時向けにエラー発生時エラーログを表示
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$pdo->query($sql);

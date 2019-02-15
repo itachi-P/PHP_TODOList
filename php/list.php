@@ -11,6 +11,9 @@ if (!isset($_SESSION['url'])) {
 	//一応以下のやり方で画面遷移は切り分けられるものの、ホントにこんな冗長な書き方しか無いのか？
 	unset($_SESSION['url']);
 
+	if (isset($_POST['regist'])) {
+		$_SESSION['url'] = "regist.php";
+	}
 	//検索条件を元に検索をかけた結果画面に遷移
 	if (isset($_POST['search'])) {
 		$_SESSION['url'] = "search_result.php";
@@ -56,26 +59,21 @@ function hsc($str) {
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 
+$head_title = "TODO一覧";
+$css_file = "list.css";
+require_once("head_template.php");
 ?>
 
-<!DOCTYPE HTML>
-<html lang="ja">
-<head>
-<meta charset=utf-8" />
-<title>TODO一覧</title>
-<link href="../css/list.css" rel="stylesheet" type="text/css">
-</head>
 <body>
 	<h2>作業一覧</h2>
-	<h4>ようこそ<?= $_SESSION['userID'] ?>さん</h4>
+	<h4>ようこそ <?= $_SESSION['username'] ?> さん</h4>
 <!-- form actionの値を動的に変える方式だとボタン押下→即画面遷移とならず変な挙動になるのでは？ -->
 <!--form action="<?= $_SESSION['url'] ?>" method="POST" -->
 <!-- form actionは自分自身に固定、POSTされた値を受け取ったPHP部分で直接ページ遷移方式に変更-->
 	<form action="list.php" method="POST">
 	<div class="middle-wrapper">
 		<div class="middle-left">
-			<!-- input type="submit" をaタグに変更 -->
-			<a class="btn-l" href="regist.php">作業登録</a>
+			<input name="regist" class="btn-l" type="submit" value="作業登録">
 		</div>
 		<div class="middle-right">
 			<p>検索キーワード</p>
@@ -95,15 +93,15 @@ function hsc($str) {
 		</div>
 
 		<div class="list-main">
-<?php foreach($rows as $row): ?>
-
-	<?php foreach ($row as $column) {
-			if (isset($column['done'])) $column = '未';
-	?>
+<?php
+ foreach($rows as $row) {
+	// 完了状態がnullの場合「未」と表示
+	$row['done'] != null ?: $row['done'] = '未';
+	 foreach ($row as $column): ?>
     		<p><?= $column ?></p>
-  <?php } ?>
+  <?php endforeach ?>
 
-<?php endforeach; ?>
+<?php } ?>
 
 		</div> <!-- list-main-->
 	</div>	<!-- list-wrapper -->
