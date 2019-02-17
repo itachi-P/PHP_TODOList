@@ -3,7 +3,6 @@ $head_title = "作業登録画面";
 $css_file = "regist.css";
 require_once('head_template.php');
 ?>
-
 <body>
 	<h1>作業登録</h1>
 	<div class="container">

@@ -12,6 +12,15 @@ $username = $_SESSION['customer']['name'];
 // 画面遷移先情報を一旦クリア
 unset($_SESSION['url']);
 
+// 「操作」欄のボタンが押された場合、行を特定する為のIDを保持
+// (※要調査) キー名に「'subject_id'を含む」「で始まる」等を条件とする正規表現は使えないか？
+if (isset($_POST['subject_id'])) {
+echo "###########";
+echo $_POST['subject_id'];
+echo $_POST['subject'];
+	$_SESSION['subject_id'] = $_POST['subject_id'];
+	$_SESSION['subject'] = $rows[key($rows)]['subject'];
+}
 //以下で押されたボタンに合わせて遷移先を切り替える(最初の画面表示時は全てスルー)
 if (isset($_POST['regist'])) {
 	$_SESSION['url'] = "regist.php";
@@ -51,7 +60,8 @@ $driver_options = array( 	// [属性名1 => 属性値1, ...]も同じ
 	// エミュレートを無効(処理は高速だが脆弱性のある動的プレースホルダ→よりセキュアな静的プレースホルダ)に変更
 	PDO::ATTR_EMULATE_PREPARES => false);  //ここではユーザー入力からSQL文生成する必要がないのでONでも可
 
-$sql = "SELECT todo_item.name AS subject,
+$sql = "SELECT todo_item.id AS subject_id,
+				todo_item.name AS subject,
 				todo_user.name AS staff,
 				todo_item.expire_date AS term,
 				todo_item.finished_date AS done
@@ -62,11 +72,14 @@ $sql = "SELECT todo_item.name AS subject,
 try {
 	// DBH:データベースハンドラ ($pdoと書かれることが多い)
     $dbh = new PDO($dsn,'user1','pass1', $driver_options);
-	/* fetch(), fetchAll()で引数が省略された場合や、ステートメントが直接foreachに渡された場合
-		のフェッチモードのデフォルト設定をカラム名をキーとする連想配列で取得(省略時はFETCH_BOTH) */
-	// (Ver.2改修予定)モードをFETCH_CLASSに変更し、DBレコード&「操作」ボタン群をオブジェクト化する
-    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $rows = $dbh->query($sql)->fetchAll();	//上のsetAttrを書かずfetchAll(PDO::FETCH_ASSOC)も可
+
+	/* (Ver.2改修予定)モードをFETCH_CLASSに変更し、DBレコード&「操作」ボタン群をオブジェクト化する
+    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_CLASS); */
+
+	// ★FETCH_ASSOCとFETCH_UNIQUEを組み合わせることで、キーに整数連番でなくidが使える！★
+	// 正確には先頭カラムをキー(配列の現在行のインデックス。key($rows)で取得)とし、2番目以降のカラム群を値とする配列を取得
+	// →これにより、先頭カラムを一意なidにしておくことで同名項目が複数あっても処理対象の単一行を特定できる
+    $rows = $dbh->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_UNIQUE);
 
 } catch (PDOException $e) {
 	// エラー発生時に壊れたHTML画面ではなくプレーンテキストでエラーメッセージのみ表示
@@ -113,20 +126,24 @@ require_once("head_template.php");
 		<div class="list-main">
 <?php
  foreach($rows as $row) {
+// 	echo key($rows); // 現在行のidを取得 ※フェッチ(ポインタ)に合わせて自動で進まないのでループ毎にnext()が必要
 	// 完了状態がnullの場合「未」と表示
 	$row['done'] != null ?: $row['done'] = '未';
-	if ($row['staff'] == $username) {
+	if ($row['staff'] === $username) {
     	echo '<div class="my-task">';
     } else {
     	echo '<div class="others-task">';
     }
 	foreach ($row as $column): ?>
-    		<p><?= $column ?></p>
+    		<p><?= hsc($column) ?></p>
 	<?php endforeach ?>
 	<!-- ここで「操作」欄のボタン群を形成 -->
 	<p><?php include("make_buttons.php") ?></p>
 			</div> <!-- ログインユーザー自身のタスク色分け用div -->
-<?php } ?>
+<?php
+	// 各行を特定する為のTODO_ITEM.IDがフェッチのポインタに合わせて自動では進まないので手動で進める
+	next($rows);
+	} ?>
 
 		</div> <!-- list-main-->
 	</div>	<!-- list-wrapper -->

@@ -17,7 +17,8 @@ if ($column == '未')	 { // or $row['done']でも同じ挙動（の筈）
 
 // どの行を指すのかを識別する為に$rowを渡す※現状は各行に一意なidを保持していないので項目名($row['subject'])がキー
 // 今のままでは同じ項目名が複数存在する場合に不具合が発生するので、各行にhiddenでTODO_ITEM.IDを持たせるべき
-echo makeBtn($slct_btn, $btn_value, $row);
-echo makeBtn("update", "更新", $row);
-echo makeBtn("delete", "削除", $row);
+// →(☆完了) $rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_UNIQUE);により実現！
+echo makeBtn($slct_btn, $btn_value, $rows);
+echo makeBtn("update", "更新", $rows);
+echo makeBtn("delete", "削除", $rows);
 ?>
