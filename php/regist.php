@@ -1,14 +1,13 @@
-<!DOCTYPE HTML>
-<html lang="ja">
-<head>
-<meta charset=utf-8" />
-<title>作業登録画面</title>
-<link href="../css/regist.css" rel="stylesheet" type="text/css">
-</head>
+<?php
+$head_title = "作業登録画面";
+$css_file = "regist.css";
+require_once('head_template.php');
+?>
+
 <body>
-	<h2>作業登録</h2>
+	<h1>作業登録</h1>
 	<div class="container">
-		<form action="regist_ctrl.php" method="get">
+		<form action="regist_ctrl.php" method="POST">
 			<div class="inputs-wrapper">
 				<div class="titles">
 					<ul>
@@ -23,9 +22,9 @@
 					<select class="pulldown" name="staff">
 						<option value="default">選択してください</option>
 <?php
-	require_once('list_data.php');
-	foreach ($datas as $data) {
-		echo "<option>".$data->getStaff()."</option>";
+	// スタッフ一覧を取得
+	foreach ($rows as $row) {
+		echo "<option>".$row."</option>";
 	}
 
 ?>				

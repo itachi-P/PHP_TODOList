@@ -6,21 +6,21 @@ require_once("head_template.php");
 
 <body>
 	<ol style="list-style-type: cjk-ideographic">
-		<li>ユーザー登録作業</li>
-		最初のバージョンでは登録済み固定ユーザー認証のみで全体の機能・画面完成を優先
+		<li><span>ユーザー登録・削除作業</span></li>
+		最初のバージョンではDB登録済み固定ユーザー認証のみで全体の機能・画面完成を優先
 		<li>ユーザー認証</li>
-		最初はバリデーション(orサニタイズ)のチェック緩めに
-			<span>(改修予定)Ver2 パスワードをハッシュ化して保持</span>
+			最初はバリデーション(orサニタイズ)のチェック緩めに
+			<span>(Ver.2de改修予定) パスワードをハッシュ化して保持→DBもvarchar(100)に拡張</span>
 		<li>入力値チェック→問題があればエラー画面表示(全エラー共通画面)</li>
-		エラー画面は全エラー共通画面、表示メッセージと戻り先ページのみ動的に変える
+			エラー画面は全エラー共通画面で表示メッセージのみ動的に変更→ログイン画面に戻る
 		<li>TODOリスト一覧表示画面に遷移</li>
-		入力値チェッククリア後画面遷移
-			<span>→簡易な雛形完成後に細部の作り込み</span>
+			入力値チェッククリア後画面遷移
+			<span>→簡易な雛形完成後にVer.2として細部の作り込み</span>
 	</ol>
 	<hr>
 	<h1 id="title">ログイン画面</h1>
 	<div class="login-form">
-		<form name="Login" method="post" action="login_check.php">
+		<form method="post" action="login_check.php">
 			<h2>ログイン</h2>
 			<hr>
 			<div class="inputs">
