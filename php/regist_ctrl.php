@@ -1,9 +1,9 @@
 <?php
 
-$subject = $_GET['subject'];
-$staff = $_GET['staff'];
-$date = $_GET['year'].$_GET['month'].$_GET['day'];
-$process = $_GET['regist'];
+$subject = $_POST['subject'];
+$staff = $_POST['staff'];
+$date = $_POST['year'].$_GET['month'].$_GET['day'];
+$process = $_POST['regist'];
 
 echo "項目名：".$subject."<br>";
 echo "担当者：".$staff."<br>";

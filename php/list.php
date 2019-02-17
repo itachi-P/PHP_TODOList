@@ -1,62 +1,81 @@
 <?php
+/* ボタンが押されたらまず自分自身にリダイレクトし、押されたボタンによって動的に遷移先を変更 */
 session_start();
+// ログイン状態になければログイン画面に戻す
+if (empty($_SESSION['customer'])) {
+	header("location: login.php", true, 301);
+	exit;
+}
+// リスト表示画面右上に表示するログインユーザーの名前
+$username = $_SESSION['customer']['name'];
 
-//自分自身にリダイレクトし、押されたボタンによってform actionの中身を動的に変えて遷移先を変更
-//初期値(最初の1回は自分自身のページにリダイレクト)
-if (!isset($_SESSION['url'])) {
-	//この条件分岐は不要で else以下の処理だけでいいのでは？
-	$_SESSION['url'] = "list.php";
-} else {
-	//以下で押されたボタンに合わせて遷移先を切り替える(最初の画面表示時は処理されない)
-	//一応以下のやり方で画面遷移は切り分けられるものの、ホントにこんな冗長な書き方しか無いのか？
-	unset($_SESSION['url']);
+// 画面遷移先情報を一旦クリア
+unset($_SESSION['url']);
 
-	if (isset($_POST['regist'])) {
-		$_SESSION['url'] = "regist.php";
-	}
-	//検索条件を元に検索をかけた結果画面に遷移
-	if (isset($_POST['search'])) {
-		$_SESSION['url'] = "search_result.php";
-	} else if (isset($_POST['finish'])) {
-		//（仮）
-		//完了ボタンが押されたら「完了」欄を「未」から現在日付に書き換え「未完了」ボタンにラベルを変える
-		//※「未完了」ボタンを押した時の処理はまた別に記述
-		if ($_POST['finish'] == "完了") {
+//以下で押されたボタンに合わせて遷移先を切り替える(最初の画面表示時は全てスルー)
+if (isset($_POST['regist'])) {
+	$_SESSION['url'] = "regist.php";
+} else if (isset($_POST['search'])) {
+	$_SESSION['url'] = "search.php";
+} else if (isset($_POST['finished'])) {
+//完了ボタンが押されたら「完了」欄を「未」から現在日付に書き換え、かつ「未完了」ボタンに変える
+//※「未完了」ボタンが押された時は上記の逆の操作を行う。
+	$sql = "UPDATE TODO_ITEM SET FINISHED_DATE = DATE_FORMAT(now(), '%Y/%m/%d') WHERE ID = :id";
 
-		}
-		echo "<b>".$_POST['finish']."</b>";
-	} else if(isset($_POST['update'])) {
-		$_SESSION['url'] = "update.php";
-	} else if (isset($_POST['delete'])) {
-		$_SESSION['url'] = "delete.php";
-	}
+} else if (isset($_POST['unfinished'])) {
+	// 該当するレコードのidを条件に「完了」項目の削除（nullに上書き→'未'）を実行する
+	$sql = "UPDATE TODO_ITEM SET FINISHED_DATE = null WHERE ID = :id";
 
-	if (isset($_SESSION['url'])) {
-		header("location: ".$_SESSION['url']);
-	}
+} else if(isset($_POST['update'])) {
+	$_SESSION['url'] = "update.php";
+} else if (isset($_POST['delete'])) {
+	$_SESSION['url'] = "delete.php";
 }
 
-// TODOリスト一覧(全件)を表示
-$dsn = 'mysql: host=localhost; dbname=shino; charset=utf8mb4';
+// 押されたボタンに応じて各画面にリダイレクト(ログイン直後の初回画面表示時はスルー)
+if (isset($_SESSION['url'])) {
+	header("location: ".$_SESSION['url'], true, 301);
+	exit;
+}
+
+
+// 以下でTODOリスト一覧(全件)を表示
+
+// PDOでMySQLに接続。 DSN:Data Source Name。hostはWindows環境では'localhost'よりIPの方が処理が速い？
+$dsn = 'mysql: host=127.0.0.1; dbname=shino; charset=utf8mb4';
+
+// 接続時のオプションを連想配列で渡す(コンストラクタの第4引数としては省略し、後でsetAttribute()で指定しても同じ)
+$driver_options = array( 	// [属性名1 => 属性値1, ...]も同じ
+	// エラー発生時例外を投げる (※開発時必須)
+	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+	// エミュレートを無効(処理は高速だが脆弱性のある動的プレースホルダ→よりセキュアな静的プレースホルダ)に変更
+	PDO::ATTR_EMULATE_PREPARES => false);  //ここではユーザー入力からSQL文生成する必要がないのでONでも可
+
+$sql = "SELECT todo_item.name AS subject,
+				todo_user.name AS staff,
+				todo_item.expire_date AS term,
+				todo_item.finished_date AS done
+		 FROM todo_user JOIN todo_item
+		 ON todo_user.id = todo_item.user
+		 ORDER BY expire_date ASC";
+
 try {
-    $pdo = new PDO($dsn,'user1','pass1');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $rows = $pdo->query("SELECT todo_item.name AS subject,
-    							todo_user.name AS username,
-    							todo_item.expire_date AS term,
-    							todo_item.finished_date AS done
-	    				 FROM todo_user JOIN todo_item
-	    				 ON todo_user.id = todo_item.user
-	    				 ORDER BY expire_date ASC")
-    				->fetchAll(PDO::FETCH_ASSOC);
+	// DBH:データベースハンドラ ($pdoと書かれることが多い)
+    $dbh = new PDO($dsn,'user1','pass1', $driver_options);
+	/* fetch(), fetchAll()で引数が省略された場合や、ステートメントが直接foreachに渡された場合
+		のフェッチモードのデフォルト設定をカラム名をキーとする連想配列で取得(省略時はFETCH_BOTH) */
+	// (Ver.2改修予定)モードをFETCH_CLASSに変更し、DBレコード&「操作」ボタン群をオブジェクト化する
+    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $rows = $dbh->query($sql)->fetchAll();	//上のsetAttrを書かずfetchAll(PDO::FETCH_ASSOC)も可
 
 } catch (PDOException $e) {
+	// エラー発生時に壊れたHTML画面ではなくプレーンテキストでエラーメッセージのみ表示
     header('Content-Type: text/plain; charset=UTF-8mb4', true, 500);
     exit($e->getMessage());
 }
 
 function hsc($str) {
-    return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+    return htmlspecialchars($str, ENT_QUOTES, 'UTF-8'); //※mb4指定はエラー
 }
 
 $head_title = "TODO一覧";
@@ -66,10 +85,9 @@ require_once("head_template.php");
 
 <body>
 	<h2>作業一覧</h2>
-	<h4>ようこそ <?= $_SESSION['username'] ?> さん</h4>
-<!-- form actionの値を動的に変える方式だとボタン押下→即画面遷移とならず変な挙動になるのでは？ -->
-<!--form action="<?= $_SESSION['url'] ?>" method="POST" -->
-<!-- form actionは自分自身に固定、POSTされた値を受け取ったPHP部分で直接ページ遷移方式に変更-->
+	<h4>ようこそ <?= $username ?> さん</h4>
+<!-- form actionの値を動的に変える方式だとボタン押下→即画面遷移とならず2ステップを要する変な挙動になるのでは？ -->
+<!-- form actionは自分自身に固定、最上部PHP内でPOSTされた値を受け取りheader関数で直接ページ遷移方式に変更-->
 	<form action="list.php" method="POST">
 	<div class="middle-wrapper">
 		<div class="middle-left">
@@ -97,10 +115,17 @@ require_once("head_template.php");
  foreach($rows as $row) {
 	// 完了状態がnullの場合「未」と表示
 	$row['done'] != null ?: $row['done'] = '未';
-	 foreach ($row as $column): ?>
+	if ($row['staff'] == $username) {
+    	echo '<div class="my-task">';
+    } else {
+    	echo '<div class="others-task">';
+    }
+	foreach ($row as $column): ?>
     		<p><?= $column ?></p>
-  <?php endforeach ?>
-
+	<?php endforeach ?>
+	<!-- ここで「操作」欄のボタン群を形成 -->
+	<p><?php include("make_buttons.php") ?></p>
+			</div> <!-- ログインユーザー自身のタスク色分け用div -->
 <?php } ?>
 
 		</div> <!-- list-main-->
