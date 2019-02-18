@@ -1,24 +1,40 @@
 <?php
-// 内側のforeachで最後のカラムの後に呼び出される前提で記述
-// 外側のforeachで$row['done']が日付データかnullかを判別した際に後に付け加える方が確実かも？
+/* リスト画面の「操作」欄のボタン群を生成する
+	内側のforeachで各行の最後のカラム($rows['done']出力)の直後に呼び出される前提で記述 */
 
-// 1つのボタンを作る関数定義ファイルを呼び出す
-// ※繰り返し呼び出されるこのファイル中で関数を定義してしまうと多重定義エラーが発生するので注意
-require_once("make_button.php");
+// 「操作」欄の1つのボタン(複数のhiddenも含む)を作る関数　どの行を指すのか一意なidによって特定する為に$rowsも渡す
+function makeBtn($action, $btn_value, $rows) {
+	// 「操作」欄に表示されるボタン1個のHTMLを生成する
+	$done_btn = "";
+	$action_url = "";
 
-// 各ボタンで処理を分ける
-if ($column == '未')	 { // or $row['done']でも同じ挙動（の筈）
-	$slct_btn = "finished";
-	$btn_value = "完了";
-} else {
-	$slct_btn = "unfinished";
-	$btn_value = "未完了";
+	if ($action === "finished" || $action === "unfinished") {
+		$action_url = "#";
+	} else {
+		$action_url = $action.".php";
+	}
+
+// 1つのボタンにつき1つの<form action>＋操作内容＋対象行を特定する為のidをhiddenで送信
+	$done_btn =	'<form action="'.$action_url.'" method="POST">';
+	$done_btn.= '<input type="hidden" name="action" value="'.$action.'">';
+	$done_btn.= '<input type="hidden" name="item_id" value="'.key($rows).'">';
+	$done_btn.= '<input class="btn-s" type="submit" name="'.$action.'" value="'.$btn_value.'">';
+	$done_btn.= '</form>';
+	return $done_btn;
 }
 
-// どの行を指すのかを識別する為に$rowを渡す※現状は各行に一意なidを保持していないので項目名($row['subject'])がキー
-// 今のままでは同じ項目名が複数存在する場合に不具合が発生するので、各行にhiddenでTODO_ITEM.IDを持たせるべき
-// →(☆完了) $rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_UNIQUE);により実現！
-echo makeBtn($slct_btn, $btn_value, $rows);
-echo makeBtn("update", "更新", $rows);
-echo makeBtn("delete", "削除", $rows);
+// makeBtnのラッパー関数
+function makeBtns($rows) {
+	// 直前の「完了」欄が日付データかnullかで「操作」欄の1つ目のボタンを変える
+	if ($rows[key($rows)]['done'] === '未') {
+		$action = "finished";
+		$btn_value = "完了";
+	} else {
+		$action = "unfinished";
+		$btn_value = "未完了";
+	}
+	echo makeBtn($action, $btn_value, $rows);
+	echo makeBtn("update", "更新", $rows);
+	echo makeBtn("delete", "削除", $rows);
+}
 ?>
