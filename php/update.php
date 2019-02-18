@@ -1,12 +1,12 @@
-<!DOCTYPE HTML>
-<html lang="ja">
-<head>
-<meta charset=utf-8" />
-<title>更新画面</title>
-<link href="../css/regist.css" rel="stylesheet" type="text/css">
-</head>
+<?php
+session_start();
+$head_title = "更新画面";
+$css_file = "regist.css";
+require_once('head_template.php');
+?>
 <body>
-	<h2>作業更新</h2>
+	<h1>作業更新</h1>
+	<p>作業項目ID:<?=$_SESSION['subject_id']?></p>
 	<div class="container">
 		<form action="regist_ctrl.php" method="get">
 			<div class="inputs-wrapper">
@@ -24,9 +24,9 @@
 					<select class="pulldown" name="staff">
 						<option value="default">選択してください</option>
 <?php
-	require_once('list_data.php');
-	foreach ($datas as $data) {
-		echo "<option>".$data->getStaff()."</option>";
+	// スタッフ一覧を取得
+	foreach ($rows as $row) {
+		echo "<option>".$row."</option>";
 	}
 
 ?>				
@@ -38,15 +38,16 @@
 						<input class="term" type="text" name="month">
 						<p>／</p>
 						<input class="term" type="text" name="day">
-						<input class="finished" type="checkbox">
-						<p>完了した</p>
+					</div>
+					<div class="chkbox-wrapper">
+						<input class="chkbox" type="checkbox" name="finished_chk">完了した
 					</div>
 				</div>	<!-- inputs(right-block) end -->
 			</div> <!-- inputs-wrapper -->
 
 			<div class="buttons-wrapper">		
-				<input class="btn" type="submit" value="更新" name="regist">
-				<input class="btn" type="submit" value="キャンセル" name="regist">
+				<input class="btn" type="submit" value="更新" name="update">
+				<input class="btn" type="submit" value="キャンセル" name="update">
 			</div> <!-- buttons-wrapper -->
 		</form>
 	</div> <!-- container -->
