@@ -1,4 +1,2 @@
-cd c:\lesson\
-rem "ディレクトリとファイルの一覧出力しまっせ。"
-dir /B /O:G > files.txt
+cd c:\lesson\WebAppTr\
 php -S localhost:8100 -t c:/lesson/WebAppTr/

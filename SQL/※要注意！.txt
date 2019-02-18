@@ -1,0 +1,37 @@
+・下記のソースコードでCSVファイルやSQLファイルの読み込みが可能
+　[LOCAL]指定の場合はローカルの絶対パス、指定しなければサーバー上のファイル置き場のパス
+ただし、ローカルでもサーバー上でも.sqlや.csvファイルを読み込むプログラムは脆弱性が高く
+重大なセキュリティホール(悪意のあるユーザーによる攻撃対象)になり得るので基本的に避けるべき
+
+例外処理～PDOの基礎
+https://qiita.com/7968/items/6f089fec8dde676abb5b
+PHPマニュアル MySQL 関数 (PDO_MYSQL)
+http://php.net/manual/ja/ref.pdo-mysql.php
+経産省所管の独立行政法人情報処理推進機構（IPA）ウェブサイト「安全なSQLの呼び出し方」
+https://www.ipa.go.jp/security/vuln/websecurity.html
+
+※注意点
+・大量の結果を返すSQL文に対し、全データをまとめて2次元配列に収めるfetchAll()を使うべきでない
+　→while($stmt->fetch())で1行づつ回すか、SQL文の条件を返る件数の少ないものに調整する
+・確実に1行しか結果を返さないSQL文ならばfetchAll()どころか、fetch()をwhileで回す必要も無い
+　※但し、1件だけと思って2件以上返った場合は動作不良の元になるので確実性の上では推奨されない
+・よく見かけるがforeach($stmt->fetchAll() as $row)という書き方で配列の中身を加工しないなら無意味
+　foreach($stmt as $row)でよいものをわざわざfetchAllで配列に格納しておいて使わない無駄な例が多い
+
+$sql = "
+	LOAD DATA LOCAL INFILE 'c:/lesson/WebAppTr/SQL/init table BULK INSERT.csv'
+	INTO TABLE todolist
+	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"'
+	LINES TERMINATED BY '\r\n'
+	IGNORE 1 LINES
+	(subject, staff, term, done);
+	";
+try {
+	$dsn = 'mysql:host=localhost; dbname=shino; charset=utf8mb4';
+	$pdo = new PDO($dsn, 'user1', 'pass1');
+	// 開発時向けにエラー発生時エラーログを表示
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$pdo->query($sql);
+} catch ( PDOException $e ) {
+	echo mb_convert_encoding($e->getMessage(), 'utf-8', 'Shift-JIS');
+}

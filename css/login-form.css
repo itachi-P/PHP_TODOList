@@ -11,12 +11,9 @@ h2 {
 	padding-bottom: 0px;
 	margin-bottom: 0px;
 }
-.next-plan {
-	background-color: orange;
-}
-.implemented {
-	opacity: 0.3;
-	color: #7cc;
+span {
+	color: #7b5;
+	background-color: rgba(200, 120, 120, 0.2);
 }
 
 hr {

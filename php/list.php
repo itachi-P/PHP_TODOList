@@ -1,104 +1,118 @@
 <?php
-//(廃止)GETもPOSTもセキュリティ上大差ないのでSESSIONに変更(更にはできればSSLを使うべき)
-//$userID = $_GET['userID'];
+require_once("make_buttons.php");
 
+/* 20190218N超改変 HTML画面構成→<table>、画面遷移方法→ボタン1個毎に<form>、CSS→シンプル化 */
 session_start();
+// ログイン状態になければログイン画面に戻す empty()は!isset()と違い"", 0, '0', 空の配列も弾く
+if (empty($_SESSION['customer'])) {
+	header("location: login.php", true, 301);
+	exit;
+}
+// リスト表示画面右上に表示するログインユーザーの名前
+$guestname = $_SESSION['customer']['name'];
 
-//自分自身にリダイレクトし、押されたボタンによってform actionの中身を動的に変えて遷移先を変更
-//初期値(最初の1回は自分自身のページにリダイレクト)
-if (!isset($_SESSION['url'])) {
-	//この条件分岐は不要で else以下の処理だけでいいのでは？
-	$_SESSION['url'] = "list.php";
-} else {
-	//以下で押されたボタンに合わせて遷移先を切り替える(最初の画面表示時は処理されない)
-	//一応以下のやり方で画面遷移は切り分けられるものの、ホントにこんな冗長な書き方しか無いのか？
-	unset($_SESSION['url']);
+/* 以下でDBにアクセスしTODOリスト全件を表示 
+	※hostはWindows環境の場合'localhost'よりIPアドレス指定の方が処理が速い？ */
+$dsn = 'mysql: host=127.0.0.1; dbname=shino; charset=utf8mb4';
+$driver_options = [
+	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+	PDO::ATTR_EMULATE_PREPARES => false,
+	];
 
-	//検索条件を元に検索をかけた結果画面に遷移
-	if (isset($_POST['search'])) {
-		$_SESSION['url'] = "search_result.php";
-	} else if (isset($_POST['finish'])) {
-		//（仮）
-		//完了ボタンが押されたら「完了」欄を「未」から現在日付に書き換え「未完了」ボタンにラベルを変える
-		//※「未完了」ボタンを押した時の処理はまた別に記述
-		if ($_POST['finish'] == "完了") {
+try {
+	// DBH:データベースハンドラ ($pdoと書かれることが多い)
+    $dbh = new PDO($dsn,'user1','pass1', $driver_options);
 
+	//「完了」「未完了」ボタン押下時の処理分け
+	if (isset($_POST['action']) && isset($_POST['item_id'])) {
+		if ($_POST['action'] === 'finished') {
+			// 完了ボタンが押されたら「完了」欄を「未」から現在日付に書き換え、かつ「未完了」ボタンに変える
+			$sql = "UPDATE TODO_ITEM SET FINISHED_DATE = DATE_FORMAT(now(), '%Y/%m/%d')
+					WHERE ID = ".$_POST['item_id'];
+			$dbh->exec($sql);
+
+		} else if ($_POST['action'] === 'unfinished') {
+			// 該当するレコードのitem_idをキーに「完了」カラムの日付データ削除（nullに上書き→'未'）
+			$sql = "UPDATE TODO_ITEM SET FINISHED_DATE = null
+					WHERE ID = ".$_POST['item_id'];
+			$dbh->exec($sql);
 		}
-		echo "<b>".$_POST['finish']."</b>";
-	} else if(isset($_POST['update'])) {
-		$_SESSION['url'] = "update.php";
-	} else if (isset($_POST['delete'])) {
-		$_SESSION['url'] = "delete.php";
 	}
 
-	if (isset($_SESSION['url'])) {
-		header("location: ".$_SESSION['url']);
-	}
+	// 全件検索
+	$sql = "SELECT todo_item.id AS item_id,
+					todo_item.name AS item_name,
+					todo_user.name AS user_name,
+					todo_item.expire_date AS term,
+					todo_item.finished_date AS done
+			 FROM todo_user JOIN todo_item
+			 ON todo_user.id = todo_item.user
+			 ORDER BY expire_date ASC";
+
+	/* (Ver.2改修予定)モードをFETCH_CLASSに変更し、DBレコード&「操作」ボタン群をオブジェクト化 */
+	// ★FETCH_ASSOCとFETCH_UNIQUEを組み合わせることで、連想配列の添字に整数連番でなくidが使える
+    $rows = $dbh->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_UNIQUE);
+
+} catch (PDOException $e) {
+	// エラー発生時に壊れたHTML画面ではなくプレーンテキストでエラーメッセージのみ表示
+    header('Content-Type: text/plain; charset=UTF-8mb4', true, 500);
+    exit($e->getMessage());
 }
 
+function hsc($str) {
+    return htmlspecialchars($str, ENT_QUOTES, 'UTF-8'); //※mb4指定はエラー
+}
+
+$head_title = "TODO一覧";
+$css_file = "list.css";
+require_once("head_template.php");
 ?>
 
-<!DOCTYPE HTML>
-<html lang="ja">
-<head>
-<meta charset=utf-8" />
-<title>TODO一覧</title>
-<link href="../css/list.css" rel="stylesheet" type="text/css">
-</head>
 <body>
-	<h2>作業一覧</h2>
-	<h4>ようこそ<?php echo $_SESSION['userID'] ?>さん</h4>
-<!-- form actionの値を動的に変えるのではボタンを押して即画面遷移とならず変な挙動になるのでは？ -->
-<!--form action="<?php echo $_SESSION['url'] ?>" method="POST" -->
-<!-- form actionでは自分自身に固定して、POSTされた値を受け取ったPHP部分で直接ページ遷移方式に変更-->
-	<form action="list.php" method="POST">
-	<div class="middle-wrapper">
-		<div class="middle-left">
-			<!-- input type="submit" をaタグに変更 -->
-			<a class="btn-l" href="regist.php">作業登録</a>
-		</div>
-		<div class="middle-right">
-			<p>検索キーワード</p>
-			<input class="tbox" type="text" name="search_keyword">
-			<!-- 後にinput type="submit"をtype="button"に変更しJavaScriptを組み込む -->
-			<input name="search" class="btn" type="submit" value="検索">
-		</div>
+	<h1>作業一覧</h1>
+	<div class="guestname">ようこそ <?= $guestname ?> さん</div>
+	<div class="middle-left">
+		<form action="regist.php" method="POST">
+			<input type="hidden" name="action" value="regist">
+			<input class="btn" type="submit" value="作業登録">
+		</form>
 	</div>
+	<div class="middle-right">
+		<form action="search.php" method="POST">
+			<p>検索キーワード</p>
+			<input type="hidden" name="action" value="search">			
+			<!-- (Ver.2改修予定) 後にtype="submit"を"button"に変更しJavaScriptを組み込む -->
+			<input class="tbox" type="text" name="search_keyword">
+			<input class="btn" type="submit" value="検索">
+		</form>
+	</div>
+	<table class="list-wrapper">
+	<thead>
+		<tr>
+			<td>項目名</td><td>担当者</td><td>期限</td><td>完了</td><td colspan="3">操作</td>
+		</tr>
+	</thead>
+	<tbody>
 
-	<div class="list-wrapper">
-		<div class="list-header">
-			<p>項目名</p>
-			<p>担当者</p>
-			<p>期限</p>
-			<p>完了</p>
-			<p>操作</p>
-		</div>
-
-		<div class="list-main">
+<?php foreach($rows as $row):
+	// 対象行の担当者がログインユーザーの場合、背景をピンクに(下の完了済み→グレーが優先)※要確認
+	$bgc = ($row['user_name'] === $guestname)? "pink" : "#fff";
+		// 「完了」がnullの場合'未'と表示、日付データがあれば背景をグレーに
+	($row['done'] === null)? $row['done'] = '未' : $bgc = "gray"; ?>
+		<tr style="background-color: <?=$bgc?>">
+	<?php foreach ($row as $column): ?>
+    		<td><?= hsc($column) ?></td>
+	<?php endforeach ?>
+	<!-- ここで「操作」欄のボタン群を形成 -->
+			<?php hsc(makeBtns($rows)); ?>
+		
+	</tr>
 <?php
+	// 現在行のID取得用関数key($rows)がフェッチに合わせて自動で進まないので手動で進める
+	next($rows);
+	endforeach ?>
 
-//リスト全データの読み込み
-require_once("list_data.php");
-
-foreach ($datas as $data) {
-   $staff = $data->getStaff();
-    if ($staff == $_SESSION['userID']) {
-    	echo "<div class=\"my-task\">";
-    } else {
-    	echo "<div class=\"others-task\">";
-    }
- 	echo "<p>".$data->getSubject()."</p>";
-    echo "<p>".$staff."</p>";
-    echo "<p>".$data->getTerm()."</p>";
-    echo "<p>".$data->getCompletion()."</p>";
-    echo "<p>".$data->getControls()."</p>";
-    echo "</div>";
-}
-
-?>
-		</div> <!-- list-main-->
-	</div>	<!-- list-wrapper -->
-</form>
-
+	</tbody>
+	</table>
 </body>
 </html>

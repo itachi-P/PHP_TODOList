@@ -1,22 +1,33 @@
-<!DOCTYPE HTML>
-<html lang="ja">
-<head>
-<meta charset=utf-8" />
-<title>エラー画面</title>
-<link href="../css/stylesheet.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-
 <?php
+$head_title = "エラー処理共通画面";
+$css_file = "regist.css";
+require_once("head_template.php");
+
 $err = $_GET["err"];
-if ($err == "none") {
-	$msg = "ユーザーが存在しません";
-} else if ($err == "unmached") {
+if ($err === "login_failed") {
+	$msg = "ユーザーID、パスワードが間違っています";
+} else if ($err === "unmached") { // 現状ここに入ることはない
 	$msg = "パスワードが間違っています";
+} else if ($err === "unauthorized_access") {
+	$msg = "不正なアクセスです";
 }
-echo $msg;
+
+
 ?>
-	<hr>
-	<a href="login.php">ログイン画面に戻る</a>
+
+<body>
+	<h1>エラー</h1>
+	<div class="container">
+		<form action="login.php">
+			<div class="titles" style="width: 100%">
+				<h2>エラーが発生しました。</h2>
+				<h2>内容：<?= $msg ?></h2>
+			</div>
+			<div style="text-align: center; background-color: #999">
+			<input class="btn" type="submit" value="戻る">
+			</div>
+		</form>
+	</div> <!-- container -->
+
 </body>
 </html>

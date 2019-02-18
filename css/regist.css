@@ -1,11 +1,13 @@
-
-h2 {
+h1 {
 	margin: 0 auto;
 	width: 95%;
-	font-size: 20px;
+	font-size: 30px;
 	border-bottom: 2px solid #555;
 }
-
+h2{
+	font-size: 25px;
+	color: rgba(160, 80, 80, 1);
+}
 li {
 	font-size: 20px;
 	font-weight: bold;
@@ -31,7 +33,6 @@ li {
 	float: left;
 	margin: 0px;
 	text-align: left;
-	height: 170px;
 }
 .titles ul {
 	list-style: none;
@@ -39,7 +40,7 @@ li {
 .inputs {
 	background-color: #cb4;
 	padding: 0px;
-	height: 170px;
+	height: 220px;
 }
 
 
@@ -69,6 +70,24 @@ li {
 .terms-wrapper p {
 	display: inline;
 }
+
+.chkbox-wrapper {
+	background-color: #7ca;
+	padding: 3px;
+	margin-top: 18px;
+	margin-left: 10px;
+	width: 200px;
+	float: left;
+	font-size: 1.3rem;
+	font-weight: bold;	
+}
+
+input[type=checkbox] {
+	width: 20px;
+	margin: 10px;
+  	transform: scale(2.5, 2.3);
+}
+
 .buttons-wrapper {
 	width: 50%;
 	margin: 10px auto;

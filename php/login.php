@@ -1,38 +1,26 @@
 <?php
-//前のページindex.phpで開始した訪問カウンター用のセッションの明示的な終了
-$_SESSION = array();	//セッション変数の全破棄(セッション自体の終了ではない)
-
-//(要調査)
-//session_destroy();
-
+$head_title = "ログイン画面";
+$css_file = "login-form.css";
+require_once("head_template.php");
 ?>
 
-<!DOCTYPE HTML>
-<html lang="ja">
-<head>
-<meta charset=utf-8" />
-<title>WebApp開発実習-ログイン</title>
-<link href="../css/login-form.css" rel="stylesheet" type="text/css">
-<link rel="shortcut icon" href="../images/fuca_tehepero_icon_32x32.ico">
-</head>
 <body>
-	<p>2019/01/31～</p>
 	<ol style="list-style-type: cjk-ideographic">
-		<li class="next-plan">ユーザー登録作業(後で実装予定)</li>
-		まずはDB非連動固定ユーザーで全体の機能・画面完成を優先
-		<li class="implemented">ユーザー認証(最初はチェックを緩く)</li>
-		最初はバリデーション(またはサニタイズ)のチェックも緩めに
-		<li class="implemented">入力値チェック→問題があればエラー画面表示</li>
-		エラー画面は全エラー共通画面、表示メッセージと戻り先ページのみ動的に変える
-		<li class="implemented">TODOリスト一覧表示画面に遷移</li>
-		簡単なチェックのクリア後に最低限の入力データを渡し画面遷移→雛形完成後細部の作り込み
+		<li><span>ユーザー登録・削除作業</span></li>
+		最初のバージョンではDB登録済み固定ユーザー認証のみで全体の機能・画面完成を優先
+		<li>ユーザー認証</li>
+			最初はバリデーション(orサニタイズ)のチェック緩めに
+			<span>(Ver.2de改修予定) パスワードをハッシュ化して保持→DBもvarchar(100)に拡張</span>
+		<li>入力値チェック→問題があればエラー画面表示(全エラー共通画面)</li>
+			エラー画面は全エラー共通画面で表示メッセージのみ動的に変更→ログイン画面に戻る
+		<li>TODOリスト一覧表示画面に遷移</li>
+			入力値チェッククリア後画面遷移
+			<span>→簡易な雛形完成後にVer.2として細部の作り込み</span>
 	</ol>
 	<hr>
 	<h1 id="title">ログイン画面</h1>
-	<!-- もはや<table>タグ(<font>や<br>連打なども)の使用自体が「悪」らしいので以後使用禁止-->
 	<div class="login-form">
-		<!-- とりあえず仮にワンクッション挟んで実際にはユーザーに見えない画面でログインチェックの仕様 -->
-		<form name="Login" method="post" action="login_check.php">
+		<form method="post" action="login_check.php">
 			<h2>ログイン</h2>
 			<hr>
 			<div class="inputs">

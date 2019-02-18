@@ -1,12 +1,17 @@
 <?php
-class ToDoList {
 
+// list.php上部のDBアクセス→「完了」項目の値から「操作」項目のボタンを生成する一連の流れを外に出すか？
+// 尚且つその2次元配列型のテーブルレコードをクラス化してインスタンスとして返しHTML表示部とロジックを分離するか？
+
+// DB接続、SELECT文発行部
+
+
+class ToDoList {
     private static $count = 0;
     private $subject;
     private $staff;
     private $term;
     private $completion;
-
     public function __construct($subject, $staff, $term, $completion) {
         $this->subject = $subject;
         $this->staff = $staff;
@@ -14,7 +19,6 @@ class ToDoList {
         $this->completion = $completion;
         self::$count++;
     }
-
     public static function getCount() {
         return self::$count;
     }
@@ -30,7 +34,6 @@ class ToDoList {
     public function getCompletion() {
         return $this->completion;
     }
-
     //「完了状態」他の現在状況に合わせて処理を分岐させる戻り値を返す
     //表示色や「操作」欄に表示・非表示するボタンも変更
     public function isFinished($completion) {
@@ -39,7 +42,6 @@ class ToDoList {
             return true;
         }
     }
-
     //一覧表の「操作」に表示するボタンのHTMLを返す
     //（予定）引数を受け取って「完了」ボタンを「未完了」ボタンに変える処理を追記
     public function getControls() {
@@ -61,5 +63,4 @@ class ToDoList {
         return $submits;
     }
 }
-
 ?>

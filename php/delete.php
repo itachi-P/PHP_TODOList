@@ -1,24 +1,20 @@
 <?php
-session_start();
+//session_start();
 
-
+$head_title = "削除確認画面";
+$css_file = "regist.css";
+require_once('head_template.php');
 ?>
 
-<!DOCTYPE HTML>
-<html lang="ja">
-<head>
-<meta charset=utf-8" />
-<title>削除確認画面</title>
-<link href="../css/stylesheet.css" rel="stylesheet" type="text/css">
-<link href="../css/regist.css" rel="stylesheet" type="text/css">
-</head>
 <body>
-	<h2>削除確認</h2>
+	<h1>削除確認</h1>
+	<p>項目ID：<?= $_POST['item_id'] ?></p>
 	<div class="container">
 		<form action="db_ctrl.php" method="get">
-			<h1>項目　<?php $_SESSION['subject'] ?>　を削除します。
+			<h2>項目　<?php $_POST['item_name'] ?>　を削除します。
 				よろしいですか？
-			</h1>
+			</h2>
+<h3>↑1件の項目名を表示する為だけにDB接続して検索するか、リスト画面の項目名をなんらかの変数に入れて渡すか？</h3>
 
 			<div class="buttons-wrapper">		
 				<input class="btn" type="submit" value="削除" name="delete">
