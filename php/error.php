@@ -4,11 +4,14 @@ $css_file = "regist.css";
 require_once("head_template.php");
 
 $err = $_GET["err"];
-if ($err == "login_failed") {
+if ($err === "login_failed") {
 	$msg = "ユーザーID、パスワードが間違っています";
-} else if ($err == "unmached") { // 現状ここに入ることはない
+} else if ($err === "unmached") { // 現状ここに入ることはない
 	$msg = "パスワードが間違っています";
+} else if ($err === "unauthorized_access") {
+	$msg = "不正なアクセスです";
 }
+
 
 ?>
 

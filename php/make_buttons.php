@@ -18,7 +18,9 @@ function makeBtn($action, $btn_value, $rows) {
 	$done_btn =	'<form action="'.$action_url.'" method="POST">';
 	$done_btn.= '<input type="hidden" name="action" value="'.$action.'">';
 	$done_btn.= '<input type="hidden" name="item_id" value="'.key($rows).'">';
+	$done_btn.= '<td class="done_btns">';
 	$done_btn.= '<input class="btn-s" type="submit" name="'.$action.'" value="'.$btn_value.'">';
+	$done_btn.= '</td>';
 	$done_btn.= '</form>';
 	return $done_btn;
 }
@@ -26,7 +28,7 @@ function makeBtn($action, $btn_value, $rows) {
 // makeBtnのラッパー関数
 function makeBtns($rows) {
 	// 直前の「完了」欄が日付データかnullかで「操作」欄の1つ目のボタンを変える
-	if ($rows[key($rows)]['done'] === '未') {
+	if ($rows[key($rows)]['done'] === null) {
 		$action = "finished";
 		$btn_value = "完了";
 	} else {
