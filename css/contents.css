@@ -29,26 +29,14 @@ h4 {
 hr {
   margin: 0; }
 
-.plans {
-  font-size: 15px;
-  color: #111180; }
-
-.plan2 {
-  color: #a91111; }
-
-.next-plan {
-  color: rgba(192, 160, 34, 0.3); }
-
-.implemented {
-  color: green;
-  opacity: 0.5; }
-
 /* Font Awesomeの調整 */
 .fa {
   margin-right: 5px; }
 
-.icon_color {
-  color: rgba(0, 0, 230, 0.5); }
+.icon_color_tw {
+  color: skyblue; }
+.icon_color_fb {
+  color: rgba(0, 0, 255, 0.7); }
 
 footer {
   background-color: #aaa; }
