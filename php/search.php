@@ -12,6 +12,8 @@ if (empty($_POST['action'])) {
 	header("location: ".$url, true, 301);
 	exit;
 }
+// (要仕様確認)検索キーワードに何も入力されない場合そのまま再度全件検索ではなくエラー扱いにするか？
+// if (empty($_POST['search_keyword']) {}
 
 $dsn = 'mysql: host=127.0.0.1; dbname=shino; charset=utf8mb4';
 $driver_options = [
@@ -39,7 +41,10 @@ try {
 		}
 	}
 
-	// 全件検索
+	// (予定）ユーザー入力に基づき検索 ※ユーザー入力値なので必ずプリペアドステートメント→バインドすること
+	$search_keyword = $_POST['search_keyword'];
+echo "検索キーワード：".$_POST['search_keyword'];
+
 	$sql = "SELECT todo_item.id AS item_id,
 					todo_item.name AS item_name,
 					todo_user.name AS user_name,
@@ -49,7 +54,6 @@ try {
 			 ON todo_user.id = todo_item.user
 			 ORDER BY expire_date ASC";
 
-	/* (Ver.2改修予定)モードをFETCH_CLASSに変更し、DBレコード&「操作」ボタン群をオブジェクト化 */
 	// ★FETCH_ASSOCとFETCH_UNIQUEを組み合わせることで、連想配列の添字に整数連番でなくidが使える
     $rows = $dbh->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_UNIQUE);
 

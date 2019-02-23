@@ -1,38 +1,42 @@
 <?php
 //各ページからのDBテーブル操作に共通して通るコントローラー
 
-$item_name = $_GET['item_name'];
-$user_name = $_GET['user_name'];
-$date = $_GET['year']."-".$_GET['month']."-".$_GET['day'];
-
-$actions = ['regist', 'search', 'update', 'delete', 'cancel'];
+$actions = ['regist', 'update', 'delete', 'cancel'];
 foreach ($actions as $action) {
-	if (isset($_GET[$action])) break;
+	if (isset($_POST[$action])) break;
 }
 
-echo "action:".$_GET['action']."###<br>";
-
-echo "項目名：".$item_name."<br>";
-echo "担当者：".$user_name."<br>";
-echo "期限：".$date."<br>";
 echo "処理：".$action."<hr>";
 
 if ($action === "regist") {
-	// 新規項目,担当者,期限,(完了はnull)をINSERT
-
-} else if ($action === "search") {
+	// 新規項目名,担当者,期限,(完了は'未'→null,項目IDは自動採番)をINSERT
+	$item_name = $_POST['item_name'];
+	$user_name = $_POST['user_name'];
+	$date = $_POST['year']."-".$_POST['month']."-".$_POST['day'];
+echo "項目名：".$item_name."<br>";
+echo "担当者：".$user_name."<br>";
+echo "期限：".$date."<br>";
 
 } else if ($action === "update") {
+	$item_id = $_POST[('item_id')];
+	$item_name = $_POST['item_name'];
+	$user_name = $_POST['user_name'];
+	$date = $_POST['year']."-".$_POST['month']."-".$_POST['day'];
+	$finished = isset($_POST['finished_chk'])? "finished" : "unfinished";
+echo "項目ID：".$item_id."<br>";
+echo "項目名：".$item_name."<br>";
+echo "担当者：".$user_name."<br>";
+echo "期限：".$date."<br>";
+echo "完了チェック：".$finished."<br>";
 
 } else if ($action === "delete") {
+	$item_id = $_POST[('item_id')];
+echo "項目ID：".$item_id."<br>";
 
 } else if ($action === "cancel") {
 	// キャンセル処理(DBを更新せず全件検索し直し一覧画面に戻る)
-//	header('location: list.php', true, 301);
-//	exit;
+	header('location: list.php', true, 301);
+	exit;
 }
 
-
-//header("location: list.php", true, 301);
-//exit;
 ?>
