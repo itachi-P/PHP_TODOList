@@ -17,14 +17,14 @@ require_once("head_template.php");
 				</ul>
 			<li>作業管理機能</li>
 			<ul>
-				<li style="text-decoration: line-through;">作業一覧の表示・検索</li>
+				<li style="text-decoration: line-through">作業一覧の表示・検索</li>
 				<li>作業の追加</li>
-				<li>作業の完了・未完了の更新</li>
+				<li style="text-decoration: line-through">作業の完了・未完了の更新</li>
 				<li>作業の情報（項目名・担当者など）の更新</li>
 				<li>作業の削除</li>
 				<li>全てのエラー共通画面</li>
 			</ul>
-			<li style="text-decoration: line-through;">
+			<li style="text-decoration: line-through">
 				DB非連動で上記実装の後にデータ取得法をDBに移行</li>
 			<ol>
 				<li style="text-decoration: line-through;">MySQL環境構築</li>

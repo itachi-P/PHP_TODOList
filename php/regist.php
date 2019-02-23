@@ -43,7 +43,7 @@ require_once('head_template.php');
 <body>
 	<h1>作業登録</h1>
 	<div class="container">
-		<form action="db_ctrl.php" method="GET">
+		<form action="db_ctrl.php" method="POST">
 			<div class="inputs-wrapper">
 				<div class="titles">
 					<ul>
@@ -74,7 +74,7 @@ require_once('head_template.php');
 			</div> <!-- inputs-wrapper -->
 
 			<div class="buttons-wrapper">
-<!-- 以下、ボタンごとにformを分けてhiddenにactionを持たせる仕様に要書き換え -->
+<!-- ボタンごとにformを分けhiddenにactionを持たせる仕様に書き換えず、db_ctrl.php側で登録かキャンセル処理かを判別する -->
 				<input class="btn" type="submit" value="登録" name="regist">
 				<input class="btn" type="submit" value="キャンセル" name="cancel">
 			</div> <!-- buttons-wrapper -->

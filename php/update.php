@@ -6,6 +6,8 @@ if (empty($_POST['action']) || empty($_POST['item_id'])) {
 	exit;
 }
 
+$item_id = $_POST['item_id'];
+
 $dsn = 'mysql: host=127.0.0.1; dbname=shino; charset=utf8mb4';
 $driver_options = [
 	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -21,7 +23,7 @@ try {
 					todo_item.expire_date AS term,
 					todo_item.finished_date AS done
 			 FROM todo_user JOIN todo_item ON todo_user.id = todo_item.user
-			 WHERE todo_item.id = ".$_POST['item_id'];
+			 WHERE todo_item.id = ".$item_id;
 	// 結果は1行だけ(・・・の筈)なのでfetch()で可
     $row = $pdo->query($sql)->fetch();
 
@@ -43,7 +45,7 @@ function hsc($str) {
 // 「期限」を年／月／日に分解
 $date = preg_split('/-/', $row['term']);
 // 「完了」済みの作業であればデフォルトでチェックを付ける
-$checked = ($row['done'] === null)?: 'checked="checked"';
+$checked = ($row['done'] !== null)? 'checked="checked"' : "";
 
 $head_title = "更新画面";
 $css_file = "regist.css";
@@ -52,10 +54,10 @@ require_once('head_template.php');
 
 <body>
 	<h1>作業更新</h1>
-<?php echo "作業項目ID:".$_POST['item_id']." done:【".$row['done']."】"; ?>
+<?php echo "作業項目ID:".$item_id."<br> done:【".$row['done']."】"; ?>
 </p>
 	<div class="container">
-		<form action="db_ctrl.php" method="GET">
+		<form action="db_ctrl.php" method="POST">
 			<div class="inputs-wrapper">
 				<div class="titles">
 					<ul>
@@ -91,12 +93,7 @@ require_once('head_template.php');
 			</div> <!-- inputs-wrapper -->
 
 			<div class="buttons-wrapper">		
-
-<?php
-// (予定) この下2つのボタン押下後の処理まだ未実装
-
-
-?>
+				<input type="hidden" name="item_id" value="<?=$item_id?>">
 				<input class="btn" type="submit" value="更新" name="update">
 				<input class="btn" type="submit" value="キャンセル" name="cancel">
 			</div> <!-- buttons-wrapper -->
