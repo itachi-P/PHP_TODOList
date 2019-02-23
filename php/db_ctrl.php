@@ -3,25 +3,36 @@
 
 $item_name = $_GET['item_name'];
 $user_name = $_GET['user_name'];
-$date = $_GET['year'].$_GET['month'].$_GET['day'];
+$date = $_GET['year']."-".$_GET['month']."-".$_GET['day'];
 
-$process = "";
-isset($_GET["update"]);
-isset($_GET["delete"]);
-isset($_GET["cancel"]);	
+$actions = ['regist', 'search', 'update', 'delete', 'cancel'];
+foreach ($actions as $action) {
+	if (isset($_GET[$action])) break;
+}
+
+echo "action:".$_GET['action']."###<br>";
 
 echo "項目名：".$item_name."<br>";
 echo "担当者：".$user_name."<br>";
 echo "期限：".$date."<br>";
-echo "処理：".$process."<hr>";
+echo "処理：".$action."<hr>";
 
-if ($process == "登録") {
-	echo "登録処理(MySQLに新規項目を担当者・期限と紐づけしINSERT)";
-} else if ($process == "キャンセル") {
-	echo "キャンセル処理(DBを更新せずに全件検索し直し一覧画面に戻る)";
+if ($action === "regist") {
+	// 新規項目,担当者,期限,(完了はnull)をINSERT
+
+} else if ($action === "search") {
+
+} else if ($action === "update") {
+
+} else if ($action === "delete") {
+
+} else if ($action === "cancel") {
+	// キャンセル処理(DBを更新せず全件検索し直し一覧画面に戻る)
+//	header('location: list.php', true, 301);
+//	exit;
 }
 
 
 //header("location: list.php", true, 301);
-exit;
+//exit;
 ?>

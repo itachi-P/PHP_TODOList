@@ -1,19 +1,66 @@
 <?php
 //一覧画面と同じ構成で検索結果一覧と、「戻る」ボタンをリスト左側上端と下端に配置する
+require_once("make_buttons.php");
+
 session_start();
+// ログインユーザーの名前
+$guestname = $_SESSION['customer']['name'];
 
-//完了ボタンが押されたら「完了」欄を「未」から現在日付に書き換え、かつ「未完了」ボタンに変える
-//※「未完了」ボタンが押された時は上記の逆の操作を行う。
-if (isset($_POST['finished'])) {
-	$sql = "UPDATE TODO_ITEM SET FINISHED_DATE = DATE_FORMAT(now(), '%Y/%m/%d') WHERE ID = :id";
-
-} else if (isset($_POST['unfinished'])) {
-	// 該当するレコードのidを条件に「完了」項目の削除（nullに上書き→'未'）を実行する
-	$sql = "UPDATE TODO_ITEM SET FINISHED_DATE = null WHERE ID = :id";
-
-} else if (isset($_POST['back'])) {	// 「戻る」ボタンが押されたらlist.phpに遷移
-	header("location: list.php", true, 301);
+// この画面が直接表示された場合エラー画面に飛ばす
+if (empty($_POST['action'])) {
+	$url = "error.php?err=unauthorized_access";
+	header("location: ".$url, true, 301);
 	exit;
+}
+
+$dsn = 'mysql: host=127.0.0.1; dbname=shino; charset=utf8mb4';
+$driver_options = [
+	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+	PDO::ATTR_EMULATE_PREPARES => false,
+	];
+
+try {
+	// DBH:データベースハンドラ ($pdoと書かれることが多い)
+    $dbh = new PDO($dsn,'user1','pass1', $driver_options);
+
+	//「完了」「未完了」ボタン押下時の処理分け
+	if (isset($_POST['action']) && isset($_POST['item_id'])) {
+		if ($_POST['action'] === 'finished') {
+			// 完了ボタンが押されたら「完了」欄を「未」から現在日付に書き換え、かつ「未完了」ボタンに変える
+			$sql = "UPDATE TODO_ITEM SET FINISHED_DATE = DATE_FORMAT(now(), '%Y/%m/%d')
+					WHERE ID = ".$_POST['item_id'];
+			$dbh->exec($sql);
+
+		} else if ($_POST['action'] === 'unfinished') {
+			// 該当するレコードのitem_idをキーに「完了」カラムの日付データ削除（nullに上書き→'未'）
+			$sql = "UPDATE TODO_ITEM SET FINISHED_DATE = null
+					WHERE ID = ".$_POST['item_id'];
+			$dbh->exec($sql);
+		}
+	}
+
+	// 全件検索
+	$sql = "SELECT todo_item.id AS item_id,
+					todo_item.name AS item_name,
+					todo_user.name AS user_name,
+					todo_item.expire_date AS term,
+					todo_item.finished_date AS done
+			 FROM todo_user JOIN todo_item
+			 ON todo_user.id = todo_item.user
+			 ORDER BY expire_date ASC";
+
+	/* (Ver.2改修予定)モードをFETCH_CLASSに変更し、DBレコード&「操作」ボタン群をオブジェクト化 */
+	// ★FETCH_ASSOCとFETCH_UNIQUEを組み合わせることで、連想配列の添字に整数連番でなくidが使える
+    $rows = $dbh->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_UNIQUE);
+
+} catch (PDOException $e) {
+	// エラー発生時に壊れたHTML画面ではなくプレーンテキストでエラーメッセージのみ表示
+    header('Content-Type: text/plain; charset=UTF-8mb4', true, 500);
+    exit($e->getMessage());
+}
+
+function hsc($str) {
+    return htmlspecialchars($str, ENT_QUOTES, 'UTF-8'); //※mb4指定はエラー
 }
 
 $head_title = "検索結果画面";
@@ -22,45 +69,42 @@ require_once("head_template.php");
 ?>
 
 <body>
-<h2>検索結果</h2>
-<form action="search.php" method="POST">
+<h1>検索結果</h1>
 	<div class="middle-wrapper">
-		<input name="back" class="btn" type="submit" value="戻る">
+		<form action="list.php" method="POST">
+			<input class="btn" type="submit" value="戻る">
+		</form>
 	</div>
+	<table class="list-wrapper">
+	<thead>
+		<tr>
+			<td>項目名</td><td>担当者</td><td>期限</td><td>完了</td><td colspan="3">操作</td>
+		</tr>
+	</thead>
+	<tbody>
 
-	<div class="list-wrapper">
-		<div class="list-header">
-			<p>項目名</p>
-			<p>担当者</p>
-			<p>期限</p>
-			<p>完了状態</p>
-			<p>操作</p>
-		</div>
-
-		<div class="list-main">
+<?php foreach($rows as $row):
+	// 対象行の担当者がログインユーザーの場合、背景をピンクに(下の完了済み→グレーが優先)※要確認
+	$bgc = ($row['user_name'] === $guestname)? "pink" : "#fff";
+		// 「完了」がnullの場合'未'と表示、日付データがあれば背景をグレーに
+	($row['done'] === null)? $row['done'] = '未' : $bgc = "gray"; ?>
+		<tr style="background-color: <?=$bgc?>">
+	<?php foreach ($row as $column): ?>
+    		<td><?= hsc($column) ?></td>
+	<?php endforeach ?>
+	<!-- ここで「操作」欄のボタン群を形成 -->
+			<?php hsc(makeBtns($rows)); ?>
+		
+	</tr>
 <?php
+	// 現在行のID取得用関数key($rows)がフェッチに合わせて自動で進まないので手動で進める
+	next($rows);
+	endforeach ?>
 
-// 検索結果データの読み込み
-
-foreach ($stmt as $row) {
-
-    if ($staff == $_SESSION['customer']['id']) {
-    	echo "<div class=\"my-task\">";
-    } else {
-    	echo "<div class=\"others-task\">";
-    }
-    echo "<p>".$staff."</p>";
-    echo "</div>";
-}
-
-?>
-		</div> <!-- list-main-->
-	</div>	<!-- list-wrapper -->
-
-	<div class="bottom-wrapper">
-		<input name="back" class="btn" type="submit" value="戻る">
-	</div>
-</form>
-
+	</tbody>
+	</table>
+	<form action="list.php" method="POST">
+		<input class="btn" type="submit" value="戻る">
+	</form>
 </body>
 </html>

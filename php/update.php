@@ -1,8 +1,8 @@
 <?php
 // この画面が直接表示された場合エラー画面に飛ばす
-if (empty($_POST['action']) && empty($_POST['item_id'])) {
+if (empty($_POST['action']) || empty($_POST['item_id'])) {
 	$url = "error.php?err=unauthorized_access";
-	eader("location: ".$url, true, 301);
+	header("location: ".$url, true, 301);
 	exit;
 }
 
@@ -91,6 +91,12 @@ require_once('head_template.php');
 			</div> <!-- inputs-wrapper -->
 
 			<div class="buttons-wrapper">		
+
+<?php
+// (予定) この下2つのボタン押下後の処理まだ未実装
+
+
+?>
 				<input class="btn" type="submit" value="更新" name="update">
 				<input class="btn" type="submit" value="キャンセル" name="cancel">
 			</div> <!-- buttons-wrapper -->

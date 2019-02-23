@@ -28,8 +28,6 @@ a:hover {
   color: lightblue; }
 
 img {
-  transition: 1s; }
+  transition: 1.0s; }
   img:hover {
     opacity: 0.3; }
-
-/*# sourceMappingURL=home.css.map */

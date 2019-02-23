@@ -1,0 +1,68 @@
+h1 {
+  margin: 0px auto 10px;
+  width: 95%;
+  font-size: 28px;
+  border-bottom: 2px solid #555;
+}
+.guestname {
+  width: 95%;
+  text-align: right;
+  font-weight: bold;
+}
+.middle-left {
+  float: left;
+  height: 50px;
+  width: 20%;
+  text-align: center;
+  margin: 10px;
+}
+.middle-right {
+  float: right;
+  padding: 0 15px;
+  margin: 15px;
+  background-color: #aaa;
+}
+.middle-right p {
+    float: left;
+    padding: 5px;
+    margin: 5px;
+    font-weight: bold;
+}
+.tbox {
+  width: 250px;
+  padding: 5px;
+  margin: 5px;
+}
+.btn {
+  background-color: #ccc;
+  color: white;
+  width: 100px;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 6px;
+}
+.btn-s {
+  background-color: #ace;
+  color: black;
+  width: 60px;
+  padding: 1px;
+  margin: 2px;
+  border-radius: 6px;
+}
+.list-wrapper {
+  margin: 0 auto;
+  width: 90%; }
+  .list-wrapper th, td {
+    width: 20%;
+    height: 40px;
+    padding: 5px;
+    margin: 0px;
+    border: solid 1px #eee;
+    box-sizing: border-box;
+    font-weight: bold;
+    text-align: center; }
+.done_btns {
+  width: 6%;
+}
+
+/*# sourceMappingURL=list.css.map */

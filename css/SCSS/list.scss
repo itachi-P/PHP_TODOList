@@ -1,0 +1,98 @@
+/* 画面表示の全体的なシンプル化により不使用、一応残す
+@mixin absPosition($t :auto, $r :auto, $b :auto, $l :auto) {
+	position: absolute;
+	top: $t;
+	right: $r;
+	bottom: $b;
+	left: $l;
+}
+h1 {
+	@include absPosition(0, 0, 0, 0);
+	width: 500px;
+	height: 85px;
+	margin: auto;
+	color: #ccc;
+	font-size: 4.3rem;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+*/
+
+h1 {
+  margin: 0px auto 10px;
+  width: 95%;
+  font-size: 28px;
+  border-bottom: 2px solid #555;
+}
+
+.guestname {
+  width: 95%;
+  text-align: right;
+  font-weight: bold;
+}
+
+.middle-left {
+	float: left;
+	height: 50px;
+	width: 20%;
+	text-align: center;
+	margin: 10px;
+}
+
+.middle-right {
+	float: right;
+	padding: 0 15px;
+	margin: 15px;
+	background-color: #aaa;
+	p {
+		float: left;
+		padding: 5px;
+		margin: 5px; 
+		font-weight: bold;
+	}
+}
+
+.tbox {
+	width: 250px;
+	padding: 5px;
+	margin: 5px;
+}
+
+.btn {
+	background-color: #ccc;
+	color: white;
+	width: 100px;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 6px;
+}
+
+.btn-s {
+	background-color: #ace;
+	color: black;
+	width: 60px;
+	padding: 1px;
+	margin: 2px;
+	border-radius: 6px;
+}
+
+.list-wrapper {
+	margin: 0 auto;
+	width: 90%;
+}
+
+th, td {
+	width: 20%;
+	height: 40px;
+	padding: 5px;
+	margin: 0px;
+	border: solid 1px #eee;
+	box-sizing: border-box;
+	font-weight: bold;
+	text-align: center;
+}
+
+.done_btns {
+  width: 6%;
+}
