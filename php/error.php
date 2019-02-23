@@ -12,7 +12,6 @@ if ($err === "login_failed") {
 	$msg = "不正なアクセスです";
 }
 
-
 ?>
 
 <body>
@@ -28,6 +27,5 @@ if ($err === "login_failed") {
 			</div>
 		</form>
 	</div> <!-- container -->
-
 </body>
 </html>
