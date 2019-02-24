@@ -22,7 +22,7 @@ try {
     $pdo = new PDO($dsn,'user1','pass1', $driver_options);
 
     // プルダウンリスト用に担当者一覧を取得
-    $sql = "SELECT name FROM todo_user";
+    $sql = "SELECT NAME FROM TODO_USER";
     $staffs = $pdo->query($sql)->fetchAll();
     //print_r($staffs);
 
@@ -56,9 +56,9 @@ require_once('head_template.php');
 					<input class="tbox" type="text" name="item_name">
 
 					<select class="pulldown" name="user_name">
-<?php foreach ($staffs as $staff):$selected = ($staff['name'] === $guestname)? 'selected="selected"' : ''; ?>
-						<option value="<?=$staff['name'].'" '.$selected?>">
-							<?=hsc($staff['name'])?>
+<?php foreach ($staffs as $staff):$selected = ($staff['NAME'] === $guestname)? 'selected="selected"' : ''; ?>
+						<option value="<?=$staff['NAME'].'" '.$selected?>">
+							<?=hsc($staff['NAME'])?>
 						</option>
 <?php endforeach ?>
 					</select>
