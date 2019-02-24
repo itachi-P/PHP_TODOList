@@ -17,7 +17,7 @@
       <h1>paiza掲示板</h1>
 
       <h2>投稿フォーム</h2>
-      <form action="bbs.php" method="post" role="form">
+      <form action="#" method="post" role="form">
         <div class="form-group">
           <label class="control-label">名前</label>
           <input type="text" name="user_name" class="form-control" placeholder="名前"/>
