@@ -42,17 +42,19 @@ try {
 	}
 
 	// (予定）ユーザー入力に基づき検索 ※ユーザー入力値なので必ずプリペアドステートメント→バインドすること
-	$search_keyword = $_POST['search_keyword'];
+	if (isset($_POST['search_keyword'])) {
+		$search_keyword = $_POST['search_keyword'];
 echo "検索キーワード：".$_POST['search_keyword'];
+	}
 
-	$sql = "SELECT todo_item.id AS item_id,
-					todo_item.name AS item_name,
-					todo_user.name AS user_name,
-					todo_item.expire_date AS term,
-					todo_item.finished_date AS done
-			 FROM todo_user JOIN todo_item
-			 ON todo_user.id = todo_item.user
-			 ORDER BY expire_date ASC";
+	$sql = "SELECT TODO_ITEM.ID AS item_id,
+					TODO_ITEM.NAME AS item_name,
+					TODO_USER.NAME AS user_name,
+					TODO_ITEM.EXPIRE_DATE AS term,
+					TODO_ITEM.FINISHED_DATE AS done
+			 FROM TODO_USER JOIN TODO_ITEM
+			 ON TODO_USER.ID = TODO_ITEM.user
+			 ORDER BY EXPIRE_DATE ASC";
 
 	// ★FETCH_ASSOCとFETCH_UNIQUEを組み合わせることで、連想配列の添字に整数連番でなくidが使える
     $rows = $dbh->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_UNIQUE);

@@ -21,7 +21,7 @@ require_once("head_template.php");
 	<hr>
 	<h1 id="title">ログイン画面</h1>
 	<div class="login-form">
-		<form method="post" action="login_check.php">
+		<form method="post" action="./login_check.php">
 			<h2>ログイン</h2>
 			<hr>
 			<div class="inputs">

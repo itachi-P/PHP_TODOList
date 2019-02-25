@@ -18,17 +18,17 @@ $driver_options = [
 try {
     $pdo = new PDO($dsn,'user1','pass1', $driver_options);
 
-	$sql = "SELECT todo_item.name AS item_name,
-					todo_user.name AS user_name,
-					todo_item.expire_date AS term,
-					todo_item.finished_date AS done
-			 FROM todo_user JOIN todo_item ON todo_user.id = todo_item.user
-			 WHERE todo_item.id = ".$item_id;
+	$sql = "SELECT TODO_ITEM.NAME AS item_name,
+					TODO_USER.NAME AS user_name,
+					TODO_ITEM.EXPIRE_DATE AS term,
+					TODO_ITEM.FINISHED_DATE AS done
+			 FROM TODO_USER JOIN TODO_ITEM ON TODO_USER.ID = TODO_ITEM.USER
+			 WHERE TODO_ITEM.ID = ".$item_id;
 	// 結果は1行だけ(・・・の筈)なのでfetch()で可
     $row = $pdo->query($sql)->fetch();
 
     // プルダウンリスト用に担当者一覧を別に取得
-    $sql = "SELECT name FROM todo_user";
+    $sql = "SELECT NAME FROM TODO_USER";
     $staffs = $pdo->query($sql)->fetchAll();
     //print_r($staffs);
 
@@ -72,9 +72,9 @@ require_once('head_template.php');
 
 					<select class="pulldown" name="user_name">
 <?php foreach ($staffs as $staff):
-	$selected = ($staff['name'] === $row['user_name'])? 'selected="selected"' : ''; ?> 
-						<option value="<?=$staff['name'].'" '.$selected?>">
-							<?=$staff['name']?>
+	$selected = ($staff['NAME'] === $row['user_name'])? 'selected="selected"' : ''; ?> 
+						<option value="<?=$staff['NAME'].'" '.$selected?>">
+							<?=$staff['NAME']?>
 						</option>
 <?php endforeach ?>
 					</select>
