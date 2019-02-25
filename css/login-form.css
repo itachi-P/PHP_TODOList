@@ -15,6 +15,9 @@ span {
 	color: #7b5;
 	background-color: rgba(200, 120, 120, 0.2);
 }
+p {
+	margin: 0;
+}
 
 hr {
 	margin: 0px;
@@ -22,7 +25,7 @@ hr {
 
 .login-form {
 	background-color: #ccc;
-	width: 40%;
+	width: 43%;
 	margin: 0 auto;
 }
 
