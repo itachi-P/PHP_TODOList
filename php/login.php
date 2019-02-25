@@ -25,14 +25,18 @@ require_once("head_template.php");
 			<h2>ログイン</h2>
 			<hr>
 			<div class="inputs">
-				<div class="userID">
+				<p>
 					ユーザーID
-					<input type="text" name="userID">
-				</div>
-				<div class="password">
+					<input type="text" name="userID" size="15" maxlength="15">
+				</p>
+				<p>
 					パスワード
-					<input type="password" name="password">
-				</div>
+					<input type="password" name="password" size="15" maxlength="15">
+				</p>
+				<p>※テスト用ユーザー※</p>
+				<p>ユーザーID:user01</p>
+				<p>パスワード:pass01
+				</p>
 			</div>
 			<p class="btn-wrapper">
 				<input class="btn" type="submit" value="ログイン">
