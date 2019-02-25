@@ -2,8 +2,8 @@
 /* このページを介さずにlogin.phpで直接DB照合→セッション開始→一覧画面へ遷移、に修正予定 */
 
 // まず先に存在する(ブラウザを閉じても前回から残っている)セッションを解放
-$_SESSION = array();
-session_destroy();
+//$_SESSION = array();
+//session_destroy();
 // リクエストから得たスーパーグローバル変数のチェック処理
 $userID = $_POST['userID'];
 $pass = $_POST['password'];
@@ -22,7 +22,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
     // 疑問符プレースホルダ使用パターン ※名前付きプレースホルダ(:id, :password)との混在はエラー
     $sql = "SELECT ID, NAME, PASSWORD
-	    	FROM todo_user
+	    	FROM TODO_USER
 	    	WHERE ID = ? AND PASSWORD = ?";
 	$stmt = $pdo -> prepare($sql);
 	$stmt->bindValue(1, $userID, PDO::PARAM_STR); 

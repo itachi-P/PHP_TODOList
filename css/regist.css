@@ -72,14 +72,15 @@ li {
 }
 
 .chkbox-wrapper {
+	display: block;
 	background-color: #7ca;
 	padding: 3px;
 	margin-top: 18px;
 	margin-left: 10px;
-	width: 200px;
-	float: left;
+	width: 300px;
 	font-size: 1.3rem;
-	font-weight: bold;	
+	font-weight: bold;
+	float: left;
 }
 
 input[type=checkbox] {

@@ -27,10 +27,10 @@ array( 	// array関数を使わず [ 属性名1 => 属性値1, ... ]と書いて
 	PDO::ATTR_EMULATE_PREPARES => false
 );
 
-$sql = "SELECT todo_item.name AS subject, todo_user.id AS userID, todo_item.EXPIRE_DATE AS term
-		 FROM todo_user JOIN todo_item ON todo_user.id = todo_item.user
-		 WHERE todo_user.name = :username
-		 ORDER BY expire_date ASC";
+$sql = "SELECT TODO_ITEM.NAME AS subject, TODO_USER.ID AS userID, TODO_ITEM.EXPIRE_DATE AS term
+		 FROM TODO_USER JOIN TODO_ITEM ON TODO_USER.ID = TODO_ITEM.USER
+		 WHERE TODO_USER.NAME = :username
+		 ORDER BY EXPIRE_DATE ASC";
 
 try {
 	// DBH:データベースハンドラ ($pdoと書かれることが多い)

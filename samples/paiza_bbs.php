@@ -11,31 +11,31 @@
 </head>
 
 <body>
-<div class="container">
-<div id="header">
+  <div class="container">
+    <div id="header">
 
-<h1>paiza掲示板</h1>
+      <h1>paiza掲示板</h1>
 
-<h2>投稿フォーム</h2>
-<form action="bbs.php" method="post" role="form">
-  <div class="form-group">
-    <label class="control-label">名前</label>
-    <input type="text" name="user_name" class="form-control" placeholder="名前"/>
-  </div>
-  <div class="form-group">
-    <label class="control-label">投稿内容</label>
-    <input type="text" name="content" class="form-control" placeholder="投稿内容"/>
-  </div>
-  <button type="submit" class="btn btn-primary">送信</button>
-</form>
+      <h2>投稿フォーム</h2>
+      <form action="#" method="post" role="form">
+        <div class="form-group">
+          <label class="control-label">名前</label>
+          <input type="text" name="user_name" class="form-control" placeholder="名前"/>
+        </div>
+        <div class="form-group">
+          <label class="control-label">投稿内容</label>
+          <input type="text" name="content" class="form-control" placeholder="投稿内容"/>
+        </div>
+        <button type="submit" class="btn btn-primary">送信</button>
+      </form>
 
-<h2>発言リスト</h2>
+      <h2>発言リスト</h2>
 
 <?php
 // データベースへ接続
-$dbs = "mysql:host=127.0.0.1;dbname=lesson;charset=utf8";
-$db_user = "root";
-$db_pass = "ruuton16";
+$dbs = "mysql:host=127.0.0.1;dbname=shino;charset=utf8";
+$db_user = "user1";
+$db_pass = "pass1";
 $pdo = new PDO($dbs, $db_user, $db_pass);
 
 // 変数の設定
@@ -64,47 +64,47 @@ $stmt -> execute();
 // 取得したデータをテーブルで表示
 // echo "del_id:".$delete_id;
 ?>
-<table class="table">
-	<tr>
-		<th>No.</th>
-		<!-- <th>id</th> -->
-		<th>名前</th>
-		<th>日時</th>
-		<th>投稿内容</th>
-		<th></th>
-	</tr>
+      <table class="table">
+      	<tr>
+      		<th>No.</th>
+      		<!-- <th>id</th> -->
+      		<th>名前</th>
+      		<th>日時</th>
+      		<th>投稿内容</th>
+      		<th></th>
+      	</tr>
 <?php
 while ($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
 	$i++;
 	if ($i % 2 == 1) {
 ?>
-		<tr bgcolor="#cccccc">
+		    <tr bgcolor="#cccccc">
 <?php
 	} else {
 ?>
-    <tr>
+        <tr>
 <?php
 	}
 ?>
-    <td><?php echo "$i"; ?></td>
-    <!-- <td><?php echo "$row[id]"; ?></td> -->
-    <td><?php echo "$row[user_name]"; ?></td>
-    <td><?php echo "$row[updated_at]"; ?></td>
-    <td><?php echo "$row[content]"; ?></td>
-    <td>
-    	<form action="#" method="post" role="form">
-			<button type="submit" class="btn btn-danger">削除</button>
-			<div class="form-group">
-				<input type="hidden" name="delete_id" value="<?php echo $row[id]; ?>" class="form-control">
-			</div>
-    	</form>
-    </td>
-    </tr>
+          <td><?php echo "$i"; ?></td>
+          <!-- <td><?php echo "$row[id]"; ?></td> -->
+          <td><?php echo "$row[user_name]"; ?></td>
+          <td><?php echo "$row[updated_at]"; ?></td>
+          <td><?php echo "$row[content]"; ?></td>
+          <td>
+          	<form action="#" method="post" role="form">
+        			<button type="submit" class="btn btn-danger">削除</button>
+        			<div class="form-group">
+      				  <input type="hidden" name="delete_id" value="<?php echo $row[id]; ?>" class="form-control">
+              </div>
+          	</form>
+          </td>
+        </tr>
 <?php
 }
 ?>
-</table>
-</div>
-</div>
+      </table>
+    </div>
+  </div>
 </body>
 </html>

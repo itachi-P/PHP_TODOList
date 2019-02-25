@@ -35,6 +35,6 @@ require_once("head_template.php");
 		</ul>
 	</div>
 	<hr>
-	<a href="login.php">ログイン画面へ</a>
+	<a href="./login.php">ログイン画面へ</a>
 </body>
 </html>
