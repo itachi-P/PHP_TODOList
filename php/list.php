@@ -20,7 +20,6 @@ $driver_options = [
 	];
 
 try {
-	// DBH:データベースハンドラ ($pdoと書かれることが多い)
     $dbh = new PDO($dsn,'user1','pass1', $driver_options);
 
 	//「完了」「未完了」ボタン押下時の処理分け
@@ -49,8 +48,7 @@ try {
 			 ON TODO_USER.ID = TODO_ITEM.USER
 			 ORDER BY EXPIRE_DATE ASC";
 
-	/* (Ver.2改修予定)モードをFETCH_CLASSに変更し、DBレコード&「操作」ボタン群をオブジェクト化 */
-	// ★FETCH_ASSOCとFETCH_UNIQUEを組み合わせることで、連想配列の添字に整数連番でなくidが使える
+	// FETCH_ASSOCとFETCH_UNIQUEを組み合わせることで、連想配列の添字に整数連番でなくidが使える
     $rows = $dbh->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_UNIQUE);
 
 } catch (PDOException $e) {

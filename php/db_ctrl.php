@@ -5,18 +5,19 @@ $actions = ['regist', 'update', 'delete', 'cancel'];
 foreach ($actions as $action) {
 	if (isset($_POST[$action])) break;
 }
-
 //echo "処理：".$action."<hr>";
 
 if ($action === "regist") {
 	// 新規項目名,担当者,期限,(完了は'未'→null,項目IDは自動採番)をINSERT
 	$item_name = $_POST['item_name'];
 	$user_id = $_POST['user_id'];
-	if (strlen($_POST['month']) === 1) {
-		$month = "0".$_POST['month'];
+	$month = $_POST['month'];
+	$day = $_POST['day'];
+	if (strlen($month) === 1) {
+		$month = "0".$month;
 	}
-	if (strlen($_POST['day']) === 1) {
-		$day = "0".$_POST['day'];
+	if (strlen($day) === 1) {
+		$day = "0".$day;
 	}
 	$term = $_POST['year']."-".$month."-".$day;
 //echo "項目名：".$item_name."<br>";
