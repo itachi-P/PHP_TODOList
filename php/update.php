@@ -28,7 +28,7 @@ try {
     $row = $pdo->query($sql)->fetch();
 
     // プルダウンリスト用に担当者一覧を別に取得
-    $sql = "SELECT NAME FROM TODO_USER";
+    $sql = "SELECT ID, NAME FROM TODO_USER";
     $staffs = $pdo->query($sql)->fetchAll();
     //print_r($staffs);
 
@@ -70,10 +70,10 @@ require_once('header.tmp.php');
 				<div class="inputs">
 					<input class="tbox" type="text" name="item_name" value="<?=$row['item_name']?>">
 
-					<select class="pulldown" name="user_name">
+					<select class="pulldown" name="user_id">
 <?php foreach ($staffs as $staff):
 	$selected = ($staff['NAME'] === $row['user_name'])? 'selected="selected"' : ''; ?> 
-						<option value="<?=$staff['NAME'].'" '.$selected?>">
+						<option value="<?=$staff['ID'].'" '.$selected?>">
 							<?=$staff['NAME']?>
 						</option>
 <?php endforeach ?>
