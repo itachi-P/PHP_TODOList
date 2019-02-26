@@ -38,7 +38,7 @@ function hsc($str) {
 
 $head_title = "作業登録画面";
 $css_file = "regist.css";
-require_once('head_template.php');
+require_once('header.tmp.php');
 ?>
 <body>
 	<h1>作業登録</h1>
@@ -65,9 +65,9 @@ require_once('head_template.php');
 
 					<div class="terms-wrapper">
 						<input class="term" type="text" name="year">
-						<p>／</p>
+						／
 						<input class="term" type="text" name="month">
-						<p>／</p>
+						／
 						<input class="term" type="text" name="day">
 					</div>
 				</div>	<!-- inputs(right-block) end -->

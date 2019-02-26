@@ -1,27 +1,28 @@
 @charset "UTF-8";
-div, span, h1, h2, h3, h4, p, img, header, footer {
-  margin: 0;
-  padding: 0;
+div, span, h1, h2, h3, h4, li, p, img, header, footer {
+  margin: 2px;
+  padding: 2px;
   border: 0;
   font-weight: normal;
   list-style: none;
   text-decoration: none; }
 
 h1 {
+  font-size: 3.0rem;
   color: #ccc;
-  font-size: 2.5rem; }
+  font-weight: bold; }
 
 h2 {
   color: #6be;
-  font-size: 2rem; }
+  font-size: 2.5rem; }
 
 h3 {
   color: #6be;
-  font-size: 1.5rem; }
+  font-size: 2.0rem; }
 
 h4 {
   color: #6750fc;
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-align: center;
   display: table-cell;
   margin-bottom: 0; }
@@ -29,6 +30,10 @@ h4 {
 hr {
   margin: 0; }
 
+img {
+  padding: 10px;
+  margin: 10px;
+}
 .pict400 {
   width: 400px;
 }
@@ -40,12 +45,8 @@ hr {
 .icon_color_tw {
   color: #0cf; }
 .icon_color_fb {
-  color: rgba(0, 0, 50, 0.6); }
-
-footer {
-  background-color: #aaa; }
-  footer p {
-    font-size: 0.75rem;
-    line-height: 60px; }
+  color: rgba(0, 0, 120, 1); }
+.icon_color_aws {
+  color: white; }
 
 /*# sourceMappingURL=contents.css.map */

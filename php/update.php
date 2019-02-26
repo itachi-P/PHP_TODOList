@@ -49,12 +49,12 @@ $checked = ($row['done'] !== null)? 'checked="checked"' : "";
 
 $head_title = "更新画面";
 $css_file = "regist.css";
-require_once('head_template.php');
+require_once('header.tmp.php');
 ?>
 
 <body>
 	<h1>作業更新</h1>
-<?php echo "作業項目ID:".$item_id."<br> done:【".$row['done']."】"; ?>
+<?php // echo "作業項目ID:".$item_id."<br> done:【".$row['done']."】"; ?>
 </p>
 	<div class="container">
 		<form action="db_ctrl.php" method="POST">
@@ -81,9 +81,9 @@ require_once('head_template.php');
 
 					<div class="terms-wrapper">
 						<input class="term" type="text" name="year" value="<?=$date[0]?>">
-						<p>／</p>
+						／
 						<input class="term" type="text" name="month" value="<?=$date[1]?>">
-						<p>／</p>
+						／
 						<input class="term" type="text" name="day" value="<?=$date[2]?>">
 					</div>
 					<div class="chkbox-wrapper">

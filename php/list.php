@@ -65,7 +65,7 @@ function hsc($str) {
 
 $head_title = "TODO一覧";
 $css_file = "list.css";
-require_once("head_template.php");
+require_once("header.tmp.php");
 ?>
 
 <body>
@@ -79,7 +79,7 @@ require_once("head_template.php");
 	</div>
 	<div class="middle-right">
 		<form action="search.php" method="POST">
-			<p>検索キーワード</p>
+			<p>項目名検索</p>
 			<input type="hidden" name="action" value="search">			
 			<!-- (Ver.2改修予定) 後にtype="submit"を"button"に変更しJavaScriptを組み込む -->
 			<input class="tbox" type="text" name="search_keyword">
@@ -88,7 +88,7 @@ require_once("head_template.php");
 	</div>
 	<table class="list-wrapper">
 	<thead>
-		<tr>
+		<tr style="background-color: #ccf">
 			<td>項目名</td><td>担当者</td><td>期限</td><td>完了</td><td colspan="3">操作</td>
 		</tr>
 	</thead>
@@ -97,9 +97,15 @@ require_once("head_template.php");
 <?php foreach($rows as $row):
 	// 対象行の担当者がログインユーザーの場合、背景をピンクに(下の完了済み→グレーが優先)※要確認
 	$bgc = ($row['user_name'] === $guestname)? "pink" : "#fff";
-		// 「完了」がnullの場合'未'と表示、日付データがあれば背景をグレーに
+	// 「期限」が現在日付よりも前で且つ「完了」が'未'の場合、文字を赤に
+	$color = "#000";
+	$today = date('Y-m-d');
+	if ($row['done'] === null && $row['term'] < $today) {
+		$color = "#f00";	
+	}
+	// 「完了」がnullの場合'未'と表示、日付データがあれば背景をグレーに
 	($row['done'] === null)? $row['done'] = '未' : $bgc = "gray"; ?>
-		<tr style="background-color: <?=$bgc?>">
+		<tr style="background-color: <?=$bgc?>; color: <?=$color?>">
 	<?php foreach ($row as $column): ?>
     		<td><?= hsc($column) ?></td>
 	<?php endforeach ?>
