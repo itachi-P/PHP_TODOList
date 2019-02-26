@@ -1,4 +1,17 @@
 <?php
+session_start();
+// セッションを全て破棄
+$_SESSION = array();
+if  (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+// 最終的にセッションを破壊する
+session_destroy();
+
 $head_title = "ログイン画面";
 $css_file = "login-form.css";
 require_once("header.tmp.php");
