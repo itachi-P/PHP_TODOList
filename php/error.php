@@ -1,7 +1,7 @@
 <?php
 $head_title = "エラー処理共通画面";
 $css_file = "regist.css";
-require_once("head_template.php");
+require_once("header.tmp.php");
 
 $err = $_GET["err"];
 if ($err === "login_failed") {
@@ -11,18 +11,18 @@ if ($err === "login_failed") {
 } else if ($err === "unauthorized_access") {
 	$msg = "不正なアクセスです";
 }
-
 ?>
 
 <body>
 	<h1>エラー</h1>
 	<div class="container">
 		<form action="login.php">
-			<div class="titles" style="width: 100%">
+			<div style="width: 100%">
 				<h2>エラーが発生しました。</h2>
+				<hr>
 				<h2>内容：<?= $msg ?></h2>
 			</div>
-			<div style="text-align: center; background-color: #999">
+			<div style="text-align: center">
 			<input class="btn" type="submit" value="戻る">
 			</div>
 		</form>
