@@ -1,11 +1,12 @@
 <?php
-session_start();
+//session_start();
 /* PDOでMySQLに接続する場合の標準的なサンプルとして実際に動くコードの形で備忘録的に記述
 	本番環境として提出するコードにここまでコメントは書かない
 	※前提として「TODOリスト」ログイン状態で動作 */
 
 // SQL文の条件として使用されるユーザー入力（この場合ログイン情報）を取得
-$userdata = $_SESSION['username'];
+$userdata = "Siddhattha";
+// $userdata = $_SESSION['username'];
 
 // DSN:Data Source Name。hostはWindows環境では'localhost'よりIPの方が処理が速い？
 // 文字セットはutf-8(utf8と記述)よりも、4バイトの絵文字も扱えるmb4が望ましい(但しmb4設定は一部非対応)
@@ -27,7 +28,9 @@ array( 	// array関数を使わず [ 属性名1 => 属性値1, ... ]と書いて
 	PDO::ATTR_EMULATE_PREPARES => false
 );
 
-$sql = "SELECT TODO_ITEM.NAME AS subject, TODO_USER.ID AS userID, TODO_ITEM.EXPIRE_DATE AS term
+$sql = "SELECT TODO_ITEM.ID AS subjectID, TODO_ITEM.NAME AS subject,
+				TODO_USER.ID AS userID, TODO_USER.NAME AS username,
+				TODO_ITEM.EXPIRE_DATE AS term
 		 FROM TODO_USER JOIN TODO_ITEM ON TODO_USER.ID = TODO_ITEM.USER
 		 WHERE TODO_USER.NAME = :username
 		 ORDER BY EXPIRE_DATE ASC";
@@ -62,19 +65,19 @@ function hsc($str) {
 
 $head_title = "PDO利用サンプル";
 $css_file = "defaultCSS.css";
-require_once("../php/head_template.php");
+require_once("../php/header.tmp.php");
 ?>
 
 <body>
-	<p><?= $userdata ?>さんの担当タスク一覧</p>
-	<table style="border: inset 2px #cec">
-		<tr style="border: solid">
-			<th>項目名</th><th>ユーザーID</th><th>期限</th>
+	<p><b><?= $userdata ?></b>さんの担当タスク一覧</p>
+	<table style="border: inset 3px #cff">
+		<tr>
+			<th>項目ID</th><th>項目名</th><th>ユーザーID</th><th>ユーザー名</th><th>期限</th>
 		</tr>
 		<?php foreach($rows as $row): ?>
-		<tr style="border: solid">
+		<tr>
 			<?php foreach ($row as $column): ?>
-    		<td style="border: solid"><?= $column ?></td>
+    		<td><?= $column ?></td>
     		<?php endforeach ?>
 		</tr>
 		<?php endforeach ?>
