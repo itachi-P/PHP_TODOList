@@ -22,9 +22,9 @@ try {
     $pdo = new PDO($dsn,'user1','pass1', $driver_options);
 
     // プルダウンリスト用に担当者一覧を取得
-    $sql = "SELECT NAME FROM TODO_USER";
+    $sql = "SELECT ID, NAME FROM TODO_USER";
     $staffs = $pdo->query($sql)->fetchAll();
-    //print_r($staffs);
+//print_r($staffs);
 
 } catch (PDOException $e) {
 	// エラー発生時に壊れたHTML画面ではなくプレーンテキストでエラーメッセージのみ表示
@@ -55,9 +55,9 @@ require_once('header.tmp.php');
 				<div class="inputs">
 					<input class="tbox" type="text" name="item_name">
 
-					<select class="pulldown" name="user_name">
+					<select class="pulldown" name="user_id">
 <?php foreach ($staffs as $staff):$selected = ($staff['NAME'] === $guestname)? 'selected="selected"' : ''; ?>
-						<option value="<?=$staff['NAME'].'" '.$selected?>">
+						<option value="<?=$staff['ID'].'" '.$selected?>">
 							<?=hsc($staff['NAME'])?>
 						</option>
 <?php endforeach ?>
