@@ -72,7 +72,7 @@
 					<th>id</th>
 					<th>日時</th>
 					<th>投稿内容</th>
-					<th>投稿者</th>
+					<th style="min-width: 60px">投稿者</th>
 					<th></th>
 				</tr>
 				<?php
