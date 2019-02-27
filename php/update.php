@@ -80,11 +80,11 @@ require_once('header.tmp.php');
 					</select>
 
 					<div class="terms-wrapper">
-						<input class="term" type="text" name="year" value="<?=$date[0]?>">
+						<input class="term" type="text" name="year" value="<?=$date[0]?>" maxlength="4" required>
 						／
-						<input class="term" type="text" name="month" value="<?=$date[1]?>">
+						<input class="term" type="text" name="month" value="<?=$date[1]?>" maxlength="2" required>
 						／
-						<input class="term" type="text" name="day" value="<?=$date[2]?>">
+						<input class="term" type="text" name="day" value="<?=$date[2]?>" maxlength="2" required>
 					</div>
 					<div class="chkbox-wrapper">
 						<input class="chkbox" type="checkbox" name="finished_chk" <?=$checked?>>完了した
