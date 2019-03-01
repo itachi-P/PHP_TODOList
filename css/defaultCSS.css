@@ -74,3 +74,9 @@ a:hover {
 	color: cyan;
 	text-decoration: none;
 }
+
+.unimplemented {
+	color: #fc2;
+	opacity: 0.7;
+}
+

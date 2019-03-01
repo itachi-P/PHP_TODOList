@@ -95,10 +95,10 @@ require_once("header.tmp.php");
 <?php foreach($rows as $row):
 	// 対象行の担当者がログインユーザーの場合、背景をピンクに(下の完了済み→グレーが優先)※要確認
 	$bgc = ($row['user_name'] === $guestname)? "pink" : "#fff";
-	// 「期限」が現在日付よりも前で且つ「完了」が'未'の場合、文字を赤に
+	// 「期限」が現在日付以前で且つ「完了」が'未'の場合、文字を赤に
 	$color = "#000";
 	$today = date('Y-m-d');
-	if ($row['done'] === null && $row['term'] < $today) {
+	if ($row['done'] === null && $row['term'] <= $today) {
 		$color = "#f00";	
 	}
 	// 「完了」がnullの場合'未'と表示、日付データがあれば背景をグレーに
