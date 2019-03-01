@@ -21,7 +21,7 @@ require_once("header.tmp.php");
 	<span style="color:#77a; font-size: 18px">Ver.2 改修予定</span>
 	<ol style="list-style-type: cjk-ideographic">
 		<li>ユーザー登録・削除機能</li>
-		Ver1では登録済み固定ユーザー認証のみで全体の機能・画面完成を優先
+			登録済み固定ユーザーに加え、新規ユーザー登録を受付
 		<li>ユーザー認証</li>
 			パスワードのハッシュ化、バリデーション(orサニタイズ)チェック強化
 	</ol>
@@ -34,11 +34,11 @@ require_once("header.tmp.php");
 			<div class="inputs">
 				<p>
 					ユーザーID
-					<input type="text" name="userID" class="textbox" size="15" maxlength="15">
+					<input type="text" name="userID" class="textbox" size="15" maxlength="15" required>
 				</p>
 				<p>
 					パスワード
-					<input type="password" name="password" class="textbox" size="15" maxlength="15">
+					<input type="password" name="password" class="textbox" size="15" maxlength="15" required>
 				</p>
 				<span>
 				※テスト用ユーザー※</br>
@@ -50,5 +50,6 @@ require_once("header.tmp.php");
 			</p>
 		</form>
 	</div>
+<?php require_once("footer.tmp.php"); ?>
 </body>
 </html>
