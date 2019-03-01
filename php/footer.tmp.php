@@ -1,4 +1,5 @@
-<footer style='position:absolute; bottom:0; width:100%; background-color:#999; background-image:url("../images/");'>
+<footer style='position:absolute; bottom:0; width:100%; background-color: #999'>
+	<p style='background-image: url("../images/ferre_line.gif")'>　</p>
 	<nav>
 	<a href="../index.html">トップページ</a> 
 	</nav>
@@ -6,5 +7,5 @@
 	<address style="display: inline;">
 		<a style="display: inline;">itachip38@gmail.com</a>
 	</address>
-	<div style="float:right">Last Modified: 2019/03/01 11:33:55</div>
+	<div style="float:right">Last Modified: 2019/03/01 18:20</div>
 </footer>
