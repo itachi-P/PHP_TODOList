@@ -1,0 +1,84 @@
+
+
+div, span, h1, h2, h3, h4, p, img, header, footer {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-weight: normal;
+	list-style: none;
+	text-decoration: none;
+}
+body {
+	margin: 0 auto;
+	background-color: #777;
+	color: white;
+}
+h1 {
+	color: #ccc;
+}
+h2 {
+	color: #347178;
+	font-size: 2.0rem;
+}
+h3 {
+	color: #97b;
+	font-size: 1.5rem;	
+}
+h4 {
+	color: #b7a095;
+}
+/* スタイルシートで指定したブロックサイズからはみ出た部分をスクロール表示 */
+form{
+	overflow: scroll;
+}
+/* inputタグのタイプごとのスタイルシート指定 */
+input[type="text"] {
+	color: #545454;
+	height: 25px;
+	width: 15%;
+	padding: 5px 10px;
+	font-size: 16px;
+	display: block;
+	margin-bottom: 10px;
+	box-sizing: border-box;
+}
+input[type="password"] {
+	color: #545454;
+	height: 25px;
+	width: 15%;
+	padding: 5px 10px;
+	font-size: 16px;
+	display: block;
+	margin-bottom: 10px;
+	box-sizing: border-box;
+}
+input[type="submit"] {
+	border: none;
+	padding: 12px 20px;
+	margin-bottom: 15px;
+	background: #ccc;
+	color: white;
+	float: center;
+}
+input[type="submit"]:hover {
+	background: #3d3938;
+	cursor: pointer;
+}
+
+table, tr, th, td {
+	border: solid 1px #cfc;
+}
+
+a {
+	color: #ace;
+	display: block;}
+a:hover {
+	color: cyan;
+	text-decoration: none;
+}
+
+.unimplemented {
+	color: #fc2;
+	opacity: 0.7;
+}
+

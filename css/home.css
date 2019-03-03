@@ -1,0 +1,43 @@
+@charset "UTF-8";
+/* cssをSass(Scss記法)に置き換え */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  font-family: "メイリオ";
+  background-image: url(../images/b0133447_2029955.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #999;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px; }
+
+h1 {
+  position: absolute;
+  top: 450px;
+  left: 100px;
+  color: #ccc;
+  width: 80%;
+  height: 30px;
+  font-size: 2.4rem;
+  text-align: center;
+  opacity: 0.5; }
+li {
+  font-size: 20px;
+}
+a {
+  color: #ccf;
+}
+a:hover {
+  text-decoration: none;
+  color: #fc2; }
+
+img {
+  transition: 1s; }
+  img:hover {
+    opacity: 0.5; }
+
+/*# sourceMappingURL=home.css.map */

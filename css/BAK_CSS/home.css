@@ -1,0 +1,33 @@
+@charset "UTF-8";
+/* cssをSass(Scss記法)に置き換え */
+body {
+  font-family: "メイリオ";
+  background-image: url(../images/b0133447_2029955.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #999; }
+
+h1 {
+  position: absolute;
+  top: 510px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 500px;
+  height: 130px;
+  color: #ccc;
+  font-size: 2.6rem;
+  text-align: center;
+  opacity: 0.5; }
+
+a:hover {
+  text-decoration: none;
+  color: lightblue; }
+
+img {
+  transition: 1.0s; }
+  img:hover {
+    opacity: 0.3; }

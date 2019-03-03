@@ -1,0 +1,76 @@
+h1 {
+	margin: 0 auto;
+	width: 95%;
+	font-size: 30px;
+	border-bottom: 2px solid #555;
+}
+li {
+	font-size: 20px;
+	font-weight: bold;
+	margin: 20px;
+	color: #78b;
+}
+
+.container {
+	max-width: 700px;
+	background-color: #bbb;
+	margin: 30px auto;
+}
+.inputs-wrapper {
+	/*background-color: #c78;*/
+}
+.titles {
+	max-width: 160px;
+	width: 28%;
+	display: inline-block;
+}
+.titles ul {
+	list-style: none;
+}
+.inputs {
+	width: 70%;
+	display: inline-block;
+}
+.tbox, .pulldown {
+	width: 70%;
+	padding: 6px;
+	margin-top: 17px;
+}
+.terms-wrapper {
+	margin-top: 18px;
+	width: 70%;
+}
+.terms-wrapper input {
+	display: inline-block;
+	width: 25%;
+	border: solid 1px #eee;
+	box-sizing: border-box;
+	height: 30px;
+}
+.chkbox-wrapper {
+	display: inline-block;
+	margin-top: 18px;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+input[type=checkbox] {
+	width: 20px;
+	margin: 10px;
+  	transform: scale(2.5, 2.3);
+}
+
+.buttons-wrapper {
+	margin: 10px auto;
+	text-align: center;
+}
+.btn {
+	background-color: #77c;
+	color: white;
+	width: 100px;
+	padding: 5px;
+	margin: 5px 40px;
+	border-radius: 6px;
+}
+.btn:hover {
+	color: #cfc;
+}

@@ -1,0 +1,53 @@
+#title {
+	background-color: #444;
+	color: white;
+	padding: 20px;
+	font-size: 30px;
+	font-weight: normal;
+	font-family: fantasy;
+}
+h2 {
+	padding: 5px;
+	margin-bottom: 0px;
+}
+span {
+	color: #35c;
+	background-color: rgba(200, 120, 120, 0.2);
+}
+p {
+	margin: 0;
+}
+
+hr {
+	margin: 0px;
+}
+
+.login-form {
+	background-color: #ccc;
+	max-width: 500px;
+	width: 60%;
+	margin: 0 auto;
+}
+
+.inputs {
+	line-height: 40px;
+	text-align: center;
+}
+.textbox {
+	height: 25px;
+}
+.btn-wrapper {
+	background-color: #aaa;
+	text-align: center;
+}
+.btn {
+	background-color: black;
+	color: white;
+	width: 150px;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 7px;
+}
+.btn:hover {
+	color: #afc;
+}
