@@ -1,6 +1,6 @@
 <?php
 $head_title = "Webアプリ開発実習(PHP)";
-$css_file = "defaultCSS.css";
+$css_file = "default-css.css";
 require_once("header.tmp.php");
 ?>
 

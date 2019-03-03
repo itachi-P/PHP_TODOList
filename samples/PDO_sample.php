@@ -64,7 +64,7 @@ function hsc($str) {
 }
 
 $head_title = "PDO利用サンプル";
-$css_file = "defaultCSS.css";
+$css_file = "default-css.css";
 require_once("../php/header.tmp.php");
 ?>
 
