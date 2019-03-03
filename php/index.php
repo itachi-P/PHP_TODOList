@@ -33,7 +33,7 @@ require_once("header.tmp.php");
 		</ol>
 		<li>その他</li>
 		<ul>
-			<li style="text-decoration: line-through">ヘッダー・フッターのテンプレートファイル化</li>
+			<li style="text-decoration: line-through">ヘッダー・フッターの外部テンプレートファイル化</li>
 			<li style="text-decoration: line-through">全ページレスポンシブ対応</li>
 		</ul>
 	</ul>
