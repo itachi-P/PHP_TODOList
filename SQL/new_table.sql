@@ -10,7 +10,8 @@ INSERT INTO TODO_USER VALUES
 ('user01', 'ゲストユーザー', 'pass01'),
 ('user02', 'Siddhattha', 'budda'),
 ('user03', 'Mohandas Karamchand Gandhi', 'barpoo'),
-('user04', '世良田二郎三郎元信', 'ieyasu');
+('user04', '世良田二郎三郎元信', 'ieyasu'),
+('itachi', 'いたち', 'pass');
 
 DROP TABLE TODO_ITEM;
 
@@ -44,6 +45,6 @@ INSERT INTO TODO_ITEM (NAME, USER, EXPIRE_DATE, FINISHED_DATE) VALUES
 ('項目13', 'user01', DATE_FORMAT(now() + INTERVAL 2 WEEK,'%Y/%m/%d'), '2019/02/11'),
 ('項目16', 'user04', '2019/02/28', '2019/02/11'),
 ('項目17', 'user04', '2020/01/25', '2018/12/20'),
-('項目19', 'user02', '2020/03/16', '2020/01/23'),
-('項目20', 'user02', '2020/01/31', '2022/01/01')
+('項目19', 'user02', '2020/01/31', '2020/01/23'),
+('項目20', 'user02', '2020/03/16', '2022/01/01')
 ;

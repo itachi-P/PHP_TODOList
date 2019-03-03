@@ -1,6 +1,7 @@
 SQL/
 images/
 PHPstart.bat
+.gitignore
 
 # Windows thumbnail cache files
 Thumbs.db
