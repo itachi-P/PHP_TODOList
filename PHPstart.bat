@@ -1,1 +1,0 @@
-php -S localhost:8100 -t c:/lesson/php_lessons/
