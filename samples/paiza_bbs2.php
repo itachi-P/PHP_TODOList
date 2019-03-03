@@ -51,11 +51,11 @@
 			<form class="form" action="paiza_bbs2.php" method="post">
 				<div class="form-group">
 					<label class="control-label">投稿内容</label>
-					<input class="form-control" type="text" name="content">
+					<input class="form-control" type="text" name="content" required>
 				</div>
 				<div class="form-group">
 					<label class="control-label">投稿者</label>
-					<input class="form-control" type="text" name="user_name">
+					<input class="form-control" type="text" name="user_name" required>
 				</div>
 				<button class="btn btn-primary" type="submit">送信</button>
 			</form>
