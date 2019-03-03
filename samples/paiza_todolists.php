@@ -26,7 +26,7 @@
 <body class="container">
     <h1>Todo List</h1>
     <form method="post" action="">
-        <input type="text" name="name" value="">
+        <input type="text" name="name" value="" required>
         <input type="submit" name="submit" value="Add">
     </form>
     <h2>Current Todos</h2>
