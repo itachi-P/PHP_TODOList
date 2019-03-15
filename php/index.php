@@ -40,6 +40,7 @@ require_once("header.tmp.php");
 	</div>
 	<hr>
 	<h4><a href="./login.php">ログイン画面へ</a></h4>
+<h4><a href="../README.md">ToDoList機能一覧・メモ</a></h4>
 	<?php require_once("footer.tmp.php"); ?>
 </body>
 </html>
