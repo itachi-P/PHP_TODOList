@@ -8,7 +8,7 @@ require_once("header.tmp.php");
 	<h1>Web開発実習PHPホーム</h1>
 	<h4>サンプルWebアプリケーション仕様</h4>
 	<hr>
-	<h3>実装予定機能リスト</h3>
+	<h3>作業・機能一覧</h3>
 	<ul style="color: #ffc;">
 		<li>ログイン機能</li>
 			<ul style="list-style-type: square;">
@@ -40,7 +40,6 @@ require_once("header.tmp.php");
 	</div>
 	<hr>
 	<h4><a href="./login.php">ログイン画面へ</a></h4>
-<h4><a href="../README.md">ToDoList機能一覧・メモ</a></h4>
 	<?php require_once("footer.tmp.php"); ?>
 </body>
 </html>
