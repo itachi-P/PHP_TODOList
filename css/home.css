@@ -1,43 +1,55 @@
-@charset "UTF-8";
-/* cssをSass(Scss記法)に置き換え */
+﻿@charset "UTF-8";
+
 html {
   position: relative;
-  min-height: 100%;
+  min-height: 90%;
 }
+
 body {
   font-family: "メイリオ";
-  background-image: url(../images/b0133447_2029955.jpg);
+  /*
+  background-image: url(../images/20130918_churapons.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: #999;
+*/
+  background-color: #99c;
   /* Margin bottom by footer height */
-  margin-bottom: 60px; }
+  margin-bottom: 50px;
+}
 
 h1 {
   position: absolute;
-  top: 450px;
+  top: 200px;
   left: 100px;
   color: #ccc;
   width: 80%;
   height: 30px;
   font-size: 2.4rem;
   text-align: center;
-  opacity: 0.5; }
+  opacity: 0.5;
+}
+
 li {
   font-size: 20px;
 }
+
 a {
   color: #ccf;
 }
+
 a:hover {
   text-decoration: none;
-  color: #fc2; }
+  color: #fc2;
+}
 
 img {
-  transition: 1s; }
-  img:hover {
-    opacity: 0.5; }
+  transition: 1s;
+}
+
+img:hover {
+  opacity: 0.5;
+}
 
 /*# sourceMappingURL=home.css.map */
