@@ -18,6 +18,7 @@ require_once("header.tmp.php");
 ?>
 
 <body>
+<!--
 	<span style="color:#77a; font-size: 18px">Ver.2 改修予定</span>
 	<ol style="list-style-type: cjk-ideographic">
 		<li>ユーザー登録・削除機能</li>
@@ -26,7 +27,8 @@ require_once("header.tmp.php");
 			パスワードのハッシュ化、バリデーション(orサニタイズ)チェック強化
 	</ol>
 	<hr>
-	<h1 id="title">ログイン画面</h1>
+-->
+	<h1 id="title">ToDoリスト_ログイン</h1>
 	<div class="login-form">
 		<form method="post" action="./login_check.php">
 			<h2>ログイン</h2>
@@ -34,14 +36,14 @@ require_once("header.tmp.php");
 			<div class="inputs">
 				<p>
 					ユーザーID
-					<input type="text" name="userID" class="textbox" size="15" maxlength="15" required>
+					<input type="text" name="userID" class="textbox" size="15" maxlength="15" required value="user01">
 				</p>
 				<p>
 					パスワード
-					<input type="password" name="password" class="textbox" size="15" maxlength="15" required>
+					<input type="password" name="password" class="textbox" size="15" maxlength="15" required value="pass01">
 				</p>
 				<span>
-				※テスト用ユーザー※</br>
+				※（初期入力）テスト用ユーザー※</br>
 				ユーザーID: user01 パスワード: pass01
 				</span>
 			</div>
