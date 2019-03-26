@@ -1,1 +1,1 @@
-php -S localhost:8100 -t c:/lesson/PHP_lessons/
+php -S localhost:8100 -t c:/lesson/php_lesson/

@@ -36,14 +36,14 @@ require_once("header.tmp.php");
 			<div class="inputs">
 				<p>
 					ユーザーID
-					<input type="text" name="userID" class="textbox" size="15" maxlength="15" required>
+					<input type="text" name="userID" class="textbox" size="15" maxlength="15" required value="user01">
 				</p>
 				<p>
 					パスワード
-					<input type="password" name="password" class="textbox" size="15" maxlength="15" required>
+					<input type="password" name="password" class="textbox" size="15" maxlength="15" required value="pass01">
 				</p>
 				<span>
-				※テスト用ユーザー※</br>
+				※（初期入力）テスト用ユーザー※</br>
 				ユーザーID: user01 パスワード: pass01
 				</span>
 			</div>
