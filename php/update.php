@@ -5,18 +5,14 @@ if (empty($_POST['action']) || empty($_POST['item_id'])) {
 	header("location: ".$url, true, 301);
 	exit;
 }
+// データベース接続用メソッド定義ファイル読み込み
+require_once("connectPDO.php");
 
 $item_id = $_POST['item_id'];
 
-$dsn = 'mysql: host=127.0.0.1; dbname=shino; charset=utf8mb4';
-$driver_options = [
-	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-	PDO::ATTR_EMULATE_PREPARES => false,
-	PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-	];
-
 try {
-    $pdo = new PDO($dsn,'user1','pass1', $driver_options);
+    //For Heroku
+    new_pdo();
 
 	$sql = "SELECT TODO_ITEM.NAME AS item_name,
 					TODO_USER.NAME AS user_name,

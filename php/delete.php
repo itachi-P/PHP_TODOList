@@ -4,22 +4,31 @@
 //session_start();
 $item_id = $_POST['item_id'];
 
-$dsn = 'mysql: host=127.0.0.1; dbname=shino; charset=utf8mb4';
-$driver_options = [
-	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-	PDO::ATTR_EMULATE_PREPARES => false,
-	PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-	];
-
 try {
-    $pdo = new PDO($dsn,'user1','pass1', $driver_options);
+    //For Heroku
+    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
+
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"], 1);
+
+    $pdo = new PDO(
+      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
+      $username,
+      $password,
+      [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+      ]
+    );
 
 	$sql = "SELECT NAME AS item_name
 			FROM TODO_ITEM
 			WHERE ID = ".$item_id;
 	// 結果は1行だけ(・・・の筈)なのでfetch()で可
     $row = $pdo->query($sql)->fetch();
-    //print_r($row);
 
 } catch (PDOException $e) {
 	// エラー発生時に壊れたHTML画面ではなくプレーンテキストでエラーメッセージのみ表示

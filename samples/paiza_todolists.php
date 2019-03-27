@@ -1,14 +1,31 @@
 <?php
-    $pdo = new PDO("mysql:host=localhost;dbname=shino;charset=utf8","user1","pass1", [PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING]);
+    //For Heroku
+    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
+
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"], 1);
+
+    $pdo = new PDO(
+      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
+      $username,
+      $password,
+      [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+      ]
+    );
 
     if(isset($_POST['submit']) ){
         $name = $_POST['name'];
-        $sth = $pdo->prepare("INSERT INTO todos (name) VALUES (:name)");
+        $sth = $pdo->prepare("INSERT INTO paiza_todos (name) VALUES (:name)");
         $sth->bindValue(':name', $name, PDO::PARAM_STR);
         $sth->execute();
     }elseif(isset($_POST['delete'])){
         $id = $_POST['id'];
-        $sth = $pdo->prepare("delete from todos where id = :id");
+        $sth = $pdo->prepare("delete from paiza_todos where id = :id");
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
         $sth->execute();
     }
