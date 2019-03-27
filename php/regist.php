@@ -47,7 +47,7 @@ require_once('header.tmp.php');
 					</ul>
 				</div>
 				<div class="inputs">
-					<input class="tbox" type="text" name="item_name" required>
+					<input class="tbox" type="text" name="item_name">
 
 					<select class="pulldown" name="user_id">
 <?php foreach ($staffs as $staff):$selected = ($staff['NAME'] === $guestname)? 'selected="selected"' : ''; ?>
@@ -58,11 +58,11 @@ require_once('header.tmp.php');
 					</select>
 
 					<div class="terms-wrapper">
-						<input class="term" type="text" name="year" maxlength="4" required>
+						<input class="term" type="text" name="year" maxlength="4">
 						／
-						<input class="term" type="text" name="month" maxlength="2" required>
+						<input class="term" type="text" name="month" maxlength="2">
 						／
-						<input class="term" type="text" name="day" maxlength="2" required>
+						<input class="term" type="text" name="day" maxlength="2">
 					</div>
 				</div>	<!-- inputs(right-block) end -->
 			</div> <!-- inputs-wrapper -->
