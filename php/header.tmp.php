@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="ja">
 <head>
-	<meta charset=utf-8mb4">
+	<meta charset="utf-8mb4">
 	<title><?= $head_title ?></title>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 	<link href="../css/<?= $css_file ?>" rel="stylesheet" type="text/css">

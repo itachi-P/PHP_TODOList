@@ -63,15 +63,25 @@ $sql = "DELETE FROM TODO_ITEM WHERE ID = :item_id";
 	exit;
 }
 
-$dsn = 'mysql: host=127.0.0.1; dbname=shino; charset=utf8mb4';
-$driver_options = [
-	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-	PDO::ATTR_EMULATE_PREPARES => false,
-//	PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-	];
-
 try {
-    $pdo = new PDO($dsn,'user1','pass1', $driver_options);
+	//For Heroku
+    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
+
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"], 1);
+
+    $pdo = new PDO(
+      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
+      $username,
+      $password,
+      [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+      ]
+    );
 
 	$stmt = $pdo -> prepare($sql);
 	if ($action === "regist") {

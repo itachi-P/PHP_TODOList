@@ -21,15 +21,25 @@ if (isset($_POST['search_keyword'])) {
 // (要仕様確認)検索キーワードに何も入力されない場合そのまま再度全件検索ではなくエラー扱いにするか？
 // if (empty($_POST['search_keyword']) {}
 
-$dsn = 'mysql: host=127.0.0.1; dbname=shino; charset=utf8mb4';
-$driver_options = [
-	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-	PDO::ATTR_EMULATE_PREPARES => false,
-	];
-
 try {
-	// DBH:データベースハンドラ ($pdoと書かれることが多い)
-    $pdo = new PDO($dsn,'user1','pass1', $driver_options);
+	//For Heroku
+    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
+
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"], 1);
+
+    $pdo = new PDO(
+      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
+      $username,
+      $password,
+      [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+      ]
+    );
 
 	//「完了」「未完了」ボタン押下時の処理分け
 	if (isset($_POST['action']) && isset($_POST['item_id'])) {
