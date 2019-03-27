@@ -13,13 +13,35 @@ $pass = $_POST['password'];
 // if ($pass ...) {}
 
 // 入力されたユーザーID、パスワードのDB照合
-$dsn = 'mysql: host=localhost; dbname=shino; charset=utf8mb4';
+//$dsn = 'mysql: host=localhost; dbname=shino; charset=utf8mb4';
 try {
+
+	//For Heroku
+    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
+
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"], 1);
+
+    $pdo = new PDO(
+      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
+      $username,
+      $password,
+      [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+      ]
+    );
+
+    /*
     $pdo = new PDO($dsn, 'user1', 'pass1');
     // 開発時は例外を投げる設定が必須
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     // ユーザーからの入力値を元にSQLを形成する場合エミュレーションをOFFにした方がセキュリティ上安全
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    */
     // 疑問符プレースホルダ使用パターン ※名前付きプレースホルダ(:id, :password)との混在はエラー
     $sql = "SELECT ID, NAME, PASSWORD
 	    	FROM TODO_USER
