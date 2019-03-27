@@ -13,20 +13,17 @@ $guestname = $_SESSION['customer']['name'];
 
 /* 以下でDBにアクセスしTODOリスト全件を表示 
 	※hostはWindows環境の場合'localhost'よりIPアドレス指定の方が処理が速い？ */
-$username = "bbb45e71c069e6"
-$password = "e6801b18"
-$hostname = "us-cdbr-iron-east-03.cleardb.net"
-$dbname = "heroku_8a37abb9c19ccd0"
-
-/*$dsn = 'mysql: host="'.$hostname.'"; dbname="'.$dbname.'"; charset=utf8mb4';
-$driver_options = [
-	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-	PDO::ATTR_EMULATE_PREPARES => false,
-	];
-*/
 try {
+    //For Heroku
+    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
+
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"], 1);
+
     $pdo = new PDO(
-      'mysql:host=' . $hostname . ';dbname=' . $dbname . ';charset=utf8mb4',
+      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
       $username,
       $password,
       [

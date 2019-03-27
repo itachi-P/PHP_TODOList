@@ -21,14 +21,24 @@
 	<div class="container">
 		<div id="main">
 			<?php
-			// データベースに接続する
-			$username = "bbb45e71c069e6"
-			$password = "e6801b18"
-			$hostname = "us-cdbr-iron-east-03.cleardb.net"
-			$dbname = "heroku_8a37abb9c19ccd0"
+			//For Heroku
+		    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
 
-			$pdo = new PDO("mysql:host=".$hostname.";dbname=".$dbname.";charset=utf8", $username, $password);
-			// print_r($_POST);
+		    $server = $url["host"];
+		    $username = $url["user"];
+		    $password = $url["pass"];
+		    $db = substr($url["path"], 1);
+
+		    $pdo = new PDO(
+		      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
+		      $username,
+		      $password,
+		      [
+		        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+		        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+		        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+		      ]
+		    );
 
 			// 受け取ったidのレコードの削除
 			if (isset($_POST["delete_id"])) {
