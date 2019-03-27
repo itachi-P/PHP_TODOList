@@ -22,32 +22,33 @@
     </h3>
     <hr>
     <p>
-        <h5>
+        <h4>
         	<div class="fab fa-github fa-2x"></div>
             <a target="_blank" href="https://github.com/itachi-P">GitHub</a>
             <div class="fab fa-github-alt fa-2x fa-spin"></div>
-        </h5>
+        </h4>
     </p>
     <p>
-        <h5>
-            <div class="fab fa-aws fa-2x icon_color_aws"></div>
-            <img src="images/heroku-icon.png">
+        <h4>
+            <div class="fab fa-aws fa-2x icon_color_aws">
+                <img src="images/heroku-icon.png" class="heroku-icon">
+            </div>
             <a target="_blank" href="https://itachip-php-todolist.herokuapp.com/">
                 AWS → Herokuに移行しました
             </a>
-        </h5>
+        </h4>
     </p>
     <p>
-        <h5>
+        <h4>
             <div class="fab fa-twitter fa-2x fa-fw icon_color_tw"></div>
             <a target="_blank" href="https://twitter.com/itachi4946">twitter(リンク修正)</a>
-            </h5>
+            </h4>
     </p>
     <p>
-        <h5>
+        <h4>
             <div class="fab fa-facebook-square fa-2x fa-rotate-90 fa-fw icon_color_fb"></div>
             <a target="_blank" href="https://www.facebook.com/itachiVegan">facebook</a>
-        </h5>
+        </h4>
     </p>
 <!--
     <hr>
