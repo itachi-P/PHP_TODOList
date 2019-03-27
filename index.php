@@ -13,8 +13,8 @@
 	Webアプリケーション(PHP)開発実習 2019/1/30～">
 </head>
 <body>
-    <h1>Web開発実習ホーム</h1>
-    <h2 style="font-size: 3.0rem">
+    <h1>PHPホーム</h1>
+    <h2 style="font-size: 2.8rem">
         <a href="php/login.php">ToDoリスト(PHP)</a>
     </h2>
     <h3>
@@ -22,38 +22,39 @@
     </h3>
     <hr>
     <p>
-        <h4>
+        <h5>
         	<div class="fab fa-github fa-2x"></div>
             <a target="_blank" href="https://github.com/itachi-P">GitHub</a>
             <div class="fab fa-github-alt fa-2x fa-spin"></div>
-        </h4>
+        </h5>
     </p>
     <p>
-        <h4>
+        <h5>
             <div class="fab fa-aws fa-2x icon_color_aws"></div>
-            <a target="_blank" href="http://ec2-13-112-237-214.ap-northeast-1.compute.amazonaws.com/">
-                    Amazon Web Service (ec-2)
+            <img src="images/heroku-icon.png">
+            <a target="_blank" href="https://itachip-php-todolist.herokuapp.com/">
+                AWS → Herokuに移行しました
             </a>
-        </h4>
+        </h5>
     </p>
     <p>
-        <h4>
+        <h5>
             <div class="fab fa-twitter fa-2x fa-fw icon_color_tw"></div>
             <a target="_blank" href="https://twitter.com/itachi4946">twitter(リンク修正)</a>
-            </h4>
+            </h5>
     </p>
     <p>
-        <h4>
+        <h5>
             <div class="fab fa-facebook-square fa-2x fa-rotate-90 fa-fw icon_color_fb"></div>
             <a target="_blank" href="https://www.facebook.com/itachiVegan">facebook</a>
-        </h4>
+        </h5>
     </p>
 <!--
     <hr>
     <img class="pict400" src="images/izuna-in-snow.jpg" alt="イイズナ（飯綱）" title="見やすくなったかな…">
     <hr>
 -->
-    <footer style='position:absolute; bottom:0; width:100%; height:60px; margin:0px'>
+    <footer style='position:absolute; bottom:0; width:99%; height:75px; margin:0px'>
         <small>&copy; Copyright 篠原いたち All Rights Reserved.</small>
         <img style="" src="images/wakiwakid.gif">
         <address style="display: inline">
