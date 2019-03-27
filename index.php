@@ -54,7 +54,7 @@
     <img class="pict400" src="images/izuna-in-snow.jpg" alt="イイズナ（飯綱）" title="見やすくなったかな…">
     <hr>
 -->
-    <footer style='position:absolute; bottom:0; width:100%; height:75px; margin:0px'>
+    <footer style='position:absolute; bottom:0; width:100%; height:60px; margin:0px'>
         <small>&copy; Copyright 篠原いたち All Rights Reserved.</small>
         <img style="" src="images/wakiwakid.gif">
         <address style="display: inline">
