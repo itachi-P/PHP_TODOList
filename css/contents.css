@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
 div,
 span,
@@ -48,7 +48,7 @@ hr {
 }
 
 .heroku-icon {
-  width: 32px;
+  width: 60px;
 }
 
 /* Font Awesomeの調整 */

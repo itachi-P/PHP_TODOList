@@ -18,13 +18,6 @@ $pass = $_POST['password'];
 try {
     $pdo = new_pdo();
 
-    /*
-    $pdo = new PDO($dsn, 'user1', 'pass1');
-    // 開発時は例外を投げる設定が必須
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // ユーザーからの入力値を元にSQLを形成する場合エミュレーションをOFFにした方がセキュリティ上安全
-    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    */
     // 疑問符プレースホルダ使用パターン ※名前付きプレースホルダ(:id, :password)との混在はエラー
     $sql = "SELECT ID, NAME, PASSWORD
 	    	FROM TODO_USER

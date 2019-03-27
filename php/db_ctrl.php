@@ -1,5 +1,6 @@
 <?php
 //各ページからのDBテーブル操作に共通して通るコントローラー
+require_once("connectPDO.php");
 
 $actions = ['regist', 'update', 'delete', 'cancel'];
 foreach ($actions as $action) {
@@ -20,12 +21,9 @@ if ($action === "regist") {
 		$day = "0".$day;
 	}
 	$term = $_POST['year']."-".$month."-".$day;
-//echo "項目名：".$item_name."<br>";
-//echo "担当者ID：".$user_id."<br>";
-//echo "期限：".$term."<br>";
 
-$sql = "INSERT INTO TODO_ITEM (NAME, USER, EXPIRE_DATE)
-		VALUES (:item_name, :user_id, :term)";
+	$sql = "INSERT INTO TODO_ITEM (NAME, USER, EXPIRE_DATE)
+			VALUES (:item_name, :user_id, :term)";
 
 } else if ($action === "update") {
 	$item_id = $_POST[('item_id')];
@@ -41,12 +39,7 @@ $sql = "INSERT INTO TODO_ITEM (NAME, USER, EXPIRE_DATE)
 	}
 	$term = $_POST['year']."-".$month."-".$day;
 	$finished = isset($_POST['finished_chk'])? date('Y-m-d') : null;
-/*echo "項目ID：".$item_id."<br>";
-echo "項目名：".$item_name."<br>";
-echo "担当者ID：".$user_id."<br>";
-echo "期限：".$term."<br>";
-echo "完了：".$finished."<br>";
-*/
+
 $sql = "UPDATE TODO_ITEM
 		SET NAME = :item_name, USER = :user_id, EXPIRE_DATE = :term, FINISHED_DATE = :finished
 		WHERE ID = :item_id";
@@ -64,24 +57,7 @@ $sql = "DELETE FROM TODO_ITEM WHERE ID = :item_id";
 }
 
 try {
-	//For Heroku
-    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
-
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $db = substr($url["path"], 1);
-
-    $pdo = new PDO(
-      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
-      $username,
-      $password,
-      [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-      ]
-    );
+	$pdo = new_pdo();
 
 	$stmt = $pdo -> prepare($sql);
 	if ($action === "regist") {
