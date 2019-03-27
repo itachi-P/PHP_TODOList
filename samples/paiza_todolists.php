@@ -51,7 +51,7 @@
         <therad><th>Task</th><th></th></therad>
         <tbody>
 <?php
-    $sth = $pdo->prepare("SELECT * FROM todos ORDER BY id DESC");
+    $sth = $pdo->prepare("SELECT * FROM paiza_todos ORDER BY id DESC");
     $sth->execute();
     
     foreach($sth as $row) {

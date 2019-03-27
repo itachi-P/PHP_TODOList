@@ -1,5 +1,6 @@
 <?php
 require_once("make_buttons.php");
+require_once("connectPDO.php");
 
 /* 20190218N超改変 HTML画面構成→<table>、画面遷移方法→ボタン1個毎に<form>、CSS→シンプル化 */
 session_start();
@@ -15,23 +16,7 @@ $guestname = $_SESSION['customer']['name'];
 	※hostはWindows環境の場合'localhost'よりIPアドレス指定の方が処理が速い？ */
 try {
     //For Heroku
-    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
-
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $db = substr($url["path"], 1);
-
-    $pdo = new PDO(
-      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
-      $username,
-      $password,
-      [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-      ]
-    );
+    $pdo = new_pdo();
 
 	//「完了」「未完了」ボタン押下時の処理分け
 	if (isset($_POST['action']) && isset($_POST['item_id'])) {

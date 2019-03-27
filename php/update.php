@@ -12,7 +12,7 @@ $item_id = $_POST['item_id'];
 
 try {
     //For Heroku
-    new_pdo();
+    $pdo = new_pdo();
 
 	$sql = "SELECT TODO_ITEM.NAME AS item_name,
 					TODO_USER.NAME AS user_name,
