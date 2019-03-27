@@ -22,7 +22,12 @@
 		<div id="main">
 			<?php
 			// データベースに接続する
-			$pdo = new PDO("mysql:host=127.0.0.1;dbname=shino;charset=utf8", "user1", "pass1");
+			$username = "bbb45e71c069e6"
+			$password = "e6801b18"
+			$hostname = "us-cdbr-iron-east-03.cleardb.net"
+			$dbname = "heroku_8a37abb9c19ccd0"
+
+			$pdo = new PDO("mysql:host=".$hostname.";dbname=".$dbname.";charset=utf8", $username, $password);
 			// print_r($_POST);
 
 			// 受け取ったidのレコードの削除

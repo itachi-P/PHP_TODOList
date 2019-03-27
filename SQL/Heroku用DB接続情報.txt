@@ -1,0 +1,13 @@
+shielded-lake-58037
+https://shielded-lake-58037.herokuapp.com/
+
+CLEARDB_DATABASE_URL: mysql://bbb45e71c069e6:e6801b18@us-cdbr-iron-east-03.cleardb.net/heroku_8a37abb9c19ccd0?reconnect=true
+
+$username = bbb45e71c069e6
+$password = e6801b18
+$hostname = us-cdbr-iron-east-03.cleardb.net
+$dbname = heroku_8a37abb9c19ccd0
+
+ターミナルからの接続
+$ mysql --host=(--hostname--) --user=(--username--) --password=(--password--) (--dbname--)
+
