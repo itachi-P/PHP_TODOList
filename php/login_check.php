@@ -1,4 +1,5 @@
 <?php
+require_once("connectPDO.php");
 /* このページを介さずにlogin.phpで直接DB照合→セッション開始→一覧画面へ遷移、に修正予定 */
 
 // まず先に存在する(ブラウザを閉じても前回から残っている)セッションを解放
@@ -15,25 +16,7 @@ $pass = $_POST['password'];
 // 入力されたユーザーID、パスワードのDB照合
 //$dsn = 'mysql: host=localhost; dbname=shino; charset=utf8mb4';
 try {
-
-	//For Heroku
-    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
-
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $db = substr($url["path"], 1);
-
-    $pdo = new PDO(
-      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
-      $username,
-      $password,
-      [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-      ]
-    );
+    $pdo = new_pdo();
 
     /*
     $pdo = new PDO($dsn, 'user1', 'pass1');
