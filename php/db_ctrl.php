@@ -10,6 +10,7 @@ foreach ($actions as $action) {
 
 if ($action === "regist") {
 	// 新規項目名,担当者,期限,(完了は'未'→null,項目IDは自動採番)をINSERT
+	// ※(要修正) 現状全項目空白でも登録できてしまう仕様 → エラーメッセージ表示して再入力(既存入力値保持)にすべき
 	$item_name = $_POST['item_name'];
 	$user_id = $_POST['user_id'];
 	$month = $_POST['month'];
