@@ -14,7 +14,7 @@
 </head>
 <body>
     <h1>PHPホーム</h1>
-    <h2 style="font-size: 2.8rem">
+    <h2 style="font-size: 2.4rem">
         <a href="php/login.php">ToDoリスト(PHP)</a>
     </h2>
     <h3>
@@ -31,10 +31,10 @@
     <p>
         <h4>
             <div class="fab fa-aws fa-2x icon_color_aws">
-                <img src="images/heroku-icon.png" class="heroku-icon">
+                <img src="images/heroku-icon.png" class="heroku-icon" style="width: 60px">
             </div>
             <a target="_blank" href="https://itachip-php-todolist.herokuapp.com/">
-                AWS → Herokuに移行しました
+                AWS → Herokuに移行
             </a>
         </h4>
     </p>

@@ -1,28 +1,11 @@
 <?php
 // あくまでもレコード1行の削除「確認」画面なので、基本的にはitem_idだけをdb_ctrl.phpにスルーパスするだけのワンクッションでよい
-
+require_once("connectPDO.php");
 //session_start();
 $item_id = $_POST['item_id'];
 
 try {
-    //For Heroku
-    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
-
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $db = substr($url["path"], 1);
-
-    $pdo = new PDO(
-      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
-      $username,
-      $password,
-      [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-      ]
-    );
+  $pdo = new_pdo();
 
 	$sql = "SELECT NAME AS item_name
 			FROM TODO_ITEM

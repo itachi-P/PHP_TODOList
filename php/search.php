@@ -1,5 +1,5 @@
 <?php
-
+require_once("connectPDO.php");
 // この画面が直接表示された場合エラー画面に飛ばす
 if (empty($_POST['action'])) {
 	$url = "error.php?err=unauthorized_access";
@@ -22,24 +22,7 @@ if (isset($_POST['search_keyword'])) {
 // if (empty($_POST['search_keyword']) {}
 
 try {
-	//For Heroku
-    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
-
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $db = substr($url["path"], 1);
-
-    $pdo = new PDO(
-      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
-      $username,
-      $password,
-      [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-      ]
-    );
+	$pdo = new_pdo();
 
 	//「完了」「未完了」ボタン押下時の処理分け
 	if (isset($_POST['action']) && isset($_POST['item_id'])) {

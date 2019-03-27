@@ -1,4 +1,5 @@
 <?php
+require_once("connectPDO.php");
 // プルダウンリストのデフォルト表示(selected)をログインユーザーにする為にセッション利用
 session_start();
 // ログインユーザーの名前
@@ -12,24 +13,8 @@ if (empty($_POST['action'])) {
 }
 
 try {
-    //For Heroku
-    $url = parse_url(getenv('CLEARDB_DATABASE_URL'));
-
-    $server = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $db = substr($url["path"], 1);
-
-    $pdo = new PDO(
-      'mysql:host=' . $server . ';dbname=' . $db . ';charset=utf8mb4',
-      $username,
-      $password,
-      [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-      ]
-    );
+	$pdo = new_pdo();
+	
     // プルダウンリスト用に担当者一覧を取得
     $sql = "SELECT ID, NAME FROM TODO_USER";
     $staffs = $pdo->query($sql)->fetchAll();
