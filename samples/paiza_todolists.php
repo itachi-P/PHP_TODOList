@@ -20,12 +20,12 @@
 
     if(isset($_POST['submit']) ){
         $name = $_POST['name'];
-        $sth = $pdo->prepare("INSERT INTO todos (name) VALUES (:name)");
+        $sth = $pdo->prepare("INSERT INTO paiza_todos (name) VALUES (:name)");
         $sth->bindValue(':name', $name, PDO::PARAM_STR);
         $sth->execute();
     }elseif(isset($_POST['delete'])){
         $id = $_POST['id'];
-        $sth = $pdo->prepare("delete from todos where id = :id");
+        $sth = $pdo->prepare("delete from paiza_todos where id = :id");
         $sth->bindValue(':id', $id, PDO::PARAM_INT);
         $sth->execute();
     }

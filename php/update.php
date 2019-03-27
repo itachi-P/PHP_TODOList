@@ -5,7 +5,7 @@ if (empty($_POST['action']) || empty($_POST['item_id'])) {
 	header("location: ".$url, true, 301);
 	exit;
 }
-
+// データベース接続用メソッド定義ファイル読み込み
 require_once("connectPDO.php");
 
 $item_id = $_POST['item_id'];
