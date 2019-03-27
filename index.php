@@ -1,4 +1,3 @@
-<?php ?>
 <!DOCTYPE HTML>
 <html lang="ja">
 <head>
@@ -10,8 +9,7 @@
 	<link href="css/home.css" rel="stylesheet" type="text/css">
 	<link href="css/contents.css" rel="stylesheet" type="text/css">
 	<meta name="keywords" content="Webアプリ開発練習">
-	<meta name="description" content="15年ぶりエンジニア復帰中年 一から学習し直し最初の
-	Webアプリケーション(PHP)開発実習 2019/1/30～">
+	<meta name="description" content="15年ぶりエンジニア復帰中年 一から学習し直し最初のWebアプリケーション(PHP)開発実習 2019/1/30～">
 </head>
 <body>
     <h1>Web開発実習ホーム</h1>
@@ -54,7 +52,7 @@
     <img class="pict400" src="images/izuna-in-snow.jpg" alt="イイズナ（飯綱）" title="見やすくなったかな…">
     <hr>
 -->
-    <footer style='position:absolute; bottom:0; width:100%; height:75px; margin:0px'>
+    <footer style='position:absolute; bottom:0; width:99%; height:70px; margin:0px'>
         <small>&copy; Copyright 篠原いたち All Rights Reserved.</small>
         <img style="" src="images/wakiwakid.gif">
         <address style="display: inline">
