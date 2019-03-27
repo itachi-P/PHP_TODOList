@@ -13,14 +13,28 @@ $guestname = $_SESSION['customer']['name'];
 
 /* 以下でDBにアクセスしTODOリスト全件を表示 
 	※hostはWindows環境の場合'localhost'よりIPアドレス指定の方が処理が速い？ */
-$dsn = 'mysql: host=127.0.0.1; dbname=shino; charset=utf8mb4';
+$username = "bbb45e71c069e6"
+$password = "e6801b18"
+$hostname = "us-cdbr-iron-east-03.cleardb.net"
+$dbname = "heroku_8a37abb9c19ccd0"
+
+/*$dsn = 'mysql: host="'.$hostname.'"; dbname="'.$dbname.'"; charset=utf8mb4';
 $driver_options = [
 	PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 	PDO::ATTR_EMULATE_PREPARES => false,
 	];
-
+*/
 try {
-    $dbh = new PDO($dsn,'user1','pass1', $driver_options);
+    $pdo = new PDO(
+      'mysql:host=' . $hostname . ';dbname=' . $dbname . ';charset=utf8mb4',
+      $username,
+      $password,
+      [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+      ]
+    );
 
 	//「完了」「未完了」ボタン押下時の処理分け
 	if (isset($_POST['action']) && isset($_POST['item_id'])) {
@@ -28,13 +42,13 @@ try {
 			// 完了ボタンが押されたら「完了」欄を「未」から現在日付に書き換え、かつ「未完了」ボタンに変える
 			$sql = "UPDATE TODO_ITEM SET FINISHED_DATE = DATE_FORMAT(now(), '%Y/%m/%d')
 					WHERE ID = ".$_POST['item_id'];
-			$dbh->exec($sql);
+			$pdo->exec($sql);
 
 		} else if ($_POST['action'] === 'unfinished') {
 			// 該当するレコードのitem_idをキーに「完了」カラムの日付データ削除（nullに上書き→'未'）
 			$sql = "UPDATE TODO_ITEM SET FINISHED_DATE = null
 					WHERE ID = ".$_POST['item_id'];
-			$dbh->exec($sql);
+			$pdo->exec($sql);
 		}
 	}
 
@@ -49,7 +63,7 @@ try {
 			 ORDER BY EXPIRE_DATE ASC";
 
 	// FETCH_ASSOCとFETCH_UNIQUEを組み合わせることで、連想配列の添字に整数連番でなくidが使える
-    $rows = $dbh->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_UNIQUE);
+    $rows = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC|PDO::FETCH_UNIQUE);
 
 } catch (PDOException $e) {
 	// エラー発生時に壊れたHTML画面ではなくプレーンテキストでエラーメッセージのみ表示
