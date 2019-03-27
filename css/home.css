@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  font-family: "????";
+  font-family: "fantasy";
   /*
   background-image: url(../images/20130918_churapons.jpg);
   background-position: center center;
@@ -20,11 +20,11 @@ body {
 }
 
 h1 {
-  position: absolute;
+  position: relative;
   top: 400px;
   left: 300px;
   color: #ccb;
-  width: 350px;
+  width: 200px;
   height: 30px;
   font-size: 2.0rem;
   text-align: center;
