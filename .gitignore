@@ -1,3 +1,4 @@
+# HerokuかローカルかでPDOのMySQL接続情報を切り替える為のフラグ
 isDevelopment.txt
 
 # Windows thumbnail cache files
