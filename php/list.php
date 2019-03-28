@@ -88,7 +88,7 @@ require_once("header.tmp.php");
 	</thead>
 	<tbody>
 
-<?php foreach($rows as $row):
+	<?php foreach($rows as $row):
 	// 対象行の担当者がログインユーザーの場合、背景をピンクに(下の完了済み→グレーが優先)※要確認
 	$bgc = ($row['user_name'] === $guestname)? "pink" : "#fff";
 	// 「期限」が現在日付以前で且つ「完了」が'未'の場合、文字を赤に
@@ -100,14 +100,14 @@ require_once("header.tmp.php");
 	// 「完了」がnullの場合'未'と表示、日付データがあれば背景をグレーに
 	($row['done'] === null)? $row['done'] = '未' : $bgc = "gray"; ?>
 		<tr style="background-color: <?=$bgc?>; color: <?=$color?>">
-	<?php foreach ($row as $column): ?>
-    		<td><?= hsc($column) ?></td>
-	<?php endforeach ?>
+		<?php foreach ($row as $column): ?>
+    			<td><?= hsc($column) ?></td>
+		<?php endforeach ?>
 	<!-- ここで「操作」欄のボタン群を形成 -->
-			<?php hsc(makeBtns($rows)); ?>
+		<?php hsc(makeBtns($rows)); ?>
 		
-	</tr>
-<?php
+		</tr>
+	<?php
 	// 現在行のID取得用関数key($rows)がフェッチに合わせて自動で進まないので手動で進める
 	next($rows);
 	endforeach ?>
