@@ -29,7 +29,7 @@ function new_pdo(){
 
     //For development
     $pdo = new PDO(
-      'mysql:localhost;dbname=testdb;charset=utf8mb4',
+      'mysql:localhost;dbname=shino;charset=utf8mb4',
       'root',
       'root',
       [
